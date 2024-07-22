@@ -12,11 +12,11 @@ using UnityEngine;
 public class CliBody
 {
     public Socket socket;
-    public string ip;
-    public string ret;
-    public string event_type;
-    public int length;
-    public bool finish;
+    public string ip = "";
+    public string ret = "";
+    public string event_type = "";
+    public int length = 0;
+    public bool finish = false;
     public bool get_length = false;
 }
 
@@ -60,14 +60,9 @@ public static class NetworkTCPServer
         try
         {
             Array.Clear(results, 0, results.Length);
-            Thread cli_td = new Thread(() =>
-            {
-                CliBody cliBody = new CliBody();
-                cliBody.socket = cli;
-                cli.BeginReceive(results, 0, ret_length, 0, ReciveMessage, cliBody);
-            });
-            cli_td.Start();
-            ctList.Add(cli_td);
+            CliBody cliBody = new CliBody();
+            cliBody.socket = cli;
+            cli.BeginReceive(results, 0, ret_length, 0, ReciveMessage, cliBody);
 
             listenfd.BeginAccept(ConnectListen, listenfd);        
         }
