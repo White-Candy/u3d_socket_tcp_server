@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public static class FileTool
+public static class Tools
 {
     public static async void Bytes2File(byte[] buffer, string save_path)
     {
