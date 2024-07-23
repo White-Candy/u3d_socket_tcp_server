@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,11 @@ using UnityEngine;
 
 public static class Tools
 {
+    /// <summary>
+    /// 把字节数组变成文件流
+    /// </summary>
+    /// <param name="buffer"></param>
+    /// <param name="save_path"></param>
     public static async void Bytes2File(byte[] buffer, string save_path)
     {
         await UniTask.RunOnThreadPool(() => 
@@ -21,5 +27,37 @@ public static class Tools
             bw.Close();
             fs.Close();
         });
+    }
+
+    /// <summary>
+    /// 动态创建类
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static T CreateObject<T>(string name) where T : class
+    {
+        object obj = CreateObject(name);
+        return obj == null ? null : obj as T;
+    }
+
+    /// <summary>
+    /// 动态创建类
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static object CreateObject(string name)
+    {
+        object obj = null;
+        try
+        {
+            Type type = Type.GetType(name, true);
+            obj = Activator.CreateInstance(type);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogException(ex);
+        }
+        return obj;
     }
 }

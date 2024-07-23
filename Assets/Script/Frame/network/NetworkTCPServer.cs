@@ -27,7 +27,7 @@ public static class NetworkTCPServer
 
         m_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         m_Socket.Bind(endPoint);
-        m_Socket.Listen(0);
+        m_Socket.Listen(0); // ÎÞÏÞ£¡
 
         m_Socket.BeginAccept(AcceptAsync, null);
     }
@@ -74,13 +74,13 @@ public static class NetworkTCPServer
         AsyncExpandPkg pkg = (AsyncExpandPkg)ar.AsyncState;
         Socket cli = pkg.socket;
         int length = cli.EndReceive(ar);
- 
+
         try
         {
             string mess = Encoding.Unicode.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
 
-            Debug.Log("++++++++++++++" + mess); // log message of front package
+            Debug.Log("+++++" + mess); // log message of front package
             if (!pkg.messPkg.get_length)
             {
                 JsonData data = JsonMapper.ToObject(mess);
@@ -99,7 +99,7 @@ public static class NetworkTCPServer
                 }
 
                 float percent = (float)pkg.messPkg.ret.Count() * 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
-                Debug.Log("----------" + percent + "%");  // Add message package for queue.
+                Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
 
                 if (percent >= 100.0f)
                 {
@@ -145,6 +145,9 @@ public static class NetworkTCPServer
         }
     }
 
+    /// <summary>
+    /// Destroy Clear
+    /// </summary>
     public static void Clear()
     {
         Debug.Log(cliList.Count);

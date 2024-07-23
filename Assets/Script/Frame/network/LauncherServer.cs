@@ -27,11 +27,8 @@ public class LauncherServer : MonoBehaviour
             string ret = pkg.ret;
             Debug.Log(pkg.ip + " || " + pkg.length);
 
-            //BodyPkg data = JsonMapper.ToObject<BodyPkg>(ret);
-            //string savepath = Application.streamingAssetsPath + "/" + data.fileName;
-            //Debug.Log(savepath);
-            //Debug.Log(data.fileData.Length);
-            //Tools.Bytes2File(data.fileData, savepath);
+            IEvent @event = Tools.CreateObject<IEvent>(pkg.event_type);
+            @event.OnEvent(pkg.ret);
         }
     }
 
