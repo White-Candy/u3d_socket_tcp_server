@@ -4,5 +4,4 @@ using UnityEngine;
 
 public static class GlobalData
 {
-    public static bool ServerIsListen = true;
 }

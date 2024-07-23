@@ -8,12 +8,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class BodyPkg
-{
-    public string fileName;
-    public byte[] fileData;
-}
-
 public class LauncherServer : MonoBehaviour
 {
     public bool exit = true;
@@ -22,30 +16,27 @@ public class LauncherServer : MonoBehaviour
 
     public void Start()
     {
-        NetworkTCPServer.LauncherServer(6100);
+        NetworkTCPServer.LauncherServer(5800);
     }
     
     void Update()
     {
-        //if (NetworkTCPServer.MessageQueue.Count > 0)
-        //{
-        //    var pkg = NetworkTCPServer.MessageQueue.Dequeue();
-        //    string ret = pkg.ret;
+        if (NetworkTCPServer.MessQueue.Count > 0)
+        {
+            var pkg = NetworkTCPServer.MessQueue.Dequeue();
+            string ret = pkg.ret;
+            Debug.Log(pkg.ip + " || " + pkg.length);
 
-        //    BodyPkg data = JsonMapper.ToObject<BodyPkg>(ret);
-        //    string savepath = Application.streamingAssetsPath + "/" + data.fileName;
-        //    Debug.Log(savepath);
-        //    Debug.Log(data.fileData.Length);
-        //    Tools.Bytes2File(data.fileData, savepath);
-        //}
+            //BodyPkg data = JsonMapper.ToObject<BodyPkg>(ret);
+            //string savepath = Application.streamingAssetsPath + "/" + data.fileName;
+            //Debug.Log(savepath);
+            //Debug.Log(data.fileData.Length);
+            //Tools.Bytes2File(data.fileData, savepath);
+        }
     }
 
     private void OnDestroy()
     {
-        // cts.Cancel();
-        // cts.Dispose();
-        // exit = false;
         NetworkTCPServer.Clear();
-        GlobalData.ServerIsListen = false;
     }
 }

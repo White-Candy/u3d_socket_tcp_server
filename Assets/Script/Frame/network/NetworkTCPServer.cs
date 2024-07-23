@@ -1,5 +1,6 @@
 using LitJson;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,62 +10,52 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CliBody
-{
-    public Socket socket;
-    public string ip = "";
-    public string ret = "";
-    public string event_type = "";
-    public int length = 0;
-    public bool finish = false;
-    public bool get_length = false;
-}
-
 public static class NetworkTCPServer
 {
     public static Socket m_Socket;
 
-    private static Thread Listen_thread;
-
-    public static List<Thread> ctList = new List<Thread>();
-
     public static int ret_length = 1024000;
-    public static byte[] results = new byte[1024000];
+    public static byte[] results = new byte[ret_length];
+
+    public static Queue<MessPackage> MessQueue = new Queue<MessPackage>();
+
+    public static List<Socket> cliList = new List<Socket> ();
 
     public static void LauncherServer(int port)
     {
-        Debug.Log("-- LauncherServer");
         IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
 
         m_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         m_Socket.Bind(endPoint);
-        m_Socket.Listen(500);
+        m_Socket.Listen(0);
 
-        Listen_thread = new Thread(() => { m_Socket.BeginAccept(ConnectListen, m_Socket); });
-        Listen_thread.Start();
-
-        //thread = new Thread(ConnectListen);
-        //thread.Start();
+        m_Socket.BeginAccept(AcceptAsync, null);
     }
 
-    public static void ConnectListen(IAsyncResult ar)
+    public static void AcceptAsync(IAsyncResult ar)
     {
-        Debug.Log("-- ConnectListen");
+        // Socket listenfd = (Socket)ar.AsyncState;
+        Socket cli = m_Socket.EndAccept(ar);
 
-        Socket listenfd = (Socket)ar.AsyncState;
-        Socket cli = listenfd.EndAccept(ar);
-
-        string mess = "Hi there, I accept you request at " + DateTime.Now.ToString();
-        SendToClient(cli, mess);
+        // string mess = "Hi there, I accept you request at " + DateTime.Now.ToString();
+        // var outputBuffer = Encoding.Unicode.GetBytes(mess);
+        // cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendAsyncCallback, cli);
 
         try
         {
             Array.Clear(results, 0, results.Length);
-            CliBody cliBody = new CliBody();
-            cliBody.socket = cli;
-            cli.BeginReceive(results, 0, ret_length, 0, ReciveMessage, cliBody);
+            MessPackage client_pkg = new MessPackage();
+            AsyncExpandPkg exp_pkg = new AsyncExpandPkg();
 
-            listenfd.BeginAccept(ConnectListen, listenfd);        
+            cliList.Add(cli);
+
+            exp_pkg.socket = cli;
+            exp_pkg.messPkg = client_pkg;
+
+            cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, exp_pkg);
+
+            // 递归
+            m_Socket.BeginAccept(AcceptAsync, null);
         }
         catch
         {
@@ -78,48 +69,47 @@ public static class NetworkTCPServer
     /// <param name="socket"></param>
     /// <param name="task"></param>
     /// <returns></returns>
-    public static void ReciveMessage(IAsyncResult ar)
+    public static void ReciveMessageAsync(IAsyncResult ar)
     {
-        Debug.Log("ReciveMessage");
-
-        CliBody body = (CliBody)ar.AsyncState;
-        Socket cli = body.socket;
+        AsyncExpandPkg pkg = (AsyncExpandPkg)ar.AsyncState;
+        Socket cli = pkg.socket;
         int length = cli.EndReceive(ar);
-        Debug.Log("body.get_length: " + body.get_length + " | " + body.length + " | " + length);
+ 
         try
         {
-            //Debug.Log("Mess length: " + length);
             string mess = Encoding.Unicode.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
 
-            if (!body.get_length)
+            Debug.Log("++++++++++++++" + mess); // log message of front package
+            if (!pkg.messPkg.get_length)
             {
                 JsonData data = JsonMapper.ToObject(mess);
 
-                body.length = int.Parse(data["length"].ToString());
-                body.event_type = data["type"].ToString();
-
-                Debug.Log("++++++++++++++++++++++++++++++++++++++++++" + mess );
-                body.get_length = true;
+                // 前置包获取内容包的总长度和事件类型
+                pkg.messPkg.ip = data["ip"].ToString();
+                pkg.messPkg.length = int.Parse(data["length"].ToString());
+                pkg.messPkg.event_type = data["type"].ToString();
+                pkg.messPkg.get_length = true;
             }
             else
             {
-                Debug.Log("body.get_length is Ture: " + mess);
-                Debug.Log("mess count: " + mess.Count());
-                if (body.length > body.ret.Count())
+                if (pkg.messPkg.length > pkg.messPkg.ret.Count())
                 {
-                    body.ret += mess;
+                    pkg.messPkg.ret += mess;
                 }
-                else
-                {
-                    Debug.Log("event_type: " + body.event_type);
-                    body.finish = true;
-                }
-                //Debug.Log(0.1f);
-                Debug.Log("----------" + ((float)body.ret.Count() * 1.0f / (float)body.length * 1.0f * 100.0f) + "%");
-            }
 
-            cli.BeginReceive(results, 0, ret_length, 0, ReciveMessage, body);
+                float percent = (float)pkg.messPkg.ret.Count() * 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
+                Debug.Log("----------" + percent + "%");  // Add message package for queue.
+
+                if (percent >= 100.0f)
+                {
+                    pkg.messPkg.finish = true;
+                    MessQueueAdd(pkg.messPkg);
+
+                    pkg.messPkg.Clear();
+                }
+            }
+            cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, pkg);
         }
         catch
         {
@@ -128,29 +118,101 @@ public static class NetworkTCPServer
     }
 
     /// <summary>
-    /// 发送信息
+    /// 发送信息callback
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static void SendToClient(Socket cli, string mess)
+    public static void SendAsyncCallback(IAsyncResult ar)
     {
-        Debug.Log(mess);
-        cli.Send(Encoding.Unicode.GetBytes(mess + "-end"));
+        try
+        {
+            Socket socket = (Socket)ar.AsyncState;
+            if (socket != null)
+            {
+                m_Socket = socket;
+                int count = socket.EndSend(ar);
+                Debug.Log("Send Success!: " + count);
+            }
+            else
+            {
+                Debug.Log("Send is NULL");
+            }
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 
     public static void Clear()
     {
-        Debug.Log("NetworkTCPServer.ctList: " + ctList.Count);
+        Debug.Log(cliList.Count);
+        foreach (var cli in cliList)
+        {
+            cli.Close();
+        }
+        cliList.Clear();
 
         m_Socket.Close();
-        Listen_thread.Abort();
-        Listen_thread = null;
-
-        for (int i = 0; i < ctList.Count; i++)
-        {
-            ctList[i].Abort();
-            ctList[i] = null;
-        }
-        ctList.Clear();
     }
+
+    /// <summary>
+    /// 为消息队列 Clone pkg 并且存放
+    /// </summary>
+    /// <param name="pkg"></param>
+    public static void MessQueueAdd(MessPackage pkg)
+    {
+        MessPackage messpkg = new MessPackage(pkg);
+        MessQueue.Enqueue(messpkg);
+    }
+}
+
+
+/// <summary>
+/// 这是一个接受完整信息的 信息包类
+/// </summary>
+public class MessPackage
+{
+    // public Socket socket = default; // 发送信息的soket
+    public string ip = ""; // 他的ip
+    public string ret = ""; // 他发送的信息
+    public string event_type = ""; // 这个信息属于什么类型
+    public int length = 0; // 这个包的总长度
+    public bool finish = false; // 是否完全收包
+    public bool get_length = false; // 是否已经通过前置包获取到了内容包的总长度
+
+    public void Clear()
+    {
+        // socket = default;
+        ip = "";
+        ret = "";
+        event_type = "";
+        length = 0;
+        finish = false;
+        get_length = false;
+    }
+
+    public MessPackage() { }
+
+    public MessPackage(MessPackage pkg)
+    {
+        // socket = pkg.socket;
+        ip = pkg.ip;
+        ret = pkg.ret;
+        event_type = pkg.event_type;
+        length = pkg.length;
+        finish = pkg.finish;
+        get_length = pkg.get_length;
+    }
+}
+
+
+/// <summary>
+/// 异步回调扩展包
+/// </summary>
+public class AsyncExpandPkg
+{
+    public Socket socket;
+    public MessPackage messPkg;
 }
