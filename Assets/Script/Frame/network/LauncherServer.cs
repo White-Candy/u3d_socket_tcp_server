@@ -19,16 +19,13 @@ public class LauncherServer : MonoBehaviour
         NetworkTCPServer.LauncherServer(5800);
     }
     
-    void Update()
+    void FixedUpdate()
     {
         if (NetworkTCPServer.MessQueue.Count > 0)
         {
             var pkg = NetworkTCPServer.MessQueue.Dequeue();
-            string ret = pkg.ret;
-            Debug.Log(pkg.ip + " || " + pkg.length);
-
-            IEvent @event = Tools.CreateObject<IEvent>(pkg.event_type);
-            @event.OnEvent(pkg.ret);
+            IEvent @event = Tools.CreateObject<IEvent>(pkg.messPkg.event_type);
+            @event.OnEvent(pkg);
         }
     }
 

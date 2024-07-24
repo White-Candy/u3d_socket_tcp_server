@@ -8,25 +8,61 @@ using UnityEngine;
 public static class Tools
 {
     /// <summary>
-    /// 把字节数组变成文件流
+    /// 把字节数组 => 文件流
     /// </summary>
     /// <param name="buffer"></param>
     /// <param name="save_path"></param>
-    public static async void Bytes2File(byte[] buffer, string save_path)
-    {
-        await UniTask.RunOnThreadPool(() => 
+    public static void Bytes2File(byte[] buffer, string save_path)
+    { 
+        if (File.Exists(save_path))
         {
-            if (File.Exists(save_path))
-            {
-                File.Delete(save_path);
-            }
-            Debug.Log("buffer length: " + buffer.Length);
-            FileStream fs = new FileStream(save_path, FileMode.CreateNew);
+            File.Delete(save_path);
+        }
+        else
+        {
+            string dir = save_path;
+            int idx = dir.LastIndexOf('\\');
+            dir = dir.Substring(0, idx);
+            Directory.CreateDirectory(dir);
+        }
+
+        FileStream fs = new FileStream(save_path, FileMode.CreateNew);
+        lock (fs)
+        {
             BinaryWriter bw = new BinaryWriter(fs);
-            bw.Write(buffer, 0, buffer.Length);
-            bw.Close();
+            lock (bw)
+            {
+                bw.Write(buffer, 0, buffer.Length);
+                bw.Close();
+            }
             fs.Close();
+        }
+    }
+
+    /// <summary>
+    /// 把文件流 => 字节数组
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public static async UniTask<byte[]> File2Bytes(string path)
+    {
+        byte[] data = new byte[0];
+        await UniTask.RunOnThreadPool(() =>
+        {
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            lock (fs)
+            {
+                try
+                {
+                    data = new byte[fs.Length];
+                    fs.Read(data, 0, (int)fs.Length);
+                }
+                catch { }
+                finally { fs.Close(); }
+            }
+
         });
+        return data;
     }
 
     /// <summary>

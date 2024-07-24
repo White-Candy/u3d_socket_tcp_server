@@ -17,7 +17,7 @@ public static class NetworkTCPServer
     public static int ret_length = 1024000;
     public static byte[] results = new byte[ret_length];
 
-    public static Queue<MessPackage> MessQueue = new Queue<MessPackage>();
+    public static Queue<AsyncExpandPkg> MessQueue = new Queue<AsyncExpandPkg>();
 
     public static List<Socket> cliList = new List<Socket> ();
 
@@ -104,8 +104,7 @@ public static class NetworkTCPServer
                 if (percent >= 100.0f)
                 {
                     pkg.messPkg.finish = true;
-                    MessQueueAdd(pkg.messPkg);
-
+                    MessQueueAdd(pkg);
                     pkg.messPkg.Clear();
                 }
             }
@@ -164,10 +163,10 @@ public static class NetworkTCPServer
     /// 为消息队列 Clone pkg 并且存放
     /// </summary>
     /// <param name="pkg"></param>
-    public static void MessQueueAdd(MessPackage pkg)
+    public static void MessQueueAdd(AsyncExpandPkg pkg)
     {
-        MessPackage messpkg = new MessPackage(pkg);
-        MessQueue.Enqueue(messpkg);
+        AsyncExpandPkg exp_pkg = new AsyncExpandPkg(pkg);
+        MessQueue.Enqueue(exp_pkg);
     }
 }
 
@@ -218,4 +217,12 @@ public class AsyncExpandPkg
 {
     public Socket socket;
     public MessPackage messPkg;
+
+    public AsyncExpandPkg() { }
+
+    public AsyncExpandPkg(AsyncExpandPkg pkg)
+    {
+        socket = pkg.socket;
+        messPkg = new MessPackage(pkg.messPkg);
+    }
 }

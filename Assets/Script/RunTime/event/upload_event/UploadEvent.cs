@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using LitJson;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,14 +7,17 @@ using UnityEngine;
 
 public class UploadEvent : IEvent
 {
-    public override void OnEvent(params object[] objs) 
+    public override async void OnEvent(params object[] objs) 
     {
-        string ret = objs[0] as string;
-        Debug.Log("UploadEvent!: " + ret.Count());
+        await UniTask.RunOnThreadPool(() =>
+        {
+            AsyncExpandPkg ret = objs[0] as AsyncExpandPkg;
+            Debug.Log("UploadEvent!");
 
-        FilePackage data = JsonMapper.ToObject<FilePackage>(ret);
-        string savepath = Application.streamingAssetsPath + "/" + data.fileName;
-        Tools.Bytes2File(data.fileData, savepath);
+            FilePackage data = JsonMapper.ToObject<FilePackage>(ret.messPkg.ret);
+            string savepath = Application.streamingAssetsPath + data.relativePath;
+            Tools.Bytes2File(data.fileData, savepath);
+        });
     }
 }
 
@@ -23,6 +27,7 @@ public class UploadEvent : IEvent
 public class FilePackage
 {
     public string fileName;
+    public string relativePath;
     public byte[] fileData;
 }
 
