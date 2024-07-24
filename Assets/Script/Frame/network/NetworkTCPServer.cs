@@ -36,10 +36,10 @@ public static class NetworkTCPServer
     {
         // Socket listenfd = (Socket)ar.AsyncState;
         Socket cli = m_Socket.EndAccept(ar);
-
-        // string mess = "Hi there, I accept you request at " + DateTime.Now.ToString();
+        string mess = "Hi there, I accept you request at " + DateTime.Now.ToString();
         // var outputBuffer = Encoding.Unicode.GetBytes(mess);
         // cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendAsyncCallback, cli);
+        Send(cli, mess);
 
         try
         {
@@ -117,30 +117,55 @@ public static class NetworkTCPServer
     }
 
     /// <summary>
-    /// 发送信息callback
+    /// 发送信息
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static void SendAsyncCallback(IAsyncResult ar)
+    public static void Send(Socket cli, string mess)
+    {
+        SendFrontPackage(cli, mess);
+    }
+
+    /// <summary>
+    /// 发送前置包
+    /// </summary>
+    /// <param name="cli"></param>
+    /// <param name="mess"></param>
+    public static void SendFrontPackage(Socket cli, string mess)
+    {
+        JsonData data = new JsonData();
+        data["length"] = mess.Length.ToString();
+        string s_info = JsonMapper.ToJson(data);
+        var outputBuffer = Encoding.Unicode.GetBytes(s_info);
+
+        SendPkg sp = new SendPkg()
+        {
+            cli = cli,
+            mess = mess,
+        };
+        cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendFrontPkgAsyncCbk, sp);
+    }
+
+    /// <summary>
+    /// 等到前置包发送结束后才会发送主体包
+    /// </summary>
+    /// <param name="ar"></param>
+    private static void SendFrontPkgAsyncCbk(IAsyncResult ar)
     {
         try
         {
-            Socket socket = (Socket)ar.AsyncState;
-            if (socket != null)
+            SendPkg sp = ar.AsyncState as SendPkg;
+            if (sp.cli != null)
             {
-                m_Socket = socket;
-                int count = socket.EndSend(ar);
-                Debug.Log("Send Success!: " + count);
-            }
-            else
-            {
-                Debug.Log("Send is NULL");
+                sp.cli.EndSend(ar);
+                Debug.Log("sp.mess: " + sp.mess);
+                var outputBuffer = Encoding.Unicode.GetBytes(sp.mess);
+                sp.cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, null, null);
             }
         }
-        catch (Exception)
+        catch (SocketException e)
         {
-
-            throw;
+            Debug.Log("socket send fail" + e.ToString());
         }
     }
 
@@ -225,4 +250,13 @@ public class AsyncExpandPkg
         socket = pkg.socket;
         messPkg = new MessPackage(pkg.messPkg);
     }
+}
+
+/// <summary>
+/// 发送包
+/// </summary>
+public class SendPkg
+{
+    public Socket cli;
+    public string mess;
 }
