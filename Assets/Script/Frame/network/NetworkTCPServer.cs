@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public static class NetworkTCPServer
@@ -36,11 +37,6 @@ public static class NetworkTCPServer
     {
         // Socket listenfd = (Socket)ar.AsyncState;
         Socket cli = m_Socket.EndAccept(ar);
-        string mess = "Hi there, I accept you request at " + DateTime.Now.ToString();
-        // var outputBuffer = Encoding.Unicode.GetBytes(mess);
-        // cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendAsyncCallback, cli);
-        Send(cli, mess);
-
         try
         {
             Array.Clear(results, 0, results.Length);
@@ -121,9 +117,16 @@ public static class NetworkTCPServer
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static void Send(Socket cli, string mess)
+    public static async void SendAsync(Socket cli, string mess, EventType event_type)
     {
-        SendFrontPackage(cli, mess);
+        SendFrontPackage(cli, mess, event_type);
+
+        await Tools.OnAwait(0.1f, () =>
+        {
+            SendPkg sp = new SendPkg() { socket = cli, content = mess };
+            var outputBuffer = Encoding.Unicode.GetBytes(sp.content);
+            sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
+        });
     }
 
     /// <summary>
@@ -131,36 +134,36 @@ public static class NetworkTCPServer
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static void SendFrontPackage(Socket cli, string mess)
+    public static void SendFrontPackage(Socket cli, string mess, EventType event_type)
     {
-        JsonData data = new JsonData();
-        data["length"] = mess.Length.ToString();
+        MessPackage data = new MessPackage()
+        {
+            length = mess.Length,
+            event_type = event_type.ToSafeString()
+        };
         string s_info = JsonMapper.ToJson(data);
         var outputBuffer = Encoding.Unicode.GetBytes(s_info);
 
-        SendPkg sp = new SendPkg()
-        {
-            cli = cli,
-            mess = mess,
-        };
-        cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendFrontPkgAsyncCbk, sp);
+        SendPkg sp = new SendPkg() { socket = cli, content = s_info };
+        // Debug.Log("Send Now DateTime: " + DateTime.Now);
+        cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
     }
 
     /// <summary>
     /// 等到前置包发送结束后才会发送主体包
     /// </summary>
     /// <param name="ar"></param>
-    private static void SendFrontPkgAsyncCbk(IAsyncResult ar)
+    private static void SendPkgAsyncCbk(IAsyncResult ar)
     {
+        SendPkg sp = ar.AsyncState as SendPkg;
+        Debug.Log("Send Call back: " + DateTime.Now + " || " + sp.content);
         try
         {
-            SendPkg sp = ar.AsyncState as SendPkg;
-            if (sp.cli != null)
+            if (sp.socket != null)
             {
-                sp.cli.EndSend(ar);
-                Debug.Log("sp.mess: " + sp.mess);
-                var outputBuffer = Encoding.Unicode.GetBytes(sp.mess);
-                sp.cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, null, null);
+                sp.socket.EndSend(ar);
+                // Debug.Log("sp.mess: " + sp.content);
+                
             }
         }
         catch (SocketException e)
@@ -257,6 +260,6 @@ public class AsyncExpandPkg
 /// </summary>
 public class SendPkg
 {
-    public Socket cli;
-    public string mess;
+    public Socket socket;
+    public string content;
 }

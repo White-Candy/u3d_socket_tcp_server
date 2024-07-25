@@ -24,6 +24,7 @@ public class LauncherServer : MonoBehaviour
         if (NetworkTCPServer.MessQueue.Count > 0)
         {
             var pkg = NetworkTCPServer.MessQueue.Dequeue();
+            Debug.Log("MessQueue: " + pkg.messPkg.event_type);
             IEvent @event = Tools.CreateObject<IEvent>(pkg.messPkg.event_type);
             @event.OnEvent(pkg);
         }

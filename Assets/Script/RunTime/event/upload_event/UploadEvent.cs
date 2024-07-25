@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using LitJson;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -15,9 +16,10 @@ public class UploadEvent : IEvent
             Debug.Log("UploadEvent!");
 
             FilePackage data = JsonMapper.ToObject<FilePackage>(ret.messPkg.ret);
-            string savepath = Application.streamingAssetsPath + data.relativePath;
+            string savepath = Application.streamingAssetsPath + "\\Data\\" + data.relativePath;
             Tools.Bytes2File(data.fileData, savepath);
         });
+
     }
 }
 

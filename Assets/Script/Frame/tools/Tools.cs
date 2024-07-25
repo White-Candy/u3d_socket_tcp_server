@@ -13,7 +13,7 @@ public static class Tools
     /// <param name="buffer"></param>
     /// <param name="save_path"></param>
     public static void Bytes2File(byte[] buffer, string save_path)
-    { 
+    {
         if (File.Exists(save_path))
         {
             File.Delete(save_path);
@@ -47,6 +47,8 @@ public static class Tools
     public static async UniTask<byte[]> File2Bytes(string path)
     {
         byte[] data = new byte[0];
+        if (!File.Exists(path)) return data;
+
         await UniTask.RunOnThreadPool(() =>
         {
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -95,5 +97,13 @@ public static class Tools
             Debug.LogException(ex);
         }
         return obj;
+    }
+
+    // µÈ´ýÆ÷
+    public static async UniTask OnAwait(float sec, Action callback)
+    {
+        int duration = (int)(sec * 1000);
+        await UniTask.Delay(duration);
+        callback();
     }
 }
