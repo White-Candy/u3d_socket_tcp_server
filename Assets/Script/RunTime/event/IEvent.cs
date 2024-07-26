@@ -7,7 +7,8 @@ public enum EventType
 {
     None = 0,
     UploadEvent,
-    DownLoadEvent
+    DownLoadEvent,
+    CheckEvent
 }
 
 public abstract class IEvent

@@ -1,9 +1,8 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class Tools
 {
@@ -99,11 +98,25 @@ public static class Tools
         return obj;
     }
 
-    // 等待器
+    /// <summary>
+    /// 等待器
+    /// </summary>
+    /// <param name="sec"></param>
+    /// <param name="callback"></param>
+    /// <returns></returns>
     public static async UniTask OnAwait(float sec, Action callback)
     {
         int duration = (int)(sec * 1000);
         await UniTask.Delay(duration);
         callback();
+    }
+    
+    /// <summary>
+    /// 为新【添加/更新】的文件更新新的版本号
+    /// </summary>
+    /// <returns></returns>
+    public static string SpawnRandomCode()
+    {
+        return $"{Random.Range(1000, 9999)}-{Random.Range(1000, 9999)}-{Random.Range(1000, 9999)}-{Random.Range(1000, 9999)}";
     }
 }
