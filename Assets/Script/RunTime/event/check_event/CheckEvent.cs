@@ -12,7 +12,7 @@ public class CheckEvent : IEvent
 
         ResourcesInfo cli_info = JsonMapper.ToObject<ResourcesInfo>(expand_pkg.messPkg.ret);
         ResourcesInfo info = StorageExpand.GetThisInfoPkg(cli_info); // 获取客户端请求的项目id和模块名字的文件版本号
-
+        info.need_updata = cli_info.version_code == info.version_code ? false : true;
         string s_info = JsonMapper.ToJson(info);
         Debug.Log(s_info);
         NetworkTCPServer.SendAsync(expand_pkg.socket, s_info, EventType.CheckEvent);

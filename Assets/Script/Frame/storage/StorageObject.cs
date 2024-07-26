@@ -17,6 +17,8 @@ public class ResourcesInfo
 {
     public string id;
     public string moduleName;
+    public string relaPath;
     public string version_code;
+    public bool need_updata;
 }
 

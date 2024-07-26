@@ -33,7 +33,10 @@ public static class StorageExpand
     /// <param name="cli_info"></param>
     public static ResourcesInfo GetThisInfoPkg(ResourcesInfo cli_info)
     {
-        return Storage.rsCheck.Find((x) => { return (x.id == cli_info.id) && (x.moduleName == cli_info.moduleName); });
+        return Storage.rsCheck.Find((x) => 
+        {
+            return (x.id == cli_info.id) && (x.moduleName == cli_info.moduleName) && (x.relaPath == cli_info.relaPath); 
+        });
     }
 
     /// <summary>
@@ -46,7 +49,7 @@ public static class StorageExpand
         string id = st[0];
         string moudleName = st[1];
 
-        int idx = Storage.rsCheck.FindIndex((x) => { return (x.id == id) && (x.moduleName == moudleName); });
+        int idx = Storage.rsCheck.FindIndex((x) => { return (x.id == id) && (x.moduleName == moudleName) && (x.relaPath == relative); });
         if (idx != -1)
         {
             Storage.rsCheck.RemoveAt(idx);
@@ -55,6 +58,7 @@ public static class StorageExpand
         ResourcesInfo ri = new ResourcesInfo();
         ri.id = id;
         ri.moduleName = moudleName;
+        ri.relaPath = relative;
         ri.version_code = Tools.SpawnRandomCode();
         Storage.rsCheck.Add(ri);
         SaveToDisk();
