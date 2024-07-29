@@ -153,7 +153,7 @@ public static class NetworkTCPServer
     private static void SendPkgAsyncCbk(IAsyncResult ar)
     {
         SendPkg sp = ar.AsyncState as SendPkg;
-        Debug.Log("Send Call back: " + DateTime.Now + " || " + sp.content);
+        // Debug.Log("Send Call back: " + DateTime.Now + " || " + sp.content);
         try
         {
             if (sp.socket != null)

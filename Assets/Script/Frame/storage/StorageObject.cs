@@ -15,10 +15,18 @@ public class StorageObject : ScriptableObject
 [Serializable]
 public class ResourcesInfo
 {
-    public string id;
-    public string moduleName;
     public string relaPath;
     public string version_code;
     public bool need_updata;
+
+
+    public ResourcesInfo() { }
+
+    public ResourcesInfo(ResourcesInfo clone)
+    {
+        relaPath = clone.relaPath;
+        version_code = clone.version_code;
+        need_updata = clone.need_updata;
+    }
 }
 

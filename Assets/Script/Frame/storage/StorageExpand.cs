@@ -19,7 +19,7 @@ public static class StorageExpand
 
             if (File.Exists(Application.streamingAssetsPath + "Storage.json") && !m_Init)
             {
-                string s_json = File.ReadAllText(Application.persistentDataPath + "/Data.json");
+                string s_json = File.ReadAllText(Application.streamingAssetsPath + "/Data.json");
                 m_storage = JsonMapper.ToObject<StorageObject>(s_json);
                 m_Init = true;
             }
@@ -35,7 +35,7 @@ public static class StorageExpand
     {
         return Storage.rsCheck.Find((x) => 
         {
-            return (x.id == cli_info.id) && (x.moduleName == cli_info.moduleName) && (x.relaPath == cli_info.relaPath); 
+            return (x.relaPath == cli_info.relaPath); 
         });
     }
 
@@ -49,15 +49,13 @@ public static class StorageExpand
         string id = st[0];
         string moudleName = st[1];
 
-        int idx = Storage.rsCheck.FindIndex((x) => { return (x.id == id) && (x.moduleName == moudleName) && (x.relaPath == relative); });
+        int idx = Storage.rsCheck.FindIndex((x) => { return x.relaPath == relative; });
         if (idx != -1)
         {
             Storage.rsCheck.RemoveAt(idx);
         }
 
         ResourcesInfo ri = new ResourcesInfo();
-        ri.id = id;
-        ri.moduleName = moudleName;
         ri.relaPath = relative;
         ri.version_code = Tools.SpawnRandomCode();
         Storage.rsCheck.Add(ri);
@@ -69,8 +67,7 @@ public static class StorageExpand
     /// </summary>
     public static void SaveToDisk()
     {
-        // Debug.Log(Application.persistentDataPath);
         string s_json = JsonMapper.ToJson(Storage);
-        File.WriteAllText(Application.persistentDataPath + "/Storage.json", s_json);
+        File.WriteAllText(Application.streamingAssetsPath + "/Storage.json", s_json);
     }
 }

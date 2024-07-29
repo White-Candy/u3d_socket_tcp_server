@@ -31,6 +31,7 @@ public class LauncherServer : MonoBehaviour
 
     private void OnDestroy()
     {
+        StorageExpand.SaveToDisk();
         NetworkTCPServer.Clear();
     }
 }
