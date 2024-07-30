@@ -13,7 +13,7 @@ public class UploadEvent : IEvent
         await UniTask.RunOnThreadPool(async () =>
         {
             AsyncExpandPkg ret = objs[0] as AsyncExpandPkg;
-            Debug.Log("UploadEvent!");
+            // Debug.Log("UploadEvent!");
 
             FilePackage data = JsonMapper.ToObject<FilePackage>(ret.messPkg.ret);
             string savepath = Application.streamingAssetsPath + "\\Data\\" + data.relativePath;

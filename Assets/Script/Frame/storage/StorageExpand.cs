@@ -17,10 +17,10 @@ public static class StorageExpand
                 m_storage = Resources.Load("Storage/Clump") as StorageObject;
             }
 
-            if (File.Exists(Application.streamingAssetsPath + "Storage.json") && !m_Init)
+            if (File.Exists(Application.persistentDataPath + "Storage.json") && !m_Init)
             {
-                string s_json = File.ReadAllText(Application.streamingAssetsPath + "/Data.json");
-                m_storage = JsonMapper.ToObject<StorageObject>(s_json);
+                string s_json = File.ReadAllText(Application.persistentDataPath + "/Data.json");
+                JsonUtility.FromJsonOverwrite(s_json, m_storage);
                 m_Init = true;
             }
             return m_storage;
@@ -67,7 +67,8 @@ public static class StorageExpand
     /// </summary>
     public static void SaveToDisk()
     {
+        Debug.Log("SaveToDisk");
         string s_json = JsonMapper.ToJson(Storage);
-        File.WriteAllText(Application.streamingAssetsPath + "/Storage.json", s_json);
+        File.WriteAllText(Application.persistentDataPath + "/Storage.json", s_json);
     }
 }

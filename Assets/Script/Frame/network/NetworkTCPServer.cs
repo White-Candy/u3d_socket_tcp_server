@@ -73,7 +73,7 @@ public static class NetworkTCPServer
             string mess = Encoding.Unicode.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
 
-            Debug.Log("+++++" + mess); // log message of front package
+            //Debug.Log("+++++" + mess); // log message of front package
             if (!pkg.messPkg.get_length)
             {
                 JsonData data = JsonMapper.ToObject(mess);
@@ -92,7 +92,7 @@ public static class NetworkTCPServer
                 }
 
                 float percent = (float)pkg.messPkg.ret.Count() * 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
-                Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
+                //Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
 
                 if (percent >= 100.0f)
                 {
@@ -120,6 +120,7 @@ public static class NetworkTCPServer
 
         await Tools.OnAwait(0.1f, () =>
         {
+            Debug.Log($"============={mess}");
             SendPkg sp = new SendPkg() { socket = cli, content = mess };
             var outputBuffer = Encoding.Unicode.GetBytes(sp.content);
             sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
