@@ -19,7 +19,7 @@ public static class StorageExpand
 
             if (File.Exists(Application.persistentDataPath + "Storage.json") && !m_Init)
             {
-                string s_json = File.ReadAllText(Application.persistentDataPath + "/Data.json");
+                string s_json = File.ReadAllText(Application.persistentDataPath + "/Storage.json");
                 JsonUtility.FromJsonOverwrite(s_json, m_storage);
                 m_Init = true;
             }
@@ -67,7 +67,7 @@ public static class StorageExpand
     /// </summary>
     public static void SaveToDisk()
     {
-        Debug.Log("SaveToDisk");
+        // Debug.Log("SaveToDisk");
         string s_json = JsonMapper.ToJson(Storage);
         File.WriteAllText(Application.persistentDataPath + "/Storage.json", s_json);
     }
