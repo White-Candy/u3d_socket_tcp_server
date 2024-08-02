@@ -6,6 +6,7 @@ using UnityEngine;
 public class StorageObject : ScriptableObject
 {
     public List<ResourcesInfo> rsCheck = new List<ResourcesInfo>();
+    public List<UserInfo> userInfos = new List<UserInfo>();
 }
 
 /// <summary>
@@ -29,4 +30,6 @@ public class ResourcesInfo
         need_updata = clone.need_updata;
     }
 }
+
+
 

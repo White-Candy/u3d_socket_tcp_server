@@ -17,7 +17,7 @@ public static class StorageExpand
                 m_storage = Resources.Load("Storage/Clump") as StorageObject;
             }
 
-            if (File.Exists(Application.persistentDataPath + "Storage.json") && !m_Init)
+            if (File.Exists(Application.persistentDataPath + "/Storage.json") && !m_Init)
             {
                 string s_json = File.ReadAllText(Application.persistentDataPath + "/Storage.json");
                 JsonUtility.FromJsonOverwrite(s_json, m_storage);
@@ -70,5 +70,36 @@ public static class StorageExpand
         // Debug.Log("SaveToDisk");
         string s_json = JsonMapper.ToJson(Storage);
         File.WriteAllText(Application.persistentDataPath + "/Storage.json", s_json);
+    }
+
+    /// <summary>
+    /// 检查用户登录
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    public static (bool, string) CheckUserLogin(string username, string password)
+    {
+        bool login = false;
+        string hint = "";
+        int account_idx = Storage.userInfos.FindIndex(x => x.userName == username);
+        if (account_idx != -1)
+        {
+            int pwd_idx = Storage.userInfos.FindIndex(x => x.userName == username && x.password == password);
+            if (pwd_idx != -1)
+            {
+                login = true;
+                hint = "登录成功!";
+            }
+            else
+            {
+                hint = "密码错误!";
+            }
+        }
+        else
+        {
+            hint = "用户名不存在!";
+        }
+        return (login, hint);
     }
 }
