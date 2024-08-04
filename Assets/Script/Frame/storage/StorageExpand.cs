@@ -78,8 +78,10 @@ public static class StorageExpand
     /// <param name="username"></param>
     /// <param name="password"></param>
     /// <returns></returns>
-    public static (bool, string) CheckUserLogin(string username, string password)
+    public async static UniTask<(bool, string)> CheckUserLogin(string username, string password)
     {
+        await UniTask.SwitchToMainThread();
+
         bool login = false;
         string hint = "";
         int account_idx = Storage.userInfos.FindIndex(x => x.userName == username);
