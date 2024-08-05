@@ -78,30 +78,55 @@ public static class StorageExpand
     /// <param name="username"></param>
     /// <param name="password"></param>
     /// <returns></returns>
-    public async static UniTask<(bool, string)> CheckUserLogin(string username, string password)
+    public async static UniTask<UserInfo> CheckUserLogin(string username, string password)
     {
         await UniTask.SwitchToMainThread();
 
-        bool login = false;
-        string hint = "";
+        UserInfo inf = new UserInfo();
         int account_idx = Storage.userInfos.FindIndex(x => x.userName == username);
         if (account_idx != -1)
         {
             int pwd_idx = Storage.userInfos.FindIndex(x => x.userName == username && x.password == password);
             if (pwd_idx != -1)
             {
-                login = true;
-                hint = "登录成功!";
+                inf = Storage.userInfos[pwd_idx];
+                inf.login = true;
+                inf.hint = "登录成功!";
             }
             else
             {
-                hint = "密码错误!";
+                inf.hint = "密码错误!";
             }
         }
         else
         {
-            hint = "用户名不存在!";
+            inf.hint = "用户名不存在!";
         }
-        return (login, hint);
+        return inf;
+    }
+
+    /// <summary>
+    /// 注册请求
+    /// </summary>
+    /// <param name="inf"></param>
+    /// <returns></returns>
+    public async static UniTask<UserInfo> Register(UserInfo inf)
+    {
+        await UniTask.SwitchToMainThread();
+        if (Storage.userInfos.Find(x => x.userName == inf.userName) == null)
+        {
+            inf.hint = "注册成功!";
+            Storage.userInfos.Add(inf);
+            SaveToDisk();
+        }
+        else
+        {
+            //如果注册失败清空inf中的数据
+            inf.userName = "";
+            inf.password = "";
+            inf.hint = "该用户名存在!";
+        }
+
+        return inf;
     }
 }

@@ -9,7 +9,8 @@ public enum EventType
     UploadEvent,
     DownLoadEvent,
     CheckEvent,
-    UserLoginEvent
+    UserLoginEvent,
+    RegisterEvent
 }
 
 public abstract class IEvent
