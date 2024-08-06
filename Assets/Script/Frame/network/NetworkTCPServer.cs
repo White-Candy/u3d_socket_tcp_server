@@ -81,7 +81,7 @@ public static class NetworkTCPServer
                 // 前置包获取内容包的总长度和事件类型
                 pkg.messPkg.ip = data["ip"].ToString();
                 pkg.messPkg.length = int.Parse(data["length"].ToString());
-                pkg.messPkg.event_type = data["type"].ToString();
+                pkg.messPkg.event_type = data["event_type"].ToString();
                 pkg.messPkg.get_length = true;
             }
             else
