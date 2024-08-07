@@ -78,31 +78,29 @@ public static class StorageExpand
     /// <param name="username"></param>
     /// <param name="password"></param>
     /// <returns></returns>
-    public async static UniTask<UserInfo> CheckUserLogin(string username, string password)
+    public async static UniTask<UserInfo> CheckUserLogin(UserInfo info)
     {
         await UniTask.SwitchToMainThread();
 
-        UserInfo inf = new UserInfo();
-        int account_idx = Storage.userInfos.FindIndex(x => x.userName == username);
+        int account_idx = Storage.userInfos.FindIndex(x => x.userName == info.userName && x.level == info.level);
         if (account_idx != -1)
         {
-            int pwd_idx = Storage.userInfos.FindIndex(x => x.userName == username && x.password == password);
+            int pwd_idx = Storage.userInfos.FindIndex(x => x.userName == info.userName && x.password == info.password);
             if (pwd_idx != -1)
             {
-                inf = Storage.userInfos[pwd_idx];
-                inf.login = true;
-                inf.hint = "登录成功!";
+                info.login = true;
+                info.hint = "登录成功!";
             }
             else
             {
-                inf.hint = "密码错误!";
+                info.hint = "密码错误!";
             }
         }
         else
         {
-            inf.hint = "用户名不存在!";
+            info.hint = "用户名不存在!";
         }
-        return inf;
+        return info;
     }
 
     /// <summary>
