@@ -10,7 +10,8 @@ public enum EventType
     DownLoadEvent,
     CheckEvent,
     UserLoginEvent,
-    RegisterEvent
+    RegisterEvent,
+    GetStuInfoEvent
 }
 
 public abstract class IEvent

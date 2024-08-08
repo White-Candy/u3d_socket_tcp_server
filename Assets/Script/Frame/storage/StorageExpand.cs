@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using LitJson;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -126,5 +127,24 @@ public static class StorageExpand
         }
 
         return inf;
+    }
+
+    /// <summary>
+    /// 获取学生的信息
+    /// </summary>
+    /// <returns></returns>
+    public static async UniTask<List<UserInfo>> GetStudentsInfo()
+    {
+        List<UserInfo> students = new List<UserInfo>();
+
+        await UniTask.SwitchToMainThread();
+        foreach (UserInfo info in Storage.userInfos)
+        {
+            if (info.level == 0)
+            {
+                students.Add(info);
+            }
+        }
+        return students;
     }
 }
