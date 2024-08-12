@@ -147,4 +147,14 @@ public static class StorageExpand
         }
         return students;
     }
+
+    // 添加学生信息到硬盘中
+    public static async UniTask<List<UserInfo>> AddStusInfo(List<UserInfo> l_inf)
+    {
+        foreach (var inf in l_inf)
+        {
+            await Register(inf);
+        }
+        return Storage.userInfos;
+    }
 }

@@ -23,12 +23,19 @@ public class UserLoginEvent : IEvent
 }
 
 /// <summary>
-/// ÓÃ»§ĞÅÏ¢°ü
+/// ç”¨æˆ·ä¿¡æ¯åŒ…
 /// </summary>
 [Serializable]
 public class UserInfo
 {
     public string userName;
+    public string Name;
+    public string Gender;
+    public string idCoder;
+    public string Age;
+    public string Contact;
+    public string HeadTeacher;
+    public string className;
     public string password;
     public int level;
     public bool login = false;
