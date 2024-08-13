@@ -148,7 +148,11 @@ public static class StorageExpand
         return students;
     }
 
-    // 添加学生信息到硬盘中
+    /// <summary>
+    /// 添加学生信息到硬盘中
+    /// </summary>
+    /// <param name="l_inf"></param>
+    /// <returns></returns>
     public static async UniTask<List<UserInfo>> AddStusInfo(List<UserInfo> l_inf)
     {
         foreach (var inf in l_inf)
@@ -156,5 +160,23 @@ public static class StorageExpand
             await Register(inf);
         }
         return Storage.userInfos;
+    }
+
+    /// <summary>
+    /// 修改信息
+    /// </summary>
+    /// <param name="inf"></param>
+    /// <returns></returns>
+    public static async UniTask<List<UserInfo>> ReviseInfo(UserInfo inf)
+    {
+        await UniTask.SwitchToMainThread();
+
+        int index = Storage.userInfos.FindIndex(x => x.userName == inf.userName);
+        if (index != -1)
+        {
+            Storage.userInfos[index] = inf;
+            return Storage.userInfos;
+        }
+        return new List<UserInfo>();
     }
 }
