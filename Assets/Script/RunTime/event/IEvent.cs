@@ -13,7 +13,8 @@ public enum EventType
     RegisterEvent,
     GetStuInfoEvent,
     AddStuInfoEvent,
-    ReviseStuInfoEvent
+    ReviseStuInfoEvent,
+    DeleteStuInfoEvent
 }
 
 public abstract class IEvent

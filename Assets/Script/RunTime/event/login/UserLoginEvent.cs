@@ -14,7 +14,7 @@ public class UserLoginEvent : IEvent
             AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
 
             UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
-            inf = await StorageExpand.CheckUserLogin(inf);
+            inf = await StorageHelper.CheckUserLogin(inf);
 
             string s_inf = JsonMapper.ToJson(inf);
             NetworkTCPServer.SendAsync(asynExPkg.socket, s_inf, EventType.UserLoginEvent);

@@ -20,7 +20,7 @@ public class UploadEvent : IEvent
             Tools.Bytes2File(data.fileData, savepath);
 
             await UniTask.SwitchToMainThread();
-            StorageExpand.UpdateThisFileInfo(data.relativePath);
+            StorageHelper.UpdateThisFileInfo(data.relativePath);
         });
     }
 }

@@ -13,7 +13,7 @@ public class RegisterEvent : IEvent
             AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
 
             UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
-            inf = await StorageExpand.Register(inf);
+            inf = await StorageHelper.Register(inf);
             
             string s_inf = JsonMapper.ToJson(inf);
             Debug.Log($"RegisterEvent: {s_inf}");

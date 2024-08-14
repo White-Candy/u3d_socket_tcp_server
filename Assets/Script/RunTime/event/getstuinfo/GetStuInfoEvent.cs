@@ -9,7 +9,7 @@ public class GetStuInfoEvent : IEvent
         await UniTask.RunOnThreadPool (async () =>
         {
             AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
-            List<UserInfo> infs = await StorageExpand.GetStudentsInfo();
+            List<UserInfo> infs = await StorageHelper.GetStudentsInfo();
             
             string s_infs = JsonMapper.ToJson(infs);
             NetworkTCPServer.SendAsync(asynExPkg.socket, s_infs, EventType.GetStuInfoEvent);

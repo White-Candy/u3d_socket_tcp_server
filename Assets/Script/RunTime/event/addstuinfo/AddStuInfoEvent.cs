@@ -10,7 +10,7 @@ public class AddStuInfoEvent : IEvent
         AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
 
         List<UserInfo> usersList = JsonMapper.ToObject<List<UserInfo>>(asynExPkg.messPkg.ret);
-        List<UserInfo> new_list = await StorageExpand.AddStusInfo(usersList);
+        List<UserInfo> new_list = await StorageHelper.AddStusInfo(usersList);
 
         string body = JsonMapper.ToJson(new_list);
         Debug.Log($"new list after Addstuevent : {body}");

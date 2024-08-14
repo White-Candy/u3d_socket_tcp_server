@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public static class StorageExpand
+public static class StorageHelper
 {
     private static bool m_Init = false;
 
@@ -175,6 +175,22 @@ public static class StorageExpand
         if (index != -1)
         {
             Storage.userInfos[index] = inf;
+            return Storage.userInfos;
+        }
+        return new List<UserInfo>();
+    }
+
+    /// <summary>
+    /// É¾³ýÐÅÏ¢
+    /// </summary>
+    /// <param name="inf"></param>
+    /// <returns></returns>
+    public static List<UserInfo> DeleteInfo(UserInfo inf)
+    {
+        int idx = Storage.userInfos.FindIndex(x => x.userName == inf.userName);
+        if (idx != -1)
+        {
+            Storage.userInfos.RemoveAt(idx);
             return Storage.userInfos;
         }
         return new List<UserInfo>();
