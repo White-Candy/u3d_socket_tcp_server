@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using LitJson;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,5 +23,7 @@ public class CheckEvent : IEvent
         Debug.Log($"{cli_info.version_code} || {info.version_code} || {info.need_updata}");
         string s_info = JsonMapper.ToJson(info);
         NetworkTCPServer.SendAsync(expand_pkg.socket, s_info, EventType.CheckEvent);
+
+        await UniTask.Yield();
     }
 }

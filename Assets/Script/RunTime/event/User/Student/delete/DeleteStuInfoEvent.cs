@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitJson;
 using UnityEngine;
 
@@ -10,9 +11,11 @@ public class DeleteStuInfoEvent : IEvent
         AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
 
         UserInfo userInfo = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
-        List<UserInfo> new_list = StorageHelper.DeleteInfo(userInfo);
+        List<UserInfo> new_list = StorageHelper.DeleteStuInfo(userInfo);
         
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(asynExPkg.socket, body, EventType.DeleteStuInfoEvent);
+
+        await UniTask.Yield();
     }
 }

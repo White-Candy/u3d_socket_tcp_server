@@ -12,4 +12,192 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ed20d8aec761a41af173bdbad34fd2, type: 3}
   m_Name: Clump
   m_EditorClassIdentifier: 
-  rsCheck: []
+  rsCheck:
+  - relaPath: "10001\\JiaoAn\\\u6559\u6848.pdf"
+    version_code: 8025-7648-5918-5914
+    need_updata: 1
+  - relaPath: "10001\\Animation\\\u5377\u5E18\u95E8.mp4"
+    version_code: 1317-6474-9372-6147
+    need_updata: 1
+  - relaPath: 10001\Picture\4.png
+    version_code: 2922-6748-4955-6533
+    need_updata: 1
+  - relaPath: 10001\Picture\3.png
+    version_code: 6120-3411-7315-6867
+    need_updata: 1
+  - relaPath: 10001\Picture\2.png
+    version_code: 2272-2708-7966-9880
+    need_updata: 1
+  - relaPath: 10001\Picture\1.png
+    version_code: 9789-6495-7700-8789
+    need_updata: 1
+  userInfos:
+  - userName: user6
+    Name: "\u674E\u534E"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 24
+    Contact: 14458900324
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user7
+    Name: "\u660E\u65E5\u9999"
+    Gender: "\u5973"
+    idCoder: 61043199907658300
+    Age: 22
+    Contact: 13399109354
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user8
+    Name: "\u5C0F\u5F20"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 24
+    Contact: 13558990455
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user9
+    Name: "\u5C0F\u5EB7"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 24
+    Contact: 17656890347
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user10
+    Name: "\u660E\u6CBB"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 24
+    Contact: 15590200233
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user11
+    Name: "\u5218\u9662\u559C"
+    Gender: "\u5973"
+    idCoder: 61043200107658300
+    Age: 24
+    Contact: 19035044233
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user12
+    Name: "\u5F20\u4FDD\u5BB9"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 20
+    Contact: 18779345578
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user13
+    Name: "\u5218\u56FD\u5F3A"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 24
+    Contact: 13892020679
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user14
+    Name: "\u6768\u5E05"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 19
+    Contact: 15543222689
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user15
+    Name: "\u5F20\u5E05"
+    Gender: "\u7537"
+    idCoder: 61043199907658300
+    Age: 24
+    Contact: 16332009076
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user17
+    Name: "\u674E\u96EA"
+    Gender: "\u5973"
+    idCoder: 61043199807658300
+    Age: 23
+    Contact: 13799100789
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u7F8E\u672F\u4E00\u73ED"
+    password: 
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: QWER
+    Name: "\u5F20\u9F99"
+    Gender: "\u7537"
+    idCoder: 610403199006783988
+    Age: 34
+    Contact: 13867878455
+    HeadTeacher: "\u5218\u8001\u5E08"
+    className: "\u8BA1\u79D1\u4E00\u73ED"
+    password: minmin
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: Trys
+    Name: "\u5218\u5EFA\u56FD"
+    Gender: "\u7537"
+    idCoder: 620401199106453455
+    Age: 33
+    Contact: 13459757277
+    HeadTeacher: "\u5F20\u8001\u5E08"
+    className: "\u571F\u6728\u4E00\u73ED"
+    password: 123456
+    level: 0
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: 123
+    Name: "\u674E\u4E94"
+    Gender: "\u7537"
+    idCoder: 610402200106453899
+    Age: 22
+    Contact: 13892020655
+    HeadTeacher: "\u674E\u8001\u5E08"
+    className: "\u8BA1\u79D1\u4E00\u73ED"
+    password: 564
+    level: 0
+    login: 0
+    hint: 
+  faculiesInfo: []

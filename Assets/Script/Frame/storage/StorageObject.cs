@@ -7,6 +7,7 @@ public class StorageObject : ScriptableObject
 {
     public List<ResourcesInfo> rsCheck = new List<ResourcesInfo>();
     public List<UserInfo> userInfos = new List<UserInfo>();
+    public List<FacultyInfo> faculiesInfo = new List<FacultyInfo>();
 }
 
 /// <summary>

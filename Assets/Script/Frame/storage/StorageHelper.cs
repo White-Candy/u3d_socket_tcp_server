@@ -3,6 +3,7 @@ using LitJson;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public static class StorageHelper
 {
@@ -163,11 +164,11 @@ public static class StorageHelper
     }
 
     /// <summary>
-    /// 修改信息
+    /// 修改学生信息
     /// </summary>
     /// <param name="inf"></param>
     /// <returns></returns>
-    public static async UniTask<List<UserInfo>> ReviseInfo(UserInfo inf)
+    public static async UniTask<List<UserInfo>> ReviseStuInfo(UserInfo inf)
     {
         await UniTask.SwitchToMainThread();
 
@@ -181,11 +182,11 @@ public static class StorageHelper
     }
 
     /// <summary>
-    /// 删除信息
+    /// 删除学生信息
     /// </summary>
     /// <param name="inf"></param>
     /// <returns></returns>
-    public static List<UserInfo> DeleteInfo(UserInfo inf)
+    public static List<UserInfo> DeleteStuInfo(UserInfo inf)
     {
         int idx = Storage.userInfos.FindIndex(x => x.userName == inf.userName);
         if (idx != -1)
@@ -194,5 +195,71 @@ public static class StorageHelper
             return Storage.userInfos;
         }
         return new List<UserInfo>();
+    }
+
+    /// <summary>
+    /// 获取学院信息
+    /// </summary>
+    /// <returns></returns>
+    public static async UniTask<List<FacultyInfo>> GetFaculiesInfo()
+    {
+        List<FacultyInfo> faculies = new List<FacultyInfo>();
+
+        await UniTask.SwitchToMainThread();
+        foreach (FacultyInfo info in Storage.faculiesInfo)
+        {
+            faculies.Add(info);   
+        }
+        return faculies;
+    }
+
+    /// <summary>
+    /// 添加学院信息到硬盘中
+    /// </summary>
+    /// <param name="l_inf"></param>
+    /// <returns></returns>
+    public static async UniTask<List<FacultyInfo>> AddFacInfo(FacultyInfo inf)
+    {
+        await UniTask.SwitchToMainThread();
+        
+        if (Storage.faculiesInfo.Find(x => x.Name == inf.Name) == null)
+        {
+            Storage.faculiesInfo.Add(inf);
+        }
+        return Storage.faculiesInfo;
+    }
+
+    /// <summary>
+    /// 修改学院信息
+    /// </summary>
+    /// <param name="inf"></param>
+    /// <returns></returns>
+    public static async UniTask<List<FacultyInfo>> ReviseFacInfo(FacultyInfo inf)
+    {
+        await UniTask.SwitchToMainThread();
+      
+        int index = Storage.faculiesInfo.FindIndex(x => x.id == inf.id);
+        if (index == -1)
+        {
+            Storage.faculiesInfo[index] = inf;
+            return Storage.faculiesInfo;
+        }
+        return new List<FacultyInfo>();
+    }
+
+    /// <summary>
+    /// 删除学院信息
+    /// </summary>
+    /// <param name="inf"></param>
+    /// <returns></returns>
+    public static List<FacultyInfo> DeleteFacInfo(FacultyInfo inf)
+    {
+        int idx = Storage.faculiesInfo.FindIndex(x => x.id == inf.id);
+        if (idx != -1)
+        {
+            Storage.faculiesInfo.RemoveAt(idx);
+            return Storage.faculiesInfo;
+        }
+        return new List<FacultyInfo>();
     }
 }

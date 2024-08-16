@@ -13,10 +13,10 @@ public class ReviseStuInfoEvent : IEvent
 
             // Debug.Log("ReviseStuInfoEvent");
             UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
-            List<UserInfo> ls_inf = await StorageHelper.ReviseInfo(inf);
+            List<UserInfo> ls_inf = await StorageHelper.ReviseStuInfo(inf);
 
             string s_inf = JsonMapper.ToJson(ls_inf);
-            NetworkTCPServer.SendAsync(asynExPkg.socket, s_inf, EventType.ReviseStuInfoEvent);
+            NetworkTCPServer.SendAsync(asynExPkg.socket, s_inf, EventType.ReviseFacInfoEvent);
         });
     }
 }
