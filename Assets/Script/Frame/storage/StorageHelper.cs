@@ -237,9 +237,9 @@ public static class StorageHelper
     public static async UniTask<List<FacultyInfo>> ReviseFacInfo(FacultyInfo inf)
     {
         await UniTask.SwitchToMainThread();
-      
+        Debug.Log($"{inf.id} | {inf.Name} | {inf.TeacherName}");
         int index = Storage.faculiesInfo.FindIndex(x => x.id == inf.id);
-        if (index == -1)
+        if (index != -1)
         {
             Storage.faculiesInfo[index] = inf;
             return Storage.faculiesInfo;
