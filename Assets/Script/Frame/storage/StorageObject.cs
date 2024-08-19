@@ -8,6 +8,7 @@ public class StorageObject : ScriptableObject
     public List<ResourcesInfo> rsCheck = new List<ResourcesInfo>();
     public List<UserInfo> userInfos = new List<UserInfo>();
     public List<FacultyInfo> faculiesInfo = new List<FacultyInfo>();
+    public List<MajorInfo> majorInfo = new List<MajorInfo>();
 }
 
 /// <summary>
@@ -62,4 +63,17 @@ public class UserInfo
     public int level;
     public bool login = false;
     public string hint = "";
+}
+
+/// <summary>
+///  专业信息包
+/// </summary>
+[Serializable]
+public class MajorInfo
+{
+    public string id;
+    public string MajorName;
+    public string RegisterTime;
+    public string FacultyName;
+    public string TeacherName;
 }

@@ -18,7 +18,11 @@ public enum EventType
     GetFacInfoEvent,
     AddFacInfoEvent,
     ReviseFacInfoEvent,
-    DeleteFacInfoEvent
+    DeleteFacInfoEvent,
+    GetMajorInfoEvent,
+    AddMajorInfoEvent,
+    ReviseMajorInfoEvent,
+    DeleteMajorInfoEvent
 }
 
 public abstract class IEvent

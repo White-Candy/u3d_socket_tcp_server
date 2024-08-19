@@ -152,6 +152,7 @@ public static class StorageHelper
     {
         BaseStorageHelper helper = new T();
         object info = await helper.AddInfo(obj);
+        SaveToDisk();
         return info;
     }
 
@@ -164,6 +165,7 @@ public static class StorageHelper
      {
         BaseStorageHelper helper = new T();
         object info = await helper.ReviseInfo(obj);
+        SaveToDisk();
         return info;
      }
 
@@ -177,6 +179,7 @@ public static class StorageHelper
      {
         BaseStorageHelper helper = new T();
         object info = helper.DeleteInfo(obj);
+        SaveToDisk();
         return info;
      }
 }
