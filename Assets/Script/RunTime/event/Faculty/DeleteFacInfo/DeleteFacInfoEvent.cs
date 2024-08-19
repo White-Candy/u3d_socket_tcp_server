@@ -11,7 +11,7 @@ public class DeleteFacInfoEvent : IEvent
         AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
 
         FacultyInfo info = JsonMapper.ToObject<FacultyInfo>(asynExPkg.messPkg.ret);
-        List<FacultyInfo> new_list = StorageHelper.DeleteFacInfo(info);
+        List<FacultyInfo> new_list = StorageHelper.DeleteInfo<FacultyStorageHelper>(info) as List<FacultyInfo>;
         
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(asynExPkg.socket, body, EventType.DeleteFacInfoEvent);

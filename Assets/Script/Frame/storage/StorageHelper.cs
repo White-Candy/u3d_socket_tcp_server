@@ -131,135 +131,52 @@ public static class StorageHelper
     }
 
     /// <summary>
-    /// 获取学生的信息
+    /// 获取不同种类的信息
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static async UniTask<List<UserInfo>> GetStudentsInfo()
+    public static async UniTask<object> GetInfo<T>() where T : BaseStorageHelper, new()
     {
-        List<UserInfo> students = new List<UserInfo>();
-
-        await UniTask.SwitchToMainThread();
-        foreach (UserInfo info in Storage.userInfos)
-        {
-            if (info.level == 0)
-            {
-                students.Add(info);
-            }
-        }
-        return students;
+        BaseStorageHelper helper = new T();
+        object info = await helper.GetInfo();
+        return info;
     }
 
     /// <summary>
-    /// 添加学生信息到硬盘中
+    /// 添加
     /// </summary>
-    /// <param name="l_inf"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="obj"></param>
     /// <returns></returns>
-    public static async UniTask<List<UserInfo>> AddStusInfo(List<UserInfo> l_inf)
+    public static async UniTask<object> AddInfo<T>(object obj) where T : BaseStorageHelper, new()
     {
-        foreach (var inf in l_inf)
-        {
-            await Register(inf);
-        }
-        return Storage.userInfos;
+        BaseStorageHelper helper = new T();
+        object info = await helper.AddInfo(obj);
+        return info;
     }
 
     /// <summary>
-    /// 修改学生信息
+    /// 修改
     /// </summary>
-    /// <param name="inf"></param>
+    /// <param name="obj"></param>
     /// <returns></returns>
-    public static async UniTask<List<UserInfo>> ReviseStuInfo(UserInfo inf)
-    {
-        await UniTask.SwitchToMainThread();
-
-        int index = Storage.userInfos.FindIndex(x => x.userName == inf.userName);
-        if (index != -1)
-        {
-            Storage.userInfos[index] = inf;
-            return Storage.userInfos;
-        }
-        return new List<UserInfo>();
-    }
+     public static async UniTask<object> ReviseInfo<T>(object obj) where T : BaseStorageHelper, new()
+     {
+        BaseStorageHelper helper = new T();
+        object info = await helper.ReviseInfo(obj);
+        return info;
+     }
 
     /// <summary>
-    /// 删除学生信息
+    /// 删除
     /// </summary>
-    /// <param name="inf"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="obj"></param>
     /// <returns></returns>
-    public static List<UserInfo> DeleteStuInfo(UserInfo inf)
-    {
-        int idx = Storage.userInfos.FindIndex(x => x.userName == inf.userName);
-        if (idx != -1)
-        {
-            Storage.userInfos.RemoveAt(idx);
-            return Storage.userInfos;
-        }
-        return new List<UserInfo>();
-    }
-
-    /// <summary>
-    /// 获取学院信息
-    /// </summary>
-    /// <returns></returns>
-    public static async UniTask<List<FacultyInfo>> GetFaculiesInfo()
-    {
-        List<FacultyInfo> faculies = new List<FacultyInfo>();
-
-        await UniTask.SwitchToMainThread();
-        foreach (FacultyInfo info in Storage.faculiesInfo)
-        {
-            faculies.Add(info);   
-        }
-        return faculies;
-    }
-
-    /// <summary>
-    /// 添加学院信息到硬盘中
-    /// </summary>
-    /// <param name="l_inf"></param>
-    /// <returns></returns>
-    public static async UniTask<List<FacultyInfo>> AddFacInfo(FacultyInfo inf)
-    {
-        await UniTask.SwitchToMainThread();
-        
-        if (Storage.faculiesInfo.Find(x => x.Name == inf.Name) == null)
-        {
-            Storage.faculiesInfo.Add(inf);
-        }
-        return Storage.faculiesInfo;
-    }
-
-    /// <summary>
-    /// 修改学院信息
-    /// </summary>
-    /// <param name="inf"></param>
-    /// <returns></returns>
-    public static async UniTask<List<FacultyInfo>> ReviseFacInfo(FacultyInfo inf)
-    {
-        await UniTask.SwitchToMainThread();
-        Debug.Log($"{inf.id} | {inf.Name} | {inf.TeacherName}");
-        int index = Storage.faculiesInfo.FindIndex(x => x.id == inf.id);
-        if (index != -1)
-        {
-            Storage.faculiesInfo[index] = inf;
-            return Storage.faculiesInfo;
-        }
-        return new List<FacultyInfo>();
-    }
-
-    /// <summary>
-    /// 删除学院信息
-    /// </summary>
-    /// <param name="inf"></param>
-    /// <returns></returns>
-    public static List<FacultyInfo> DeleteFacInfo(FacultyInfo inf)
-    {
-        int idx = Storage.faculiesInfo.FindIndex(x => x.id == inf.id);
-        if (idx != -1)
-        {
-            Storage.faculiesInfo.RemoveAt(idx);
-            return Storage.faculiesInfo;
-        }
-        return new List<FacultyInfo>();
-    }
+     public static object DeleteInfo<T>(object obj) where T : BaseStorageHelper, new()
+     {
+        BaseStorageHelper helper = new T();
+        object info = helper.DeleteInfo(obj);
+        return info;
+     }
 }

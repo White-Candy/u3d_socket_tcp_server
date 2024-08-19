@@ -10,22 +10,10 @@ public class GetFacInfoEvent : IEvent
         await UniTask.RunOnThreadPool (async () =>
         {
             AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
-            List<FacultyInfo> infs = await StorageHelper.GetFaculiesInfo();
+            List<FacultyInfo> infs = await StorageHelper.GetInfo<FacultyStorageHelper>() as List<FacultyInfo>;
             
             string s_infs = JsonMapper.ToJson(infs);
             NetworkTCPServer.SendAsync(asynExPkg.socket, s_infs, EventType.GetFacInfoEvent);
         });
     }
-}
-
-/// <summary>
-///  学院信息包
-/// </summary>
-[Serializable]
-public class FacultyInfo
-{
-    public string id;
-    public string Name;
-    public string RegisterTime;
-    public string TeacherName;
 }

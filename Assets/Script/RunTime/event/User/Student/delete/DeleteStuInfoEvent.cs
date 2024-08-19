@@ -11,7 +11,7 @@ public class DeleteStuInfoEvent : IEvent
         AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
 
         UserInfo userInfo = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
-        List<UserInfo> new_list = StorageHelper.DeleteStuInfo(userInfo);
+        List<UserInfo> new_list = StorageHelper.DeleteInfo<StudentStorageHelper>(userInfo) as List<UserInfo>;
         
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(asynExPkg.socket, body, EventType.DeleteStuInfoEvent);

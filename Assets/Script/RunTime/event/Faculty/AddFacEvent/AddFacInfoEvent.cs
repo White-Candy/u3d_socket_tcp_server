@@ -13,7 +13,7 @@ public class AddFacInfoEvent : IEvent
         await UniTask.RunOnThreadPool( async () =>
         {
             FacultyInfo facultyinfo = JsonMapper.ToObject<FacultyInfo>(asynExPkg.messPkg.ret);
-            List<FacultyInfo> new_list = await StorageHelper.AddFacInfo(facultyinfo);
+            List<FacultyInfo> new_list = await StorageHelper.AddInfo<FacultyStorageHelper>(facultyinfo) as List<FacultyInfo>;
 
             string body = JsonMapper.ToJson(new_list);
             Debug.Log($"new list after Addstuevent : {body}");

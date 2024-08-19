@@ -12,7 +12,7 @@ public class ReviseFacInfoEvent : IEvent
             AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
 
             FacultyInfo info = JsonMapper.ToObject<FacultyInfo>(asynExPkg.messPkg.ret);
-            List<FacultyInfo> infs = await StorageHelper.ReviseFacInfo(info);
+            List<FacultyInfo> infs = await StorageHelper.ReviseInfo<FacultyStorageHelper>(info) as List<FacultyInfo>;
             
             string s_infs = JsonMapper.ToJson(infs);
             NetworkTCPServer.SendAsync(asynExPkg.socket, s_infs, EventType.GetFacInfoEvent);
