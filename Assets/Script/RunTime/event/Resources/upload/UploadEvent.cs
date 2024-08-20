@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-public class UploadEvent : IEvent
+public class UploadEvent : BaseEvent
 {
     public override async void OnEvent(params object[] objs) 
     {

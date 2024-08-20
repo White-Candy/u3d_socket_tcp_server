@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DownLoadEvent : IEvent
+public class DownLoadEvent : BaseEvent
 {
     public override async void OnEvent(params object[] objs) 
     {

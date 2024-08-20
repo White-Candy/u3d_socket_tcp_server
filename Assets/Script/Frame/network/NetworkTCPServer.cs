@@ -8,7 +8,7 @@ using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public static class NetworkTCPServer
+public class NetworkTCPServer
 {
     public static Socket m_Socket;
 
@@ -82,6 +82,7 @@ public static class NetworkTCPServer
                 pkg.messPkg.ip = data["ip"].ToString();
                 pkg.messPkg.length = int.Parse(data["length"].ToString());
                 pkg.messPkg.event_type = data["event_type"].ToString();
+                pkg.messPkg.operateType = data["operate_type"].ToString();
                 pkg.messPkg.get_length = true;
             }
             else
@@ -203,8 +204,9 @@ public static class NetworkTCPServer
 public class MessPackage
 {
     // public Socket socket = default; // 发送信息的soket
-    public string ip = ""; // 他的ip
-    public string ret = ""; // 他发送的信息
+    public string ip = ""; // ip
+    public string ret = ""; // 发送的信息
+    public string operateType = ""; // 操作类型
     public string event_type = ""; // 这个信息属于什么类型
     public int length = 0; // 这个包的总长度
     public bool finish = false; // 是否完全收包

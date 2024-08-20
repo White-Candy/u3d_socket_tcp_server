@@ -1,11 +1,12 @@
 using Cysharp.Threading.Tasks;
 using LitJson;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public static class StorageHelper
+public class StorageHelper
 {
     private static bool m_Init = false;
 
@@ -45,7 +46,7 @@ public static class StorageHelper
     /// 保存这个文件的版本信息
     /// </summary>
     /// <param name="relative"></param>
-    public static void UpdateThisFileInfo(string relative)
+    public static async void UpdateThisFileInfo(string relative)
     {
         string[] st = relative.Split("\\");
         string id = st[0];
@@ -61,14 +62,15 @@ public static class StorageHelper
         ri.relaPath = relative;
         ri.version_code = Tools.SpawnRandomCode();
         Storage.rsCheck.Add(ri);
-        SaveToDisk();
+        await SaveToDisk();
     }
 
     /// <summary>
     /// 将 ScriptableObject 的内容保存到硬盘中
     /// </summary>
-    public static void SaveToDisk()
+    public static async UniTask SaveToDisk()
     {
+        await UniTask.SwitchToMainThread();
         // Debug.Log("SaveToDisk");
         string s_json = JsonMapper.ToJson(Storage);
         File.WriteAllText(Application.persistentDataPath + "/Storage.json", s_json);
@@ -80,11 +82,11 @@ public static class StorageHelper
     /// <param name="username"></param>
     /// <param name="password"></param>
     /// <returns></returns>
-    public async static UniTask<UserInfo> CheckUserLogin(UserInfo info)
+    public async static UniTask<StuInfo> CheckUserLogin(StuInfo info)
     {
         await UniTask.SwitchToMainThread();
 
-        int account_idx = Storage.userInfos.FindIndex(x => x.userName == info.userName && x.level == info.level);
+        int account_idx = Storage.userInfos.FindIndex(x => x.userName == info.userName);
         if (account_idx != -1)
         {
             int pwd_idx = Storage.userInfos.FindIndex(x => x.userName == info.userName && x.password == info.password);
@@ -110,14 +112,14 @@ public static class StorageHelper
     /// </summary>
     /// <param name="inf"></param>
     /// <returns></returns>
-    public async static UniTask<UserInfo> Register(UserInfo inf)
+    public async static UniTask<StuInfo> Register(StuInfo inf)
     {
         await UniTask.SwitchToMainThread();
         if (Storage.userInfos.Find(x => x.userName == inf.userName) == null)
         {
             inf.hint = "注册成功!";
             Storage.userInfos.Add(inf);
-            SaveToDisk();
+            await SaveToDisk();
         }
         else
         {
@@ -131,14 +133,19 @@ public static class StorageHelper
     }
 
     /// <summary>
-    /// 获取不同种类的信息
+    /// 获取信息
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static async UniTask<object> GetInfo<T>() where T : BaseStorageHelper, new()
+    public static async UniTask<List<T>> GetInfo<T>(List<T> storInfo) where T : BaseInfo
     {
-        BaseStorageHelper helper = new T();
-        object info = await helper.GetInfo();
+        List<T> info = new List<T>();
+
+        await UniTask.SwitchToMainThread();
+        foreach (T inf in storInfo)
+        {
+            info.Add(inf);
+        }
         return info;
     }
 
@@ -148,12 +155,24 @@ public static class StorageHelper
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>
     /// <returns></returns>
-    public static async UniTask<object> AddInfo<T>(object obj) where T : BaseStorageHelper, new()
+    public static async UniTask<List<T>> AddInfo<T>(T inf, List<T> storInfo, Predicate<T> match) where T : BaseInfo
     {
-        BaseStorageHelper helper = new T();
-        object info = await helper.AddInfo(obj);
-        SaveToDisk();
-        return info;
+        if (storInfo.Find(match) == null)
+        {
+            storInfo.Add(inf);
+        }
+        await SaveToDisk();
+        return storInfo;
+    }
+
+    public static async UniTask<List<T>> AddInfo<T>(List<T> l_inf, List<T> storInfo) where T : StuInfo
+    {
+        foreach (var inf in l_inf)
+        {
+            await Register(inf);
+        }
+        await SaveToDisk();
+        return storInfo;
     }
 
     /// <summary>
@@ -161,12 +180,16 @@ public static class StorageHelper
     /// </summary>
     /// <param name="obj"></param>
     /// <returns></returns>
-     public static async UniTask<object> ReviseInfo<T>(object obj) where T : BaseStorageHelper, new()
+     public static async UniTask<List<T>> ReviseInfo<T>(T inf, List<T> storInfo,  Predicate<T> match) where T : BaseInfo
      {
-        BaseStorageHelper helper = new T();
-        object info = await helper.ReviseInfo(obj);
-        SaveToDisk();
-        return info;
+        int index = storInfo.FindIndex(match);
+        if (index != -1)
+        {
+            storInfo[index] = inf;
+            return storInfo;
+        }
+        await SaveToDisk();
+        return new List<T>();
      }
 
     /// <summary>
@@ -175,11 +198,15 @@ public static class StorageHelper
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>
     /// <returns></returns>
-     public static object DeleteInfo<T>(object obj) where T : BaseStorageHelper, new()
+     public static async UniTask<List<T>> DeleteInfo<T>(List<T> storInfo, Predicate<T> match) where T : BaseInfo
      {
-        BaseStorageHelper helper = new T();
-        object info = helper.DeleteInfo(obj);
-        SaveToDisk();
-        return info;
+        int idx = storInfo.FindIndex(match);
+        if (idx != -1)
+        {
+            storInfo.RemoveAt(idx);
+            return storInfo;
+        }
+        await SaveToDisk();
+        return new List<T>();
      }
 }

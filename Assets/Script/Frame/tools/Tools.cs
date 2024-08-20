@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public static class Tools
+public class Tools
 {
     /// <summary>
     /// 把字节数组 => 文件流

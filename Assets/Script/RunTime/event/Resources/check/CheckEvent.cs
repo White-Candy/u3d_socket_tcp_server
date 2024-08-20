@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckEvent : IEvent
+public class CheckEvent : BaseEvent
 {
     public override async void OnEvent(params object[] objs)
     {

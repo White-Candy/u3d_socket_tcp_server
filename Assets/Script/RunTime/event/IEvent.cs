@@ -25,7 +25,28 @@ public enum EventType
     DeleteMajorInfoEvent
 }
 
-public abstract class IEvent
+public abstract class BaseEvent
 {
     public virtual async void OnEvent(params object[] objs) { await UniTask.Yield(); }
+
+    public virtual async void GetInfoEvent(AsyncExpandPkg pkg)
+    {
+        await UniTask.Yield();
+    }
+
+    public virtual async void AddEvent(AsyncExpandPkg pkg)
+    {
+        await UniTask.Yield();        
+    }
+
+
+    public virtual async void ReviseInfoEvent(AsyncExpandPkg pkg)
+    {
+        await UniTask.Yield();
+    }
+
+    public virtual async void DeleteInfoEvent(AsyncExpandPkg pkg)
+    {
+        await UniTask.Yield();
+    }
 }

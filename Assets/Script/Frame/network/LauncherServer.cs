@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using LitJson;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,8 @@ public class LauncherServer : MonoBehaviour
 
     public CancellationTokenSource cts = new CancellationTokenSource();
 
+    private EventDispatcher m_dispatcher = new EventDispatcher();
+
     public void Start()
     {
         NetworkTCPServer.LauncherServer(5800);
@@ -24,14 +27,16 @@ public class LauncherServer : MonoBehaviour
         if (NetworkTCPServer.MessQueue.Count > 0)
         {
             var pkg = NetworkTCPServer.MessQueue.Dequeue();
-            IEvent @event = Tools.CreateObject<IEvent>(pkg.messPkg.event_type);
-            @event.OnEvent(pkg);
+            // BaseEvent @event = Tools.CreateObject<BaseEvent>(pkg.messPkg.event_type);
+            // @event.OnEvent(pkg);
+
+            m_dispatcher.Dispatcher(pkg);
         }
     }
 
-    private void OnDestroy()
+    private async void OnDestroy()
     {
-        StorageHelper.SaveToDisk();
+        await StorageHelper.SaveToDisk();
         NetworkTCPServer.Clear();
     }
 }
