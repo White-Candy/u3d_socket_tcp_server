@@ -25,7 +25,7 @@ public class NetworkTCPServer
 
         m_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         m_Socket.Bind(endPoint);
-        m_Socket.Listen(0); // 无限！
+        m_Socket.Listen(10000); // 无限！
 
         m_Socket.BeginAccept(AcceptAsync, null);
     }
@@ -83,6 +83,7 @@ public class NetworkTCPServer
                 pkg.messPkg.length = int.Parse(data["length"].ToString());
                 pkg.messPkg.event_type = data["event_type"].ToString();
                 pkg.messPkg.operateType = data["operate_type"].ToString();
+                Debug.Log($"{pkg.messPkg.event_type} || {pkg.messPkg.operateType} ");
                 pkg.messPkg.get_length = true;
             }
             else
@@ -231,6 +232,7 @@ public class MessPackage
         ip = pkg.ip;
         ret = pkg.ret;
         event_type = pkg.event_type;
+        operateType = pkg.operateType;
         length = pkg.length;
         finish = pkg.finish;
         get_length = pkg.get_length;

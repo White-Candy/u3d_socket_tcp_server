@@ -8,25 +8,24 @@ public class EventDispatcher
         AsyncExpandPkg pkg = objs[0] as AsyncExpandPkg;
         string operateType = pkg.messPkg.operateType;
         string eventType = pkg.messPkg.event_type;
-        Debug.Log(eventType + " || " + operateType);
         BaseEvent @event = Tools.CreateObject<BaseEvent>(eventType);
 
         // TODO..待优化
         switch (operateType)
         {
-            case "Get":
+            case "GET":
                 @event.GetInfoEvent(pkg);
                 break;
-            case "Add":
+            case "ADD":
                 @event.AddEvent(pkg);
                 break;
-            case "Revise":
+            case "REVISE":
                 @event.ReviseInfoEvent(pkg);
                 break;
-            case "Delete":
+            case "DELETE":
                 @event.DeleteInfoEvent(pkg);
                 break;       
-            case "None":
+            case "NONE":
                 @event.OnEvent(objs);
                 break;
         }
