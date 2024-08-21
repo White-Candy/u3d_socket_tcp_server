@@ -16,7 +16,7 @@ public class GetEvent : BaseEvent
 
         jd["facultiesList"] = JsonMapper.ToJson(facultiesList);
         string inf = JsonMapper.ToJson(jd);
-        NetworkTCPServer.SendAsync(pkg.socket, inf, EventType.GetEvent, OperateType.GET);
+        NetworkTCPServer.SendAsync(pkg.socket, inf, EventType.GetEvent, OperateType.NONE);
 
         await UniTask.Yield();
     }

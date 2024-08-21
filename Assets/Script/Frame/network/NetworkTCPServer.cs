@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using LitJson;
 using System;
 using System.Collections.Generic;
@@ -76,12 +77,14 @@ public class NetworkTCPServer
 
             string[] lengthSplit = mess.Split("|");
             string totalLength = lengthSplit[0];
-            
-            if (!pkg.messPkg.get_length && string.IsNullOrEmpty(totalLength))
+            if (!pkg.messPkg.get_length && !string.IsNullOrEmpty(totalLength))
             {
                 pkg.messPkg.length = int.Parse(totalLength);
                 pkg.messPkg.get_length = true;
+                pkg.messPkg.ret += lengthSplit[1];
                 totalLength = "";
+
+                checkParcent(pkg);
             }
             else
             {
@@ -90,57 +93,8 @@ public class NetworkTCPServer
                     pkg.messPkg.ret += mess;
                 }
 
-                float percent = (float)pkg.messPkg.ret.Count() * 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
-                Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
-
-                if (percent >= 100.0f)
-                {
-                    pkg.messPkg.finish = true;
-                    //MessQueueAdd(pkg);
-                    pkg.messPkg.Clear();
-                    percent = 0.0f;
-                }
+                checkParcent(pkg);
             }
-
-            string[] frontSplit = lengthSplit[1].Split("#");
-            string front = frontSplit[0];
-
-            string[] mainSplit = frontSplit[1].Split("-");
-            string main = mainSplit[0];
-
-            Debug.Log($"{totalLength} | {front} | {main}");
-            // if (!pkg.messPkg.get_length)
-            // {
-            //     Debug.Log("+++++" + mess); // log message of front package
-            //     JsonData data = JsonMapper.ToObject(mess);
-
-            //     // 前置包获取内容包的总长度和事件类型
-            //     pkg.messPkg.ip = data["ip"].ToString();
-            //     pkg.messPkg.length = int.Parse(data["length"].ToString());
-            //     pkg.messPkg.event_type = data["event_type"].ToString();
-            //     pkg.messPkg.operate_type = data["operate_type"].ToString();
-            //     Debug.Log($"{pkg.messPkg.event_type} || {pkg.messPkg.operate_type} ");
-            //     pkg.messPkg.get_length = true;
-            // }
-            // else
-            // {
-            //     Debug.Log("-----#" + mess); // log message of front package
-            //     if (pkg.messPkg.length > pkg.messPkg.ret.Count())
-            //     {
-            //         pkg.messPkg.ret += mess;
-            //     }
-
-            //     float percent = (float)pkg.messPkg.ret.Count() * 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
-            //     Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
-
-            //     if (percent >= 100.0f)
-            //     {
-            //         pkg.messPkg.finish = true;
-            //         MessQueueAdd(pkg);
-            //         pkg.messPkg.Clear();
-            //         percent = 0.0f;
-            //     }
-            // }
             cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, pkg);
         }
         catch
@@ -156,23 +110,25 @@ public class NetworkTCPServer
     /// <param name="mess"></param>
     public static async void SendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
     {
-        SendFrontPackage(cli, mess, event_type, operateType);
+        string front = FrontPackage(cli, mess, event_type, operateType);
+        string totalInfoPkg = $"|{front}#{mess}-end";
+        long totalLength = totalInfoPkg.Count();
+        string finalPkg = totalLength.ToString() + totalInfoPkg;
 
-        await Tools.OnAwait(0.1f, () =>
-        {
-            Debug.Log($"============={mess}");
-            SendPkg sp = new SendPkg() { socket = cli, content = mess };
-            var outputBuffer = Encoding.Unicode.GetBytes(sp.content);
-            sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
-        });
+        Debug.Log($"============={finalPkg}");
+        SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
+        var outputBuffer = Encoding.Unicode.GetBytes(sp.content);
+        sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
+
+        await UniTask.Yield();
     }
 
     /// <summary>
-    /// 发送前置包
+    /// 前置包
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static void SendFrontPackage(Socket cli, string mess, EventType event_type, OperateType operateType)
+    public static string FrontPackage(Socket cli, string mess, EventType event_type, OperateType operateType)
     {
         MessPackage data = new MessPackage()
         {
@@ -181,11 +137,7 @@ public class NetworkTCPServer
             operate_type = operateType.ToSafeString(),
         };
         string s_info = JsonMapper.ToJson(data);
-        var outputBuffer = Encoding.Unicode.GetBytes(s_info);
-
-        SendPkg sp = new SendPkg() { socket = cli, content = s_info };
-        // Debug.Log("Send Now DateTime: " + DateTime.Now);
-        cli.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
+        return s_info;
     }
 
     /// <summary>
@@ -234,6 +186,49 @@ public class NetworkTCPServer
     {
         AsyncExpandPkg exp_pkg = new AsyncExpandPkg(pkg);
         MessQueue.Enqueue(exp_pkg);
+    }
+
+    /// <summary>
+    /// 前置包和内容包解析
+    /// </summary>
+    /// <param name="pkg"></param>
+    public static void ParsingThePackageBody(string package, AsyncExpandPkg pkg)
+    {
+        string[] frontSplit = package.Split("#");
+        string front = frontSplit[0];
+
+        string[] mainSplit = frontSplit[1].Split("-");
+        string main = mainSplit[0];
+
+        JsonData data = JsonMapper.ToObject(front);
+
+        // 前置包获取内容包的总长度和事件类型
+        pkg.messPkg.ip = data["ip"].ToString();
+        pkg.messPkg.length = int.Parse(data["length"].ToString());
+        pkg.messPkg.event_type = data["event_type"].ToString();
+        pkg.messPkg.operate_type = data["operate_type"].ToString();
+        Debug.Log($"ParsingThePackageBody: {pkg.messPkg.event_type} || {pkg.messPkg.operate_type} ");
+        pkg.messPkg.get_length = true;
+
+        pkg.messPkg.ret = main;
+        MessQueueAdd(pkg);
+        pkg.messPkg.Clear();
+    }
+
+    /// <summary>
+    /// 进度检查
+    /// </summary>
+    /// <param name="pkg"></param>
+    public static void checkParcent(AsyncExpandPkg pkg)
+    {
+        float percent = (float)(pkg.messPkg.ret.Count() + 1)* 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
+        Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
+
+        if (percent >= 100.0f)
+        {
+            pkg.messPkg.finish = true;
+            ParsingThePackageBody(pkg.messPkg.ret, pkg);
+        }
     }
 }
 
