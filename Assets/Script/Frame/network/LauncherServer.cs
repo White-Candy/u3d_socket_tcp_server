@@ -17,9 +17,11 @@ public class LauncherServer : MonoBehaviour
 
     private EventDispatcher m_dispatcher = new EventDispatcher();
 
+    private NetworkTCPServer m_server = new NetworkTCPServer();
+
     public void Start()
     {
-        NetworkTCPServer.LauncherServer(5800);
+        m_server.LauncherServer(5800);  
     }
     
     void FixedUpdate()
@@ -27,9 +29,6 @@ public class LauncherServer : MonoBehaviour
         if (NetworkTCPServer.MessQueue.Count > 0)
         {
             var pkg = NetworkTCPServer.MessQueue.Dequeue();
-            // BaseEvent @event = Tools.CreateObject<BaseEvent>(pkg.messPkg.event_type);
-            // @event.OnEvent(pkg);
-
             m_dispatcher.Dispatcher(pkg);
         }
     }
@@ -37,6 +36,6 @@ public class LauncherServer : MonoBehaviour
     private async void OnDestroy()
     {
         await StorageHelper.SaveToDisk();
-        NetworkTCPServer.Clear();
+        m_server.Clear();
     }
 }

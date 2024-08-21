@@ -8,13 +8,10 @@ using UnityEngine;
 
 public class UploadEvent : BaseEvent
 {
-    public override async void OnEvent(params object[] objs) 
+    public override async void OnEvent(AsyncExpandPkg asynExPkg) 
     {
         await UniTask.RunOnThreadPool(async () =>
         {
-            AsyncExpandPkg asynExPkg = objs[0] as AsyncExpandPkg;
-            // Debug.Log("UploadEvent!");
-
             FilePackage data = JsonMapper.ToObject<FilePackage>(asynExPkg.messPkg.ret);
             string savepath = Application.streamingAssetsPath + "\\Data\\" + data.relativePath;
             Tools.Bytes2File(data.fileData, savepath);

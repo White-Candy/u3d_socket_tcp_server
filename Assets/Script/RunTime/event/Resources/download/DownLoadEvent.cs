@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class DownLoadEvent : BaseEvent
 {
-    public override async void OnEvent(params object[] objs) 
+    public override async void OnEvent(AsyncExpandPkg expand_pkg) 
     {
-        Debug.Log("DownLoadEvent!");
-        var expand_pkg = objs[0] as AsyncExpandPkg;
         if (expand_pkg.messPkg.ret != null) 
         {
             FileReqPkg pkg = JsonMapper.ToObject<FileReqPkg>(expand_pkg.messPkg.ret);
@@ -26,7 +24,7 @@ public class DownLoadEvent : BaseEvent
             };
 
             string str_data = JsonMapper.ToJson(data);
-            NetworkTCPServer.SendAsync(expand_pkg.socket, str_data, EventType.DownLoadEvent);
+            NetworkTCPServer.SendAsync(expand_pkg.socket, str_data, EventType.DownLoadEvent, OperateType.NONE);
         }
     }
 }

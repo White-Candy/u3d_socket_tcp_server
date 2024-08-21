@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class NetworkTCPServer
 {
-    public static Socket m_Socket;
+    public Socket m_Socket;
 
     public static int ret_length = 1024000;
     public static byte[] results = new byte[ret_length];
@@ -19,18 +19,18 @@ public class NetworkTCPServer
 
     public static List<Socket> cliList = new List<Socket> ();
 
-    public static void LauncherServer(int port)
+    public void LauncherServer(int port)
     {
         IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
 
         m_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         m_Socket.Bind(endPoint);
-        m_Socket.Listen(10000); // 无限！
+        m_Socket.Listen(10000);
 
         m_Socket.BeginAccept(AcceptAsync, null);
     }
 
-    public static void AcceptAsync(IAsyncResult ar)
+    public void AcceptAsync(IAsyncResult ar)
     {
         // Socket listenfd = (Socket)ar.AsyncState;
         Socket cli = m_Socket.EndAccept(ar);
@@ -72,19 +72,16 @@ public class NetworkTCPServer
         {
             string mess = Encoding.Unicode.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
+            // Debug.Log(mess);
 
-            Debug.Log("+++++" + mess); // log message of front package
-            if (!pkg.messPkg.get_length)
+            string[] lengthSplit = mess.Split("|");
+            string totalLength = lengthSplit[0];
+            
+            if (!pkg.messPkg.get_length && string.IsNullOrEmpty(totalLength))
             {
-                JsonData data = JsonMapper.ToObject(mess);
-
-                // 前置包获取内容包的总长度和事件类型
-                pkg.messPkg.ip = data["ip"].ToString();
-                pkg.messPkg.length = int.Parse(data["length"].ToString());
-                pkg.messPkg.event_type = data["event_type"].ToString();
-                pkg.messPkg.operateType = data["operate_type"].ToString();
-                Debug.Log($"{pkg.messPkg.event_type} || {pkg.messPkg.operateType} ");
+                pkg.messPkg.length = int.Parse(totalLength);
                 pkg.messPkg.get_length = true;
+                totalLength = "";
             }
             else
             {
@@ -94,15 +91,56 @@ public class NetworkTCPServer
                 }
 
                 float percent = (float)pkg.messPkg.ret.Count() * 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
-                // Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
+                Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
 
                 if (percent >= 100.0f)
                 {
                     pkg.messPkg.finish = true;
-                    MessQueueAdd(pkg);
+                    //MessQueueAdd(pkg);
                     pkg.messPkg.Clear();
+                    percent = 0.0f;
                 }
             }
+
+            string[] frontSplit = lengthSplit[1].Split("#");
+            string front = frontSplit[0];
+
+            string[] mainSplit = frontSplit[1].Split("-");
+            string main = mainSplit[0];
+
+            Debug.Log($"{totalLength} | {front} | {main}");
+            // if (!pkg.messPkg.get_length)
+            // {
+            //     Debug.Log("+++++" + mess); // log message of front package
+            //     JsonData data = JsonMapper.ToObject(mess);
+
+            //     // 前置包获取内容包的总长度和事件类型
+            //     pkg.messPkg.ip = data["ip"].ToString();
+            //     pkg.messPkg.length = int.Parse(data["length"].ToString());
+            //     pkg.messPkg.event_type = data["event_type"].ToString();
+            //     pkg.messPkg.operate_type = data["operate_type"].ToString();
+            //     Debug.Log($"{pkg.messPkg.event_type} || {pkg.messPkg.operate_type} ");
+            //     pkg.messPkg.get_length = true;
+            // }
+            // else
+            // {
+            //     Debug.Log("-----#" + mess); // log message of front package
+            //     if (pkg.messPkg.length > pkg.messPkg.ret.Count())
+            //     {
+            //         pkg.messPkg.ret += mess;
+            //     }
+
+            //     float percent = (float)pkg.messPkg.ret.Count() * 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
+            //     Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
+
+            //     if (percent >= 100.0f)
+            //     {
+            //         pkg.messPkg.finish = true;
+            //         MessQueueAdd(pkg);
+            //         pkg.messPkg.Clear();
+            //         percent = 0.0f;
+            //     }
+            // }
             cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, pkg);
         }
         catch
@@ -116,9 +154,9 @@ public class NetworkTCPServer
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static async void SendAsync(Socket cli, string mess, EventType event_type)
+    public static async void SendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
     {
-        SendFrontPackage(cli, mess, event_type);
+        SendFrontPackage(cli, mess, event_type, operateType);
 
         await Tools.OnAwait(0.1f, () =>
         {
@@ -134,12 +172,13 @@ public class NetworkTCPServer
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static void SendFrontPackage(Socket cli, string mess, EventType event_type)
+    public static void SendFrontPackage(Socket cli, string mess, EventType event_type, OperateType operateType)
     {
         MessPackage data = new MessPackage()
         {
             length = mess.Length,
-            event_type = event_type.ToSafeString()
+            event_type = event_type.ToSafeString(),
+            operate_type = operateType.ToSafeString(),
         };
         string s_info = JsonMapper.ToJson(data);
         var outputBuffer = Encoding.Unicode.GetBytes(s_info);
@@ -175,7 +214,7 @@ public class NetworkTCPServer
     /// <summary>
     /// Destroy Clear
     /// </summary>
-    public static void Clear()
+    public void Clear()
     {
         Debug.Log(cliList.Count);
         foreach (var cli in cliList)
@@ -207,7 +246,7 @@ public class MessPackage
     // public Socket socket = default; // 发送信息的soket
     public string ip = ""; // ip
     public string ret = ""; // 发送的信息
-    public string operateType = ""; // 操作类型
+    public string operate_type = ""; // 操作类型
     public string event_type = ""; // 这个信息属于什么类型
     public int length = 0; // 这个包的总长度
     public bool finish = false; // 是否完全收包
@@ -232,7 +271,7 @@ public class MessPackage
         ip = pkg.ip;
         ret = pkg.ret;
         event_type = pkg.event_type;
-        operateType = pkg.operateType;
+        operate_type = pkg.operate_type;
         length = pkg.length;
         finish = pkg.finish;
         get_length = pkg.get_length;
