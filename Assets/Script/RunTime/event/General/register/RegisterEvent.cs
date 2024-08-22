@@ -10,7 +10,7 @@ public class RegisterEvent : BaseEvent
     {
         await UniTask.RunOnThreadPool(async () =>
         {
-            StuInfo inf = JsonMapper.ToObject<StuInfo>(asynExPkg.messPkg.ret);
+            UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
             inf = await StorageHelper.Register(inf);
             
             string s_inf = JsonMapper.ToJson(inf);

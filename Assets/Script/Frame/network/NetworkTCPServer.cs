@@ -141,7 +141,7 @@ public class NetworkTCPServer
     }
 
     /// <summary>
-    /// 等到前置包发送结束后才会发送主体包
+    /// 异步发送回调函数
     /// </summary>
     /// <param name="ar"></param>
     private static void SendPkgAsyncCbk(IAsyncResult ar)

@@ -82,14 +82,14 @@ public class StorageHelper
     /// <param name="username"></param>
     /// <param name="password"></param>
     /// <returns></returns>
-    public async static UniTask<StuInfo> CheckUserLogin(StuInfo info)
+    public async static UniTask<UserInfo> CheckUserLogin(UserInfo info)
     {
         await UniTask.SwitchToMainThread();
 
-        int account_idx = Storage.userInfos.FindIndex(x => x.userName == info.userName);
+        int account_idx = Storage.usersInfo.FindIndex(x => x.userName == info.userName);
         if (account_idx != -1)
         {
-            int pwd_idx = Storage.userInfos.FindIndex(x => x.userName == info.userName && x.password == info.password);
+            int pwd_idx = Storage.usersInfo.FindIndex(x => x.userName == info.userName && x.password == info.password);
             if (pwd_idx != -1)
             {
                 info.login = true;
@@ -112,13 +112,13 @@ public class StorageHelper
     /// </summary>
     /// <param name="inf"></param>
     /// <returns></returns>
-    public async static UniTask<StuInfo> Register(StuInfo inf)
+    public async static UniTask<UserInfo> Register(UserInfo inf)
     {
         await UniTask.SwitchToMainThread();
-        if (Storage.userInfos.Find(x => x.userName == inf.userName) == null)
+        if (Storage.usersInfo.Find(x => x.userName == inf.userName) == null)
         {
             inf.hint = "×¢²á³É¹¦!";
-            Storage.userInfos.Add(inf);
+            Storage.usersInfo.Add(inf);
             await SaveToDisk();
         }
         else
@@ -165,7 +165,7 @@ public class StorageHelper
         return storInfo;
     }
 
-    public static async UniTask<List<T>> AddInfo<T>(List<T> l_inf, List<T> storInfo) where T : StuInfo
+    public static async UniTask<List<T>> AddInfo<T>(List<T> l_inf, List<T> storInfo) where T : UserInfo
     {
         foreach (var inf in l_inf)
         {

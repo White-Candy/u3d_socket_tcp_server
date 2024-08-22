@@ -6,9 +6,10 @@ using UnityEngine;
 public class StorageObject : ScriptableObject
 {
     public List<ResourcesInfo> rsCheck = new List<ResourcesInfo>();
-    public List<StuInfo> userInfos = new List<StuInfo>();
+    public List<UserInfo> usersInfo = new List<UserInfo>();
     public List<FacultyInfo> faculiesInfo = new List<FacultyInfo>();
     public List<MajorInfo> majorInfo = new List<MajorInfo>();
+    public List<ClassInfo> classesInfo = new List<ClassInfo>();
 }
 
 /// <summary>
@@ -48,20 +49,20 @@ public class FacultyInfo : BaseInfo
 }
 
 /// <summary>
-/// 学生信息包
+/// 用户信息包
 /// </summary>
 [Serializable]
-public class StuInfo : BaseInfo
+public class UserInfo : BaseInfo
 {
     public string userName;
+    public string password;
     public string Name;
     public string Gender;
-    public string idCoder;
     public string Age;
+    public string Identity;
+    public string idCoder;
     public string Contact;
-    public string HeadTeacher;
     public string className;
-    public string password;
     public bool login = false;
     public string hint = "";
 }
@@ -77,4 +78,19 @@ public class MajorInfo : BaseInfo
     public string RegisterTime;
     public string FacultyName;
     public string TeacherName;
+}
+
+/// <summary>
+///  班级信息包
+/// </summary>
+[Serializable]
+public class ClassInfo : BaseInfo
+{
+    public string id;
+    public string Class;
+    public string RegisterTime;
+    public string Faculty;
+    public string Major;
+    public string Teacher;
+    public string Number;
 }
