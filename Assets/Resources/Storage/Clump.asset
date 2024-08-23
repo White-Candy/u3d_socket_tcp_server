@@ -31,173 +31,97 @@ MonoBehaviour:
   - relaPath: 10001\Picture\1.png
     version_code: 9789-6495-7700-8789
     need_updata: 1
-  userInfos:
-  - userName: user6
-    Name: "\u674E\u534E"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 24
-    Contact: 14458900324
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user7
-    Name: "\u660E\u65E5\u9999"
-    Gender: "\u5973"
-    idCoder: 61043199907658300
-    Age: 22
-    Contact: 13399109354
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user8
-    Name: "\u5C0F\u5F20"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 24
-    Contact: 13558990455
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user9
-    Name: "\u5C0F\u5EB7"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 24
-    Contact: 17656890347
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user10
-    Name: "\u660E\u6CBB"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 24
-    Contact: 15590200233
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user11
-    Name: "\u5218\u9662\u559C"
-    Gender: "\u5973"
-    idCoder: 61043200107658300
-    Age: 24
-    Contact: 19035044233
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user12
-    Name: "\u5F20\u4FDD\u5BB9"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 20
-    Contact: 18779345578
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user13
-    Name: "\u5218\u56FD\u5F3A"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 24
-    Contact: 13892020679
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user14
-    Name: "\u6768\u5E05"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 19
-    Contact: 15543222689
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user15
-    Name: "\u5F20\u5E05"
-    Gender: "\u7537"
-    idCoder: 61043199907658300
-    Age: 24
-    Contact: 16332009076
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: user17
-    Name: "\u674E\u96EA"
-    Gender: "\u5973"
-    idCoder: 61043199807658300
-    Age: 23
-    Contact: 13799100789
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u7F8E\u672F\u4E00\u73ED"
-    password: 
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: QWER
-    Name: "\u5F20\u9F99"
-    Gender: "\u7537"
-    idCoder: 610403199006783988
-    Age: 34
-    Contact: 13867878455
-    HeadTeacher: "\u5218\u8001\u5E08"
-    className: "\u8BA1\u79D1\u4E00\u73ED"
-    password: minmin
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: Trys
-    Name: "\u5218\u5EFA\u56FD"
-    Gender: "\u7537"
-    idCoder: 620401199106453455
-    Age: 33
-    Contact: 13459757277
-    HeadTeacher: "\u5F20\u8001\u5E08"
-    className: "\u571F\u6728\u4E00\u73ED"
+  usersInfo:
+  - userName: user1
     password: 123456
-    level: 0
-    login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
-  - userName: 123
-    Name: "\u674E\u4E94"
+    Name: "\u5F20\u4E09"
     Gender: "\u7537"
-    idCoder: 610402200106453899
-    Age: 22
-    Contact: 13892020655
-    HeadTeacher: "\u674E\u8001\u5E08"
-    className: "\u8BA1\u79D1\u4E00\u73ED"
-    password: 564
-    level: 0
+    Age: 23
+    Identity: "\u5B66\u751F"
+    idCoder: 610402200107223899
+    Contact: 13894056345
+    className: "\u8BA1\u79D1\u4E8C\u73ED"
     login: 0
     hint: 
-  faculiesInfo: []
+  - userName: admin
+    password: admin
+    Name: "\u5F20\u8001\u5E08"
+    Gender: "\u7537"
+    Age: 40
+    Identity: "\u4E3B\u4EFB"
+    idCoder: 610360197504232899
+    Contact: 13679189603
+    className: 
+    login: 0
+    hint: 
+  - userName: User2
+    password: 123456
+    Name: "\u5C0F\u660E"
+    Gender: "\u7537"
+    Age: 23
+    Identity: "\u9662\u957F"
+    idCoder: 610402200106123899
+    Contact: 13399100478
+    className: 
+    login: 0
+    hint: 
+  - userName: user4
+    password: user4
+    Name: user4
+    Gender: "\u7537"
+    Age: 20
+    Identity: "\u8001\u5E08"
+    idCoder: 1234567890
+    Contact: 1234567890
+    className: 
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
+  - userName: user5
+    password: user5
+    Name: user5
+    Gender: "\u7537"
+    Age: 34
+    Identity: "\u9662\u957F"
+    idCoder: 1234567
+    Contact: 1234567
+    className: 
+    login: 0
+    hint: 
+  faculiesInfo:
+  - id: 7425
+    Name: "\u7F8E\u672F\u5B66\u9662"
+    RegisterTime: 2024/8/19 14:8:16
+    TeacherName: "\u5C0F\u660E"
+  - id: 744
+    Name: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
+    RegisterTime: 2024/8/22 8:51:44
+    TeacherName: "\u5C0F\u660E"
+  - id: 798
+    Name: "\u519C\u5B66\u9662"
+    RegisterTime: 2024/8/22 9:1:49
+    TeacherName: user5
+  - id: 3569
+    Name: "\u6587\u5B66\u9662"
+    RegisterTime: 2024/8/22 9:4:10
+    TeacherName: user5
+  majorInfo:
+  - id: 8907
+    MajorName: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
+    RegisterTime: 2024/8/20 17:1:33
+    FacultyName: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
+    TeacherName: "\u5F20\u8001\u5E08"
+  classesInfo:
+  - id: 5303
+    Class: "\u8BA1\u79D1\u4E8C\u73ED"
+    RegisterTime: 2024/8/22 14:13:36
+    Faculty: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
+    Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
+    Teacher: user4
+    Number: 5
+  - id: 1743
+    Class: "\u8BA1\u79D1\u4E00\u73ED"
+    RegisterTime: 2024/8/22 17:47:21
+    Faculty: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
+    Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
+    Teacher: user4
+    Number: 0

@@ -10,6 +10,7 @@ public class StorageObject : ScriptableObject
     public List<FacultyInfo> faculiesInfo = new List<FacultyInfo>();
     public List<MajorInfo> majorInfo = new List<MajorInfo>();
     public List<ClassInfo> classesInfo = new List<ClassInfo>();
+    public List<ColumnsInfo> columnsInfo = new List<ColumnsInfo>();
 }
 
 /// <summary>
@@ -92,5 +93,16 @@ public class ClassInfo : BaseInfo
     public string Faculty;
     public string Major;
     public string Teacher;
-    public string Number;
+    public int Number;
+}
+
+/// <summary>
+///  栏目信息包
+/// </summary>
+[Serializable]
+public class ColumnsInfo : BaseInfo
+{
+    public string id;
+    public string Name;
+    public string RegisterTime;
 }

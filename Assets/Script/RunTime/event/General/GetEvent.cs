@@ -1,12 +1,23 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using LitJson;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GetEvent : BaseEvent
 {
     public override async void OnEvent(AsyncExpandPkg pkg)
     {        
+        JsonData jd = AllInfoToJsData();
+
+        string inf = JsonMapper.ToJson(jd);
+        NetworkTCPServer.SendAsync(pkg.socket, inf, EventType.GetEvent, OperateType.NONE);
+
+        await UniTask.Yield();
+    }
+
+    public JsonData AllInfoToJsData()
+    {
         JsonData jd = new JsonData();
 
         List<string> facultiesList = new List<string>(); // 学院
@@ -50,9 +61,6 @@ public class GetEvent : BaseEvent
         jd["directorsList"] = JsonMapper.ToJson(directorsList);
         jd["deanList"] = JsonMapper.ToJson(deanList);
 
-        string inf = JsonMapper.ToJson(jd);
-        NetworkTCPServer.SendAsync(pkg.socket, inf, EventType.GetEvent, OperateType.NONE);
-
-        await UniTask.Yield();
+        return jd;
     }
 }

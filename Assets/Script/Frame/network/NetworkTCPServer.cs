@@ -221,7 +221,7 @@ public class NetworkTCPServer
     /// <param name="pkg"></param>
     public static void checkParcent(AsyncExpandPkg pkg)
     {
-        float percent = (float)(pkg.messPkg.ret.Count() + 1)* 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
+        float percent = (float)(pkg.messPkg.ret.Count() + 1.0f)* 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
         Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
 
         if (percent >= 100.0f)

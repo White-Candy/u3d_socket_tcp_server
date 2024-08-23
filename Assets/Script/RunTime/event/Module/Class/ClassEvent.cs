@@ -6,7 +6,24 @@ public class ClassEvent : BaseEvent
     public override async void GetInfoEvent(AsyncExpandPkg pkg)
     {
         List<ClassInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.classesInfo);
-        
+
+        Dictionary<string, int> classesNumber = new Dictionary<string, int>();
+        foreach (var usr in StorageHelper.Storage.usersInfo)
+        {
+            if (usr.Identity != "学生") continue;
+            
+            if (!classesNumber.ContainsKey(usr.className))
+            {
+                classesNumber.Add(usr.className, 0);
+            }         
+            classesNumber[usr.className]++; 
+        }
+
+        foreach (var _class in infs)
+        {
+            _class.Number = classesNumber.ContainsKey(_class.Class) ? classesNumber[_class.Class] : 0;
+        }
+
         string inf = JsonMapper.ToJson(infs);
         NetworkTCPServer.SendAsync(pkg.socket, inf, EventType.ClassEvent, OperateType.GET);
     }
