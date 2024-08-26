@@ -98,11 +98,18 @@ MonoBehaviour:
     className: 
     login: 0
     hint: 
+  - userName: Sugar
+    password: 123
+    Name: "\u5218\u4E8C"
+    Gender: "\u7537"
+    Age: 23
+    Identity: "\u5B66\u751F"
+    idCoder: 610402200108013455
+    Contact: 14469189617
+    className: "\u7535\u6C14\u4E00\u73ED"
+    login: 0
+    hint: "\u6CE8\u518C\u6210\u529F!"
   faculiesInfo:
-  - id: 7425
-    Name: "\u7F8E\u672F\u5B66\u9662"
-    RegisterTime: 2024/8/19 14:8:16
-    TeacherName: "\u5C0F\u660E"
   - id: 744
     Name: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
     RegisterTime: 2024/8/22 8:51:44
@@ -115,10 +122,19 @@ MonoBehaviour:
     Name: "\u6587\u5B66\u9662"
     RegisterTime: 2024/8/22 9:4:10
     TeacherName: user5
+  - id: 3818
+    Name: "\u82F1\u6587\u5B66\u9662"
+    RegisterTime: 2024/8/26 15:14:25
+    TeacherName: user5
   majorInfo:
   - id: 8907
     MajorName: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
     RegisterTime: 2024/8/20 17:1:33
+    FacultyName: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
+    TeacherName: "\u5F20\u8001\u5E08"
+  - id: 4508
+    MajorName: "\u7535\u6C14\u4E13\u4E1A"
+    RegisterTime: 2024/8/26 15:14:54
     FacultyName: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
     TeacherName: "\u5F20\u8001\u5E08"
   classesInfo:
@@ -132,11 +148,28 @@ MonoBehaviour:
   - id: 1743
     Class: "\u8BA1\u79D1\u4E00\u73ED"
     RegisterTime: 2024/8/22 17:47:21
-    Faculty: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
+    Faculty: "\u519C\u5B66\u9662"
     Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
     Teacher: user4
     Number: 0
+  - id: 2277
+    Class: "\u7535\u6C14\u4E00\u73ED"
+    RegisterTime: 2024/8/26 15:18:34
+    Faculty: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
+    Major: "\u7535\u6C14\u4E13\u4E1A"
+    Teacher: "\u5C0F\u5218"
+    Number: 1
   columnsInfo:
   - id: 6677
     Name: "b\u680F\u76EE"
     RegisterTime: 2024/8/23 16:39:24
+  - id: 550
+    Name: "A1\u680F\u76EE"
+    RegisterTime: 2024/8/26 13:51:37
+  courseInfo:
+  - id: 9396
+    CourseName: "A\u8BFE\u7A0B"
+    Columns: "A1\u680F\u76EE"
+    Working: "A\u8BFE\u7A0B\u7684\u4F5C\u4E1A\u6761\u4EF6\uFF0C\nA\u8BFE\u7A0B\u4F5C\u4E1A\u6761\u4EF61\n"
+    Content: "\u6559\u5B66\u8D44\u6E90"
+    RegisterTime: 2024/8/26 14:23:33

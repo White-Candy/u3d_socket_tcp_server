@@ -8,6 +8,7 @@ public class CheckEvent : BaseEvent
 {
     public override async void OnEvent(AsyncExpandPkg expand_pkg)
     {
+        Debug.Log("Check Event: " + expand_pkg.messPkg.ret);
         ResourcesInfo cli_info = JsonMapper.ToObject<ResourcesInfo>(expand_pkg.messPkg.ret);
         ResourcesInfo info = StorageHelper.GetThisInfoPkg(cli_info); // 获取客户端请求的项目id和模块名字的文件版本号
         if (info == null)

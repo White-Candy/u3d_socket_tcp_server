@@ -73,12 +73,13 @@ public class NetworkTCPServer
         {
             string mess = Encoding.Unicode.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
-            // Debug.Log(mess);
+            Debug.Log("Recive: ================ " + mess);
 
             string[] lengthSplit = mess.Split("|");
             string totalLength = lengthSplit[0];
             if (!pkg.messPkg.get_length && !string.IsNullOrEmpty(totalLength))
             {
+                Debug.Log("GET LENGTH: " + totalLength);
                 pkg.messPkg.length = int.Parse(totalLength);
                 pkg.messPkg.get_length = true;
                 pkg.messPkg.ret += lengthSplit[1];
@@ -92,6 +93,7 @@ public class NetworkTCPServer
                 {
                     pkg.messPkg.ret += mess;
                 }
+                Debug.Log("GET MAIN: " + pkg.messPkg.ret);
 
                 checkParcent(pkg);
             }
@@ -111,7 +113,7 @@ public class NetworkTCPServer
     public static async void SendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
     {
         string front = FrontPackage(cli, mess, event_type, operateType);
-        string totalInfoPkg = $"|{front}#{mess}-end";
+        string totalInfoPkg = $"|{front}#{mess}";
         long totalLength = totalInfoPkg.Count();
         string finalPkg = totalLength.ToString() + totalInfoPkg;
 
@@ -194,11 +196,10 @@ public class NetworkTCPServer
     /// <param name="pkg"></param>
     public static void ParsingThePackageBody(string package, AsyncExpandPkg pkg)
     {
-        string[] frontSplit = package.Split("#");
-        string front = frontSplit[0];
+        string[] Split = package.Split("#");
+        string front = Split[0];
 
-        string[] mainSplit = frontSplit[1].Split("-");
-        string main = mainSplit[0];
+        string main = Split[1];
 
         JsonData data = JsonMapper.ToObject(front);
 
@@ -209,9 +210,11 @@ public class NetworkTCPServer
         pkg.messPkg.operate_type = data["operate_type"].ToString();
         Debug.Log($"ParsingThePackageBody: {pkg.messPkg.event_type} || {pkg.messPkg.operate_type} ");
         pkg.messPkg.get_length = true;
+        Debug.Log("####### Main : " + main);
 
         pkg.messPkg.ret = main;
         MessQueueAdd(pkg);
+
         pkg.messPkg.Clear();
     }
 
@@ -223,9 +226,9 @@ public class NetworkTCPServer
     {
         float percent = (float)(pkg.messPkg.ret.Count() + 1.0f)* 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
         Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
-
         if (percent >= 100.0f)
         {
+            Debug.Log("FINISH: " + pkg.messPkg.ret);
             pkg.messPkg.finish = true;
             ParsingThePackageBody(pkg.messPkg.ret, pkg);
         }
