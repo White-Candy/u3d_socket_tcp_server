@@ -87,6 +87,17 @@ MonoBehaviour:
     className: 
     login: 0
     hint: 
+  - userName: Liu
+    password: 123456
+    Name: "\u5C0F\u5218"
+    Gender: "\u7537"
+    Age: 123
+    Identity: "\u8001\u5E08"
+    idCoder: 1234567889
+    Contact: 123456789
+    className: 
+    login: 0
+    hint: 
   faculiesInfo:
   - id: 7425
     Name: "\u7F8E\u672F\u5B66\u9662"
@@ -117,7 +128,7 @@ MonoBehaviour:
     Faculty: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
     Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
     Teacher: user4
-    Number: 5
+    Number: 1
   - id: 1743
     Class: "\u8BA1\u79D1\u4E00\u73ED"
     RegisterTime: 2024/8/22 17:47:21
@@ -125,3 +136,7 @@ MonoBehaviour:
     Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
     Teacher: user4
     Number: 0
+  columnsInfo:
+  - id: 6677
+    Name: "b\u680F\u76EE"
+    RegisterTime: 2024/8/23 16:39:24

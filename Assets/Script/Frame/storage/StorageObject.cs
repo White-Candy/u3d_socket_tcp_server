@@ -11,6 +11,7 @@ public class StorageObject : ScriptableObject
     public List<MajorInfo> majorInfo = new List<MajorInfo>();
     public List<ClassInfo> classesInfo = new List<ClassInfo>();
     public List<ColumnsInfo> columnsInfo = new List<ColumnsInfo>();
+    public List<CourseInfo> courseInfo = new List<CourseInfo>();
 }
 
 /// <summary>
@@ -104,5 +105,19 @@ public class ColumnsInfo : BaseInfo
 {
     public string id;
     public string Name;
+    public string RegisterTime;
+}
+
+/// <summary>
+///  课程信息包
+/// </summary>
+[Serializable]
+public class CourseInfo : BaseInfo
+{
+    public string id;
+    public string CourseName;
+    public string Columns;
+    public string Working;
+    public string Content;
     public string RegisterTime;
 }
