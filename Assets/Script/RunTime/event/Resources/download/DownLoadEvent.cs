@@ -1,6 +1,8 @@
+using Cysharp.Threading.Tasks;
 using LitJson;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class DownLoadEvent : BaseEvent
@@ -23,7 +25,7 @@ public class DownLoadEvent : BaseEvent
                 fileData = await Tools.File2Bytes(path)
             };
 
-            string str_data = JsonMapper.ToJson(data);
+            string str_data = await JsonHelper.AsyncToJson(data);
             NetworkTCPServer.SendAsync(expand_pkg.socket, str_data, EventType.DownLoadEvent, OperateType.NONE);
         }
     }
