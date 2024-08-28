@@ -73,7 +73,7 @@ public class NetworkTCPServer
         {
             string mess = Encoding.Default.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
-            Debug.Log("Recive: ================ " + mess);
+            // Debug.Log("Recive: ================ " + mess);
 
             string[] lengthSplit = mess.Split("|");
             string totalLength = lengthSplit[0];
@@ -84,8 +84,6 @@ public class NetworkTCPServer
                 pkg.messPkg.get_length = true;
                 pkg.messPkg.ret += lengthSplit[1];
                 totalLength = "";
-
-                checkParcent(pkg);
             }
             else
             {
@@ -93,10 +91,8 @@ public class NetworkTCPServer
                 {
                     pkg.messPkg.ret += mess;
                 }
-                // Debug.Log("GET MAIN: " + pkg.messPkg.ret);
-
-                checkParcent(pkg);
             }
+            checkParcent(pkg);
             cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, pkg);
         }
         catch
@@ -117,7 +113,7 @@ public class NetworkTCPServer
         long totalLength = totalInfoPkg.Count();
         string finalPkg = totalLength.ToString() + totalInfoPkg;
 
-        Debug.Log($"============={finalPkg}");
+        // Debug.Log($"============={finalPkg}");
         SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
         var outputBuffer = Encoding.Default.GetBytes(sp.content);
         sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
@@ -224,11 +220,11 @@ public class NetworkTCPServer
     /// <param name="pkg"></param>
     public static void checkParcent(AsyncExpandPkg pkg)
     {
-        float percent = (float)(pkg.messPkg.ret.Count() + 1.0f)* 1.0f / (float)pkg.messPkg.length * 1.0f * 100.0f;
+        float percent = (float)(pkg.messPkg.ret.Count() + 1.0f)* 1.0f / pkg.messPkg.length * 1.0f * 100.0f;
         Debug.Log("----------" +  pkg.messPkg.ip + " | " + percent + "%");  // Add message package for queue.
         if (percent >= 100.0f)
         {
-            // Debug.Log("FINISH: " + pkg.messPkg.ret);
+            Debug.Log("FINISH: " + pkg.messPkg.ret);
             pkg.messPkg.finish = true;
             ParsingThePackageBody(pkg.messPkg.ret, pkg);
         }

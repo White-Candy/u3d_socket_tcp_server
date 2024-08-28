@@ -21,7 +21,7 @@ public class EventDispatcher
         string operateType = pkg.messPkg.operate_type;
         string eventType = pkg.messPkg.event_type;
         BaseEvent @event = Tools.CreateObject<BaseEvent>(eventType);
-        Debug.Log($"Dispatcher: {operateType} || {eventType}");
+        // Debug.Log($"Dispatcher: {operateType} || {eventType}");
 
         Action<BaseEvent, AsyncExpandPkg> action;
         MethodDic.TryGetValue(operateType, out action);

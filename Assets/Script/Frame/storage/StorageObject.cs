@@ -118,6 +118,5 @@ public class CourseInfo : BaseInfo
     public string CourseName;
     public string Columns;
     public string Working;
-    public string Content;
     public string RegisterTime;
 }
