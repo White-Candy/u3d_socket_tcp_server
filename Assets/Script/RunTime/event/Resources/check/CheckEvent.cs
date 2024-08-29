@@ -8,20 +8,42 @@ public class CheckEvent : BaseEvent
 {
     public override async void OnEvent(AsyncExpandPkg expand_pkg)
     {
-        // Debug.Log("Check Event: " + expand_pkg.messPkg.ret);
-        ResourcesInfo cli_info = JsonMapper.ToObject<ResourcesInfo>(expand_pkg.messPkg.ret);
-        ResourcesInfo info = StorageHelper.GetThisInfoPkg(cli_info); // 获取客户端请求的项目id和模块名字的文件版本号
-        if (info == null)
+        UpdatePackage up = JsonMapper.ToObject<UpdatePackage>(expand_pkg.messPkg.ret);
+        string relativePath = up.relativePath;
+        Debug.Log("CheckEvent relativePath: " + up.relativePath);
+        List<ResourcesInfo> bufInfo = new List<ResourcesInfo>();
+        foreach (var inf in StorageHelper.Storage.rsCheck)
         {
-            // Debug.Log("INFO NULL!");
-            info = new ResourcesInfo(cli_info);
+            ResourcesInfo info = new ResourcesInfo(inf);
+            if (inf.relaPath.Contains(relativePath))
+            {
+                bufInfo.Add(info);
+            }
         }
 
-        info.need_updata = cli_info.version_code == info.version_code ? false : true;
-        Debug.Log($"{cli_info.version_code} || {info.version_code} || {info.need_updata}");
-        string s_info = JsonMapper.ToJson(info);
-        NetworkTCPServer.SendAsync(expand_pkg.socket, s_info, EventType.CheckEvent, OperateType.NONE);
+        foreach (var inf in bufInfo)
+        {
+            int i = up.filesInfo.FindIndex(x => x.relaPath == inf.relaPath);
+            if (i >= 0 && i < up.filesInfo.Count)
+                inf.need_updata = up.filesInfo[i].version_code != inf.version_code ? true : false;
+            else
+                inf.need_updata = true;
+        }
+        up.filesInfo = bufInfo;
 
+        foreach (var info in up.filesInfo)
+        {
+            Debug.Log("===================================== info: " + info.relaPath);
+        }
+
+        string body = await JsonHelper.AsyncToJson(up);
+        NetworkTCPServer.SendAsync(expand_pkg.socket, body, EventType.CheckEvent, OperateType.NONE);
         await UniTask.Yield();
     }
+}
+
+public class UpdatePackage
+{
+    public string relativePath;
+    public List<ResourcesInfo> filesInfo = new List<ResourcesInfo>();
 }

@@ -16,6 +16,7 @@ public enum EventType
     CheckEvent,
     UserLoginEvent,
     RegisterEvent,
+    GetProjInfo,
     GetEvent, 
     UserEvent,
     MajorEvent,

@@ -108,17 +108,18 @@ public class NetworkTCPServer
     /// <param name="mess"></param>
     public static async void SendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
     {
-        string front = FrontPackage(cli, mess, event_type, operateType);
-        string totalInfoPkg = "|" + front + "#" + mess;
-        long totalLength = totalInfoPkg.Count();
-        string finalPkg = totalLength.ToString() + totalInfoPkg;
+        await UniTask.RunOnThreadPool(() => 
+        {
+            string front = FrontPackage(cli, mess, event_type, operateType);
+            string totalInfoPkg = "|" + front + "#" + mess + "@";
+            long totalLength = totalInfoPkg.Count();
+            string finalPkg = totalLength.ToString() + totalInfoPkg;
 
-        // Debug.Log($"============={finalPkg}");
-        SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
-        var outputBuffer = Encoding.Default.GetBytes(sp.content);
-        sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
-
-        await UniTask.Yield();
+            // Debug.Log($"============={finalPkg}");
+            SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
+            var outputBuffer = Encoding.Default.GetBytes(sp.content);
+            sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
+        });
     }
 
     /// <summary>
@@ -192,26 +193,46 @@ public class NetworkTCPServer
     /// <param name="pkg"></param>
     public static void ParsingThePackageBody(string package, AsyncExpandPkg pkg)
     {
+        // string[] Split = package.Split("#");
+        // string front = Split[0];
+
+        // string main = Split[1];
+
+        // JsonData data = JsonMapper.ToObject(front);
+
+        // // 前置包获取内容包的总长度和事件类型
+        // pkg.messPkg.ip = data["ip"].ToString();
+        // pkg.messPkg.length = int.Parse(data["length"].ToString());
+        // pkg.messPkg.event_type = data["event_type"].ToString();
+        // pkg.messPkg.operate_type = data["operate_type"].ToString();
+        // //Debug.Log($"ParsingThePackageBody: {pkg.messPkg.event_type} || {pkg.messPkg.operate_type} ");
+        // pkg.messPkg.get_length = true;
+        // // Debug.Log("####### Main : " + main);
+
+        // pkg.messPkg.ret = main;
+        // MessQueueAdd(pkg);
+
+        // pkg.messPkg.Clear();
+
         string[] Split = package.Split("#");
         string front = Split[0];
-
         string main = Split[1];
 
+        string[] mainSplit = main.Split("@");
         JsonData data = JsonMapper.ToObject(front);
-
-        // 前置包获取内容包的总长度和事件类型
         pkg.messPkg.ip = data["ip"].ToString();
         pkg.messPkg.length = int.Parse(data["length"].ToString());
         pkg.messPkg.event_type = data["event_type"].ToString();
         pkg.messPkg.operate_type = data["operate_type"].ToString();
-        //Debug.Log($"ParsingThePackageBody: {pkg.messPkg.event_type} || {pkg.messPkg.operate_type} ");
         pkg.messPkg.get_length = true;
-        // Debug.Log("####### Main : " + main);
-
-        pkg.messPkg.ret = main;
+        pkg.messPkg.ret = mainSplit[0];
         MessQueueAdd(pkg);
-
         pkg.messPkg.Clear();
+
+        if (mainSplit.Length > 1)
+        {           
+            pkg.messPkg.ret = mainSplit[1];        
+        }
     }
 
     /// <summary>
