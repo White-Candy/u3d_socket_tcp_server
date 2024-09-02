@@ -96,7 +96,7 @@ public class NetworkTCPServer
             long totalLength = totalInfoPkg.Count();
             string finalPkg = totalLength.ToString() + totalInfoPkg;
 
-            // Debug.Log($"============={finalPkg}");
+            Debug.Log($"============={totalLength} | {front}");
             SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
             var outputBuffer = Encoding.Default.GetBytes(sp.content);
             sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
@@ -178,8 +178,9 @@ public class NetworkTCPServer
     /// <param name="pkg"></param>
     public static void check(AsyncExpandPkg pkg)
     {
-        float percent = (float)(pkg.messPkg.ret.Count() + 2.0f)* 1.0f / pkg.messPkg.length * 1.0f * 100.0f;
-        if (percent >= 100.0f)
+        int messLength = pkg.messPkg.ret.Count() + 2;
+        float percent = messLength * 1.0f / pkg.messPkg.length * 1.0f * 100.0f;
+        if (percent == 100.0f)
         {
             pkg.messPkg.finish = true;
             ParsingThePackageBody(pkg.messPkg.ret, pkg);
@@ -195,7 +196,7 @@ public class NetworkTCPServer
     {
         if (mess.Count() == 0 || mess == null) return;
 
-        Debug.Log("================ mess : " + mess + " || " + mess.Count());
+        // Debug.Log("================ mess : " + mess + " || " + mess.Count());
         string[] lengthSplit = mess.Split("|");
         string totalLength = lengthSplit[0];
         if (!pkg.messPkg.get_length && !string.IsNullOrEmpty(totalLength))
