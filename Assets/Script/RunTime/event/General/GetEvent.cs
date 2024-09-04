@@ -58,6 +58,7 @@ public class GetEvent : BaseEvent
         foreach (var col in StorageHelper.Storage.columnsInfo)
             columnsList.Add(col.Name);
 
+
         jd["facultiesList"] = JsonMapper.ToJson(facultiesList);
         jd["classesList"] = JsonMapper.ToJson(classesList);
         jd["majorList"] = JsonMapper.ToJson(majorList);
@@ -65,7 +66,7 @@ public class GetEvent : BaseEvent
         jd["directorsList"] = JsonMapper.ToJson(directorsList);
         jd["deanList"] = JsonMapper.ToJson(deanList);
         jd["columnsList"] = JsonMapper.ToJson(columnsList);
-
+        jd["coursesList"] = JsonMapper.ToJson(StorageHelper.Storage.courseInfo);
         return jd;
     }
 }
