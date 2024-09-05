@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: Clump
   m_EditorClassIdentifier: 
   rsCheck:
-  - relaPath: "10001\\JiaoAn\\\u6559\u6848.pdf"
-    version_code: 8025-7648-5918-5914
-    need_updata: 1
   - relaPath: "10001\\Animation\\\u5377\u5E18\u95E8.mp4"
     version_code: 1317-6474-9372-6147
     need_updata: 1
@@ -31,6 +28,54 @@ MonoBehaviour:
   - relaPath: 10001\Picture\1.png
     version_code: 9789-6495-7700-8789
     need_updata: 1
+  - relaPath: "A1\u680F\u76EE\\A\u8BFE\u7A0B\\candy.png"
+    version_code: 9554-6465-4764-1093
+    need_updata: 0
+  - relaPath: "b\u680F\u76EE\\B1\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 6776-6485-6326-6117
+    need_updata: 0
+  - relaPath: "A1\u680F\u76EE\\A\u8BFE\u7A0B\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 3294-7154-9728-6175
+    need_updata: 0
+  - relaPath: "A1\u680F\u76EE\\A\u8BFE\u7A0B\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png"
+    version_code: 5721-4385-4148-3738
+    need_updata: 0
+  - relaPath: "b\u680F\u76EE\\B1\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 2979-7427-8252-6311
+    need_updata: 0
+  - relaPath: "b\u680F\u76EE\\B1\\Picture\\\u6DFB\u52A0\u8BFE\u7A0B.png"
+    version_code: 5924-6314-6802-4174
+    need_updata: 0
+  - relaPath: "b\u680F\u76EE\\B1\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png"
+    version_code: 4165-2783-9629-9837
+    need_updata: 0
+  - relaPath: "b\u680F\u76EE\\B1\\Picture\\\u4E3B\u754C\u9762.png"
+    version_code: 6173-2480-7931-7931
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 8424-2572-9833-8401
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u6DFB\u52A0\u8BFE\u7A0B.png"
+    version_code: 6972-5059-3643-7154
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png"
+    version_code: 8042-7294-4817-1617
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u4E3B\u754C\u9762.png"
+    version_code: 5565-9133-8980-7663
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Video\\\u5377\u5E18\u95E8.mp4"
+    version_code: 7110-9103-6790-2269
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\TuZhi\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 1734-9277-2905-8960
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\FangAn\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 5536-5987-4884-1247
+    need_updata: 0
+  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\GuiFan\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 1207-7240-9403-7985
+    need_updata: 0
   usersInfo:
   - userName: user1
     password: 123456
@@ -166,10 +211,23 @@ MonoBehaviour:
   - id: 550
     Name: "A1\u680F\u76EE"
     RegisterTime: 2024/8/26 13:51:37
+  - id: 3006
+    Name: "\u95E8\u680F\u76EE"
+    RegisterTime: 2024/8/29 11:40:2
   courseInfo:
   - id: 9396
     CourseName: "A\u8BFE\u7A0B"
     Columns: "A1\u680F\u76EE"
     Working: "A\u8BFE\u7A0B\u7684\u4F5C\u4E1A\u6761\u4EF6\uFF0C\nA\u8BFE\u7A0B\u4F5C\u4E1A\u6761\u4EF61\n"
-    Content: "\u6559\u5B66\u8D44\u6E90"
     RegisterTime: 2024/8/26 14:23:33
+  - id: 9724
+    CourseName: B1
+    Columns: "b\u680F\u76EE"
+    Working: "B1\u4F5C\u4E1A\u6761\u4EF6"
+    RegisterTime: 2024/8/28 14:23:21
+  - id: 8633
+    CourseName: "\u5377\u5E18\u95E8"
+    Columns: "\u95E8\u680F\u76EE"
+    Working: "\u5377\u5E18\u95E8\u4F5C\u4E1A\u6761\u4EF6"
+    RegisterTime: 2024/8/29 11:39:8
+  examineesInfo: []

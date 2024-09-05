@@ -70,7 +70,7 @@ public class NetworkTCPServer
         {
             string mess = Encoding.Default.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
-
+            Debug.Log(" +++++ mess : " + mess);
             string[] messages = mess.Split("@");
             foreach (var message in messages)
             {
@@ -96,7 +96,7 @@ public class NetworkTCPServer
             long totalLength = totalInfoPkg.Count();
             string finalPkg = totalLength.ToString() + totalInfoPkg;
 
-            Debug.Log($"============={totalLength} | {front}");
+            // Debug.Log($"============={totalLength} | {front}");
             SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
             var outputBuffer = Encoding.Default.GetBytes(sp.content);
             sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);

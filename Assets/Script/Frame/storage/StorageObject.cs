@@ -12,6 +12,7 @@ public class StorageObject : ScriptableObject
     public List<ClassInfo> classesInfo = new List<ClassInfo>();
     public List<ColumnsInfo> columnsInfo = new List<ColumnsInfo>();
     public List<CourseInfo> courseInfo = new List<CourseInfo>();
+    public List<ExamineInfo> examineesInfo = new List<ExamineInfo>();
 }
 
 /// <summary>
@@ -120,3 +121,104 @@ public class CourseInfo : BaseInfo
     public string Working;
     public string RegisterTime;
 }
+
+/// <summary>
+///  考核信息包
+/// </summary>
+[Serializable]
+public class ExamineInfo : BaseInfo
+{
+    public string id;
+    public string ColumnsName;
+    public string CourseName;
+    public string RegisterTime;
+    public int TrainingScore;
+    public int ClassNum;
+    public int SingleNum;
+    public int MulitNum;
+    public int TOFNum;
+    public bool Status;
+    public List<SingleChoice> SingleChoices = new List<SingleChoice>();
+    public List<MulitChoice> MulitChoices = new List<MulitChoice>();
+    public List<TOFChoice> TOFChoices = new List<TOFChoice>();
+}
+
+/// <summary>
+/// 单选题包
+/// </summary>
+[Serializable]
+public class SingleChoice : BaseChoice
+{
+    public string Topic;
+    public ItemChoice toA = new ItemChoice();
+    public ItemChoice toB = new ItemChoice();
+    public ItemChoice toC = new ItemChoice();
+    public ItemChoice toD = new ItemChoice();
+    public string Answer;
+    public int Score = 0;
+}
+
+/// <summary>
+/// 多选
+/// </summary>
+[Serializable]
+public class MulitChoice : BaseChoice
+{
+    public string Topic;
+    public List<MulitChoiceItem> Options = new List<MulitChoiceItem>(); // {{"A", "xxxxx", true}, {"B", "xxxxxxx", false}}
+    public string Answer;
+    public int Score;
+}
+
+/// <summary>
+/// 判断题
+/// </summary>
+[Serializable]
+public class TOFChoice : BaseChoice
+{
+    public string Topic;
+    public ItemChoice toA = new ItemChoice();
+    public ItemChoice toB = new ItemChoice();
+    public string Answer;
+    public int Score;
+}
+
+/// <summary>
+/// 理论模式中 一个选项的信息
+/// </summary>
+[Serializable]
+public class ItemChoice
+{
+    public string m_content = "";
+    public bool m_isOn = false;
+
+    public ItemChoice() {}
+
+    public ItemChoice(string content, bool ison)
+    {
+        m_content = content;
+        m_isOn = ison;
+    }
+}
+
+/// <summary>
+/// 因为服务器端没有办法 序列化 字典类型，所以为了保存多选题的选项，需要自定义一个类
+/// </summary>
+[Serializable]
+public class MulitChoiceItem
+{
+    public string Serial = "A";
+    public string Content = "";
+    public bool isOn = false;
+
+    public MulitChoiceItem() {}
+    public MulitChoiceItem(string serial, string content, bool isOn)
+    {
+        Serial = serial;
+        Content = content;
+        this.isOn = isOn;
+    }
+}
+
+
+public class BaseChoice {}
