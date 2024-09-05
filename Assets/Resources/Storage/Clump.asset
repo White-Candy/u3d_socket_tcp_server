@@ -13,68 +13,8 @@ MonoBehaviour:
   m_Name: Clump
   m_EditorClassIdentifier: 
   rsCheck:
-  - relaPath: "10001\\Animation\\\u5377\u5E18\u95E8.mp4"
-    version_code: 1317-6474-9372-6147
-    need_updata: 1
-  - relaPath: 10001\Picture\4.png
-    version_code: 2922-6748-4955-6533
-    need_updata: 1
-  - relaPath: 10001\Picture\3.png
-    version_code: 6120-3411-7315-6867
-    need_updata: 1
-  - relaPath: 10001\Picture\2.png
-    version_code: 2272-2708-7966-9880
-    need_updata: 1
-  - relaPath: 10001\Picture\1.png
-    version_code: 9789-6495-7700-8789
-    need_updata: 1
-  - relaPath: "A1\u680F\u76EE\\A\u8BFE\u7A0B\\candy.png"
-    version_code: 9554-6465-4764-1093
-    need_updata: 0
-  - relaPath: "b\u680F\u76EE\\B1\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 6776-6485-6326-6117
-    need_updata: 0
-  - relaPath: "A1\u680F\u76EE\\A\u8BFE\u7A0B\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 3294-7154-9728-6175
-    need_updata: 0
-  - relaPath: "A1\u680F\u76EE\\A\u8BFE\u7A0B\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png"
-    version_code: 5721-4385-4148-3738
-    need_updata: 0
-  - relaPath: "b\u680F\u76EE\\B1\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 2979-7427-8252-6311
-    need_updata: 0
-  - relaPath: "b\u680F\u76EE\\B1\\Picture\\\u6DFB\u52A0\u8BFE\u7A0B.png"
-    version_code: 5924-6314-6802-4174
-    need_updata: 0
-  - relaPath: "b\u680F\u76EE\\B1\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png"
-    version_code: 4165-2783-9629-9837
-    need_updata: 0
-  - relaPath: "b\u680F\u76EE\\B1\\Picture\\\u4E3B\u754C\u9762.png"
-    version_code: 6173-2480-7931-7931
-    need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 8424-2572-9833-8401
-    need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u6DFB\u52A0\u8BFE\u7A0B.png"
-    version_code: 6972-5059-3643-7154
-    need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png"
-    version_code: 8042-7294-4817-1617
-    need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u4E3B\u754C\u9762.png"
-    version_code: 5565-9133-8980-7663
-    need_updata: 0
   - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Video\\\u5377\u5E18\u95E8.mp4"
-    version_code: 7110-9103-6790-2269
-    need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\TuZhi\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 1734-9277-2905-8960
-    need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\FangAn\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 5536-5987-4884-1247
-    need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\GuiFan\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 1207-7240-9403-7985
+    version_code: 6870-8539-9735-6207
     need_updata: 0
   usersInfo:
   - userName: user1
@@ -155,33 +95,15 @@ MonoBehaviour:
     login: 0
     hint: "\u6CE8\u518C\u6210\u529F!"
   faculiesInfo:
-  - id: 744
-    Name: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
-    RegisterTime: 2024/8/22 8:51:44
-    TeacherName: "\u5C0F\u660E"
-  - id: 798
-    Name: "\u519C\u5B66\u9662"
-    RegisterTime: 2024/8/22 9:1:49
-    TeacherName: user5
-  - id: 3569
-    Name: "\u6587\u5B66\u9662"
-    RegisterTime: 2024/8/22 9:4:10
-    TeacherName: user5
-  - id: 3818
-    Name: "\u82F1\u6587\u5B66\u9662"
-    RegisterTime: 2024/8/26 15:14:25
-    TeacherName: user5
-  majorInfo:
-  - id: 8907
-    MajorName: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
-    RegisterTime: 2024/8/20 17:1:33
-    FacultyName: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
-    TeacherName: "\u5F20\u8001\u5E08"
-  - id: 4508
-    MajorName: "\u7535\u6C14\u4E13\u4E1A"
-    RegisterTime: 2024/8/26 15:14:54
-    FacultyName: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
-    TeacherName: "\u5F20\u8001\u5E08"
+  - id: 2741
+    Name: "\u5546\u5B66\u9662"
+    RegisterTime: 2024/8/18 22:28:12
+    TeacherName: "\u738B\u8001\u5E08"
+  - id: 9548
+    Name: "\u4FE1\u606F\u4E0E\u6280\u672F\u5B66\u9662"
+    RegisterTime: 2024/8/18 22:56:36
+    TeacherName: "\u5CF0\u8001\u5E08"
+  majorInfo: []
   classesInfo:
   - id: 5303
     Class: "\u8BA1\u79D1\u4E8C\u73ED"
@@ -211,23 +133,132 @@ MonoBehaviour:
   - id: 550
     Name: "A1\u680F\u76EE"
     RegisterTime: 2024/8/26 13:51:37
-  - id: 3006
+  - id: 8723
     Name: "\u95E8\u680F\u76EE"
-    RegisterTime: 2024/8/29 11:40:2
+    RegisterTime: 2024/9/1 23:49:13
   courseInfo:
   - id: 9396
     CourseName: "A\u8BFE\u7A0B"
     Columns: "A1\u680F\u76EE"
     Working: "A\u8BFE\u7A0B\u7684\u4F5C\u4E1A\u6761\u4EF6\uFF0C\nA\u8BFE\u7A0B\u4F5C\u4E1A\u6761\u4EF61\n"
     RegisterTime: 2024/8/26 14:23:33
-  - id: 9724
-    CourseName: B1
-    Columns: "b\u680F\u76EE"
-    Working: "B1\u4F5C\u4E1A\u6761\u4EF6"
-    RegisterTime: 2024/8/28 14:23:21
-  - id: 8633
+  - id: 1481
     CourseName: "\u5377\u5E18\u95E8"
     Columns: "\u95E8\u680F\u76EE"
-    Working: "\u5377\u5E18\u95E8\u4F5C\u4E1A\u6761\u4EF6"
-    RegisterTime: 2024/8/29 11:39:8
-  examineesInfo: []
+    Working: "\u5377\u5E18\u95E8\u6761\u4EF6"
+    RegisterTime: 2024/9/1 23:49:32
+  examineesInfo:
+  - id: 2939
+    ColumnsName: "\u95E8\u680F\u76EE"
+    CourseName: "\u5377\u5E18\u95E8"
+    RegisterTime: 2024/9/5
+    TrainingScore: 50
+    ClassNum: 0
+    SingleNum: 3
+    MulitNum: 2
+    TOFNum: 2
+    Status: 1
+    SingleChoices:
+    - Topic: 111
+      toA:
+        m_content: 111
+        m_isOn: 0
+      toB:
+        m_content: 11
+        m_isOn: 0
+      toC:
+        m_content: 11
+        m_isOn: 1
+      toD:
+        m_content: 111
+        m_isOn: 0
+      Answer: C
+      Score: 11
+    - Topic: 2222
+      toA:
+        m_content: 22
+        m_isOn: 0
+      toB:
+        m_content: 22
+        m_isOn: 0
+      toC:
+        m_content: 22
+        m_isOn: 1
+      toD:
+        m_content: 22
+        m_isOn: 0
+      Answer: C
+      Score: 22
+    - Topic: 
+      toA:
+        m_content: 
+        m_isOn: 0
+      toB:
+        m_content: 
+        m_isOn: 0
+      toC:
+        m_content: 
+        m_isOn: 1
+      toD:
+        m_content: 
+        m_isOn: 0
+      Answer: C
+      Score: 0
+    MulitChoices:
+    - Topic: 333
+      Options:
+      - Serial: A.
+        Content: 333
+        isOn: 0
+      - Serial: B.
+        Content: 333
+        isOn: 0
+      - Serial: C.
+        Content: 333
+        isOn: 0
+      - Serial: D.
+        Content: 333
+        isOn: 0
+      - Serial: E.
+        Content: 333
+        isOn: 0
+      Answer: 
+      Score: 33
+    - Topic: 44444
+      Options:
+      - Serial: A.
+        Content: 444
+        isOn: 0
+      - Serial: B.
+        Content: 444
+        isOn: 0
+      - Serial: C.
+        Content: 444
+        isOn: 0
+      - Serial: D.
+        Content: 444
+        isOn: 0
+      - Serial: E.
+        Content: 444
+        isOn: 0
+      Answer: 
+      Score: 44
+    TOFChoices:
+    - Topic: 55
+      toA:
+        m_content: 55
+        m_isOn: 1
+      toB:
+        m_content: 55
+        m_isOn: 0
+      Answer: A
+      Score: 5
+    - Topic: 15
+      toA:
+        m_content: awe
+        m_isOn: 1
+      toB:
+        m_content: qwe
+        m_isOn: 0
+      Answer: A
+      Score: 15
