@@ -46,8 +46,8 @@ public class NetworkTCPServer
             exp_pkg.socket = cli;
             exp_pkg.messPkg = client_pkg;
 
+            Debug.Log($"新的连接~ 当前连接数: {cliList.Count}");
             cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, exp_pkg);
-
             // 递归
             m_Socket.BeginAccept(AcceptAsync, null);
         }
@@ -70,7 +70,16 @@ public class NetworkTCPServer
         {
             string mess = Encoding.Default.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
-            Debug.Log(" +++++ mess : " + mess);
+
+            //关闭这个客户端连接
+            if (mess == "Close")
+            {
+                cli.Close();
+                int removeIdx = cliList.FindIndex((x) => { return x == cli; });
+                cliList.RemoveAt(removeIdx);
+                return;
+            }
+
             string[] messages = mess.Split("@");
             foreach (var message in messages)
             {
@@ -196,7 +205,7 @@ public class NetworkTCPServer
     {
         if (mess.Count() == 0 || mess == null) return;
 
-        // Debug.Log("================ mess : " + mess + " || " + mess.Count());
+        //Debug.Log("================ mess : " + mess + " || " + mess.Count());
         string[] lengthSplit = mess.Split("|");
         string totalLength = lengthSplit[0];
         if (!pkg.messPkg.get_length && !string.IsNullOrEmpty(totalLength))

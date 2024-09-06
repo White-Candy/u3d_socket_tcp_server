@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "socket_tcp_server.sln"
+    "dotnet.defaultSolution": "u3d_socket_tcp_server.sln"
 }

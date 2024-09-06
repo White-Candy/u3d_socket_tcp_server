@@ -183,6 +183,7 @@ public class StorageHelper
      public static async UniTask<List<T>> ReviseInfo<T>(T inf, List<T> storInfo,  Predicate<T> match) where T : BaseInfo
      {
         int index = storInfo.FindIndex(match);
+        Debug.Log("ReviseInfo: " + index);
         if (index != -1)
         {
             storInfo[index] = inf;

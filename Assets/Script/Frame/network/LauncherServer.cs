@@ -24,7 +24,7 @@ public class LauncherServer : MonoBehaviour
         m_server.LauncherServer(5800); 
     }
     
-    void FixedUpdate()
+    void Update()
     {
         if (NetworkTCPServer.MessQueue.Count > 0)
         {
