@@ -24,7 +24,8 @@ public enum EventType
     ClassEvent,
     ColumnsEvent,
     CourseEvent,
-    ExamineEvent
+    ExamineEvent,
+    ScoreEvent
 }
 
 public abstract class BaseEvent

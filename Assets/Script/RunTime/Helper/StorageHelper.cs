@@ -155,7 +155,7 @@ public class StorageHelper
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>
     /// <returns></returns>
-    public static async UniTask<List<T>> AddInfo<T>(T inf, List<T> storInfo, Predicate<T> match) where T : BaseInfo
+    public static async UniTask<List<T>> AddInfo<T>(T inf, List<T> storInfo, Predicate<T> match = default) where T : BaseInfo
     {
         if (storInfo.Find(match) == null)
         {

@@ -13,6 +13,7 @@ public class StorageObject : ScriptableObject
     public List<ColumnsInfo> columnsInfo = new List<ColumnsInfo>();
     public List<CourseInfo> courseInfo = new List<CourseInfo>();
     public List<ExamineInfo> examineesInfo = new List<ExamineInfo>();
+    public List<ScoreInfo> scoresInfo = new List<ScoreInfo>();
 }
 
 /// <summary>
@@ -137,17 +138,37 @@ public class ExamineInfo : BaseInfo
     public int SingleNum;
     public int MulitNum;
     public int TOFNum;
-    public bool Status;
+    public bool Status = false;
     public List<SingleChoice> SingleChoices = new List<SingleChoice>();
     public List<MulitChoice> MulitChoices = new List<MulitChoice>();
     public List<TOFChoice> TOFChoices = new List<TOFChoice>();
+
+    public ExamineInfo() {}
+    public ExamineInfo Clone ()
+    {
+        ExamineInfo inf = new ExamineInfo();
+        inf.id = id;
+        inf.ColumnsName = ColumnsName;
+        inf.CourseName = CourseName;
+        inf.RegisterTime = RegisterTime;
+        inf.TrainingScore = TrainingScore;
+        inf.ClassNum = ClassNum;
+        inf.SingleNum = SingleNum;
+        inf.MulitNum = MulitNum;
+        inf.TOFNum = TOFNum;
+        inf.Status = Status;
+        foreach (var Option in SingleChoices) { inf.SingleChoices.Add(Option.Clone()); }
+        foreach (var Option in MulitChoices) { inf.MulitChoices.Add(Option.Clone()); }
+        foreach (var Option in TOFChoices) { inf.TOFChoices.Add(Option.Clone()); }
+        return inf;
+    }    
 }
 
 /// <summary>
 /// 单选题包
 /// </summary>
 [Serializable]
-public class SingleChoice : BaseChoice
+public class SingleChoice
 {
     public string Topic;
     public ItemChoice toA = new ItemChoice();
@@ -155,32 +176,66 @@ public class SingleChoice : BaseChoice
     public ItemChoice toC = new ItemChoice();
     public ItemChoice toD = new ItemChoice();
     public string Answer;
-    public int Score = 0;
+    public string Score = "";
+
+    public SingleChoice Clone()
+    {
+        SingleChoice single = new SingleChoice();
+        single.Topic = Topic;
+        single.toA = toA.Clone();
+        single.toB = toB.Clone();
+        single.toC = toB.Clone();
+        single.toD = toB.Clone();
+        single.Answer = Answer;
+        single.Score = Score;
+        return single;
+    }    
 }
 
 /// <summary>
 /// 多选
 /// </summary>
 [Serializable]
-public class MulitChoice : BaseChoice
+public class MulitChoice
 {
     public string Topic;
     public List<MulitChoiceItem> Options = new List<MulitChoiceItem>(); // {{"A", "xxxxx", true}, {"B", "xxxxxxx", false}}
     public string Answer;
-    public int Score;
+    public string Score = "";
+
+    public MulitChoice Clone()
+    {
+        MulitChoice mulit = new MulitChoice();
+        mulit.Topic = Topic;
+        foreach (var Option in Options) { mulit.Options.Add(Option.Clone()); }
+        mulit.Answer = Answer;
+        mulit.Score = Score;
+        return mulit;
+    }
 }
 
 /// <summary>
 /// 判断题
 /// </summary>
 [Serializable]
-public class TOFChoice : BaseChoice
+public class TOFChoice
 {
     public string Topic;
     public ItemChoice toA = new ItemChoice();
     public ItemChoice toB = new ItemChoice();
     public string Answer;
-    public int Score;
+    public string Score = "";
+
+    public TOFChoice Clone()
+    {
+        TOFChoice tof = new TOFChoice();
+        tof.Topic = Topic;
+        tof.toA = toA.Clone();
+        tof.toB = toB.Clone();
+        tof.Answer = Answer;
+        tof.Score = Score;
+        return tof;
+    }
 }
 
 /// <summary>
@@ -199,6 +254,14 @@ public class ItemChoice
         m_content = content;
         m_isOn = ison;
     }
+
+    public ItemChoice Clone()
+    {
+        ItemChoice item = new ItemChoice();
+        item.m_content = m_content;
+        item.m_isOn = m_isOn;
+        return item;
+    }
 }
 
 /// <summary>
@@ -212,13 +275,33 @@ public class MulitChoiceItem
     public bool isOn = false;
 
     public MulitChoiceItem() {}
-    public MulitChoiceItem(string serial, string content, bool isOn)
+
+    public MulitChoiceItem Clone()
     {
-        Serial = serial;
-        Content = content;
-        this.isOn = isOn;
+        MulitChoiceItem item = new MulitChoiceItem();
+        item.Serial = Serial;
+        item.Content = Content;
+        item.isOn = isOn;
+        return item;
     }
 }
 
-
 public class BaseChoice {}
+
+/// <summary>
+/// 成绩管理信息
+/// </summary>
+[Serializable]
+public class ScoreInfo : BaseInfo
+{
+    public string className;
+    public string columnsName;
+    public string courseName;
+    public string registerTime; // 该次考试的注册时间
+    public string userName;
+    public string Name;
+    public string theoryScore;
+    public string trainingScore;
+    public bool theoryFinished; //本次理论考试是否完成
+    public bool trainingFinished; //本次实训考试是否完成
+}
