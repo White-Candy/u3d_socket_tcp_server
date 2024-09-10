@@ -85,26 +85,33 @@ public class StorageHelper
     public async static UniTask<UserInfo> CheckUserLogin(UserInfo info)
     {
         await UniTask.SwitchToMainThread();
-
+        UserInfo usrInfo = info;
         int account_idx = Storage.usersInfo.FindIndex(x => x.userName == info.userName);
         if (account_idx != -1)
         {
             int pwd_idx = Storage.usersInfo.FindIndex(x => x.userName == info.userName && x.password == info.password);
             if (pwd_idx != -1)
             {
-                info.login = true;
-                info.hint = "登录成功!";
+                usrInfo.Name = Storage.usersInfo[pwd_idx].Name;
+                usrInfo.Gender = Storage.usersInfo[pwd_idx].Gender;
+                usrInfo.Age = Storage.usersInfo[pwd_idx].Age;
+                usrInfo.Identity = Storage.usersInfo[pwd_idx].Identity;
+                usrInfo.idCoder = Storage.usersInfo[pwd_idx].idCoder;
+                usrInfo.Contact = Storage.usersInfo[pwd_idx].Contact;
+                usrInfo.className = Storage.usersInfo[pwd_idx].className;
+                usrInfo.login = true;
+                usrInfo.hint = "登录成功!";
             }
             else
             {
-                info.hint = "密码错误!";
+                usrInfo.hint = "密码错误!";
             }
         }
         else
         {
-            info.hint = "用户名不存在!";
+            usrInfo.hint = "用户名不存在!";
         }
-        return info;
+        return usrInfo;
     }
 
     /// <summary>
