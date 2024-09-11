@@ -133,8 +133,10 @@ public class ExamineInfo : BaseInfo
     public string ColumnsName;
     public string CourseName;
     public string RegisterTime;
-    public int TrainingScore;
-    public int ClassNum;
+    public string TrainingScore;
+    public string TheoryTime = "5"; // ∑÷÷”
+    public string TrainingTime = "5"; // ∑÷÷”   
+    public int PNum;
     public int SingleNum;
     public int MulitNum;
     public int TOFNum;
@@ -152,10 +154,12 @@ public class ExamineInfo : BaseInfo
         inf.CourseName = CourseName;
         inf.RegisterTime = RegisterTime;
         inf.TrainingScore = TrainingScore;
-        inf.ClassNum = ClassNum;
+        inf.PNum = PNum;
         inf.SingleNum = SingleNum;
         inf.MulitNum = MulitNum;
         inf.TOFNum = TOFNum;
+        inf.TheoryTime = TheoryTime;
+        inf.TrainingTime = TrainingTime;        
         inf.Status = Status;
         foreach (var Option in SingleChoices) { inf.SingleChoices.Add(Option.Clone()); }
         foreach (var Option in MulitChoices) { inf.MulitChoices.Add(Option.Clone()); }

@@ -236,7 +236,9 @@ MonoBehaviour:
     CourseName: B1
     RegisterTime: 2024/9/5
     TrainingScore: 50
-    ClassNum: 0
+    TheoryTime: 5
+    TrainingTime: 5
+    PNum: 0
     SingleNum: 1
     MulitNum: 2
     TOFNum: 1
@@ -299,7 +301,9 @@ MonoBehaviour:
     CourseName: "\u5377\u5E18\u95E8"
     RegisterTime: 2024/9/4
     TrainingScore: 50
-    ClassNum: 0
+    TheoryTime: 5
+    TrainingTime: 5
+    PNum: 0
     SingleNum: 2
     MulitNum: 2
     TOFNum: 2
@@ -398,7 +402,9 @@ MonoBehaviour:
     CourseName: "\u5377\u5E18\u95E8"
     RegisterTime: 2024/9/6
     TrainingScore: 50
-    ClassNum: 0
+    TheoryTime: 5
+    TrainingTime: 5
+    PNum: 1
     SingleNum: 2
     MulitNum: 1
     TOFNum: 1
@@ -423,17 +429,17 @@ MonoBehaviour:
         )"
       toA:
         m_content: "\u53EF\u4EE5\u51CF\u8F7B\u670D\u52A1\u5668\u538B\u529B"
-        m_isOn: 0
+        m_isOn: 1
       toB:
         m_content: "\u5BF9\u4E8E\u7A0B\u5E8F\u5F00\u9500\u6781\u5927"
         m_isOn: 0
       toC:
         m_content: "\u4EE5\u63D0\u9AD8\u7528\u6237\u4F53\u9A8C"
-        m_isOn: 1
+        m_isOn: 0
       toD:
         m_content: "\u5BF9\u4E8E\u4E0D\u540C\u6570\u636E\u5E93\u6709\u4E0D\u540C\u7684SQL\u6307\u4EE4"
         m_isOn: 0
-      Answer: C
+      Answer: A
       Score: 5
     MulitChoices:
     - Topic: "\u201C\u84E6\u7136\u56DE\u9996\uFF0C\u90A3\u4EBA\u5374\u5728\uFF0C\u706F\u706B\u9611\u73CA\u5904\u201D\u4E2D\u201C\u90A3\u4EBA\u201D\u7684\u542B\u4E49\u6709(
@@ -469,7 +475,9 @@ MonoBehaviour:
     CourseName: "A\u8BFE\u7A0B"
     RegisterTime: 2024/9/10
     TrainingScore: 50
-    ClassNum: 0
+    TheoryTime: 5
+    TrainingTime: 5
+    PNum: 0
     SingleNum: 2
     MulitNum: 2
     TOFNum: 2
@@ -557,4 +565,59 @@ MonoBehaviour:
         m_isOn: 0
       Answer: A
       Score: 3
+  - id: 86
+    ColumnsName: "\u95E8\u680F\u76EE"
+    CourseName: "\u5377\u5E18\u95E8"
+    RegisterTime: 2024/9/11
+    TrainingScore: 40
+    TheoryTime: 60
+    TrainingTime: 60
+    PNum: 0
+    SingleNum: 1
+    MulitNum: 1
+    TOFNum: 1
+    Status: 1
+    SingleChoices:
+    - Topic: "111\u5355\u9009\u9898"
+      toA:
+        m_content: 111
+        m_isOn: 1
+      toB:
+        m_content: 111
+        m_isOn: 0
+      toC:
+        m_content: 111
+        m_isOn: 0
+      toD:
+        m_content: 111
+        m_isOn: 0
+      Answer: A
+      Score: 15
+    MulitChoices:
+    - Topic: "222\u591A\u9009\u9898"
+      Options:
+      - Serial: A.
+        Content: aaa
+        isOn: 0
+      - Serial: B.
+        Content: bbb
+        isOn: 1
+      - Serial: C.
+        Content: ccc
+        isOn: 1
+      - Serial: D.
+        Content: ddd
+        isOn: 0
+      Answer: BC
+      Score: 15
+    TOFChoices:
+    - Topic: "333\u5224\u65AD\u9898"
+      toA:
+        m_content: 123
+        m_isOn: 0
+      toB:
+        m_content: 123
+        m_isOn: 1
+      Answer: B
+      Score: 15.5
   scoresInfo: []
