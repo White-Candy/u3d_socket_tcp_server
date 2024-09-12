@@ -38,4 +38,14 @@ public class MajorEvent : BaseEvent
         string s_inf = JsonMapper.ToJson(infs);
         NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.DELETE);
     }
+
+    public override async void SearchInfoEvent(AsyncExpandPkg pkg)
+    {
+        MajorInfo info = JsonMapper.ToObject<MajorInfo>(pkg.messPkg.ret);
+        List<MajorInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.majorInfo, x => x.MajorName == info.MajorName);
+
+        string s_inf = JsonMapper.ToJson(inf);
+        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.SEARCH);
+        await UniTask.Yield();
+    }
 }

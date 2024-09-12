@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitJson;
 
 public class ColumnsEvent : BaseEvent
@@ -38,4 +39,14 @@ public class ColumnsEvent : BaseEvent
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(pkg.socket, body, EventType.ColumnsEvent, OperateType.DELETE);
     }
+
+    public override async void SearchInfoEvent(AsyncExpandPkg pkg)
+    {
+        ColumnsInfo info = JsonMapper.ToObject<ColumnsInfo>(pkg.messPkg.ret);
+        List<ColumnsInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.columnsInfo, x => x.Name == info.Name);
+
+        string s_inf = JsonMapper.ToJson(inf);
+        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ColumnsEvent, OperateType.SEARCH);
+        await UniTask.Yield();
+    }      
 }

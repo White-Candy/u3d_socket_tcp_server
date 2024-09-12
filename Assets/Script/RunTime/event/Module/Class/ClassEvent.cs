@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitJson;
 
 public class ClassEvent : BaseEvent
@@ -55,4 +56,14 @@ public class ClassEvent : BaseEvent
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(pkg.socket, body, EventType.ClassEvent, OperateType.DELETE);
     }
+
+    public override async void SearchInfoEvent(AsyncExpandPkg pkg)
+    {
+        ClassInfo info = JsonMapper.ToObject<ClassInfo>(pkg.messPkg.ret);
+        List<ClassInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.classesInfo, x => x.Class == info.Class);
+
+        string s_inf = JsonMapper.ToJson(inf);
+        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ClassEvent, OperateType.SEARCH);
+        await UniTask.Yield();
+    }    
 }

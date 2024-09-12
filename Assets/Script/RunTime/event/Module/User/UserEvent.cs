@@ -39,4 +39,14 @@ public class UserEvent : BaseEvent
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(pkg.socket, body, EventType.UserEvent, OperateType.DELETE);
     }
+
+    public override async void SearchInfoEvent(AsyncExpandPkg pkg)
+    {
+        UserInfo info = JsonMapper.ToObject<UserInfo>(pkg.messPkg.ret);
+        List<UserInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.usersInfo, x => x.Name == info.Name);
+
+        string s_inf = JsonMapper.ToJson(inf);
+        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.UserEvent, OperateType.SEARCH);
+        await UniTask.Yield();
+    }
 }

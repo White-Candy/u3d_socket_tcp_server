@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
+using Cysharp.Threading.Tasks;
 
 public class ExamineEvent : BaseEvent
 {
@@ -42,4 +43,14 @@ public class ExamineEvent : BaseEvent
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(pkg.socket, body, EventType.ExamineEvent, OperateType.DELETE);
     }
+
+    public override async void SearchInfoEvent(AsyncExpandPkg pkg)
+    {
+        ExamineInfo info = JsonMapper.ToObject<ExamineInfo>(pkg.messPkg.ret);
+        List<ExamineInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.examineesInfo, x => x.CourseName == info.CourseName);
+
+        string s_inf = JsonMapper.ToJson(inf);
+        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ExamineEvent, OperateType.SEARCH);
+        await UniTask.Yield();
+    }      
 }
