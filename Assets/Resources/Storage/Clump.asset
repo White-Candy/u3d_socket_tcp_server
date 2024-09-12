@@ -404,7 +404,7 @@ MonoBehaviour:
     TrainingScore: 50
     TheoryTime: 5
     TrainingTime: 5
-    PNum: 1
+    PNum: 2
     SingleNum: 2
     MulitNum: 1
     TOFNum: 1
@@ -572,7 +572,7 @@ MonoBehaviour:
     TrainingScore: 40
     TheoryTime: 60
     TrainingTime: 60
-    PNum: 0
+    PNum: 1
     SingleNum: 1
     MulitNum: 1
     TOFNum: 1
@@ -620,4 +620,14 @@ MonoBehaviour:
         m_isOn: 1
       Answer: B
       Score: 15.5
-  scoresInfo: []
+  scoresInfo:
+  - className: "\u8BA1\u79D1\u4E8C\u73ED"
+    columnsName: "\u95E8\u680F\u76EE"
+    courseName: "\u5377\u5E18\u95E8"
+    registerTime: 2024/9/6
+    userName: user1
+    Name: "\u5F20\u4E09"
+    theoryScore: 15
+    trainingScore: 2.173913
+    theoryFinished: 1
+    trainingFinished: 1

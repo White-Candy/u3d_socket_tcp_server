@@ -54,4 +54,15 @@ public class ScoreEvent : BaseEvent
         string s_inf = JsonMapper.ToJson(infs);
         NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.DELETE);
     }
+
+    public override async void SearchInfoEvent(AsyncExpandPkg pkg)
+    {
+        ScoreInfo info = JsonMapper.ToObject<ScoreInfo>(pkg.messPkg.ret);
+        List<ScoreInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.scoresInfo, x => x.columnsName == info.columnsName 
+                            && x.courseName == info.courseName && x.registerTime == info.registerTime && x.className == info.className);
+
+        string s_inf = JsonMapper.ToJson(inf);
+        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.SEARCH);
+        await UniTask.Yield();
+    }
 }

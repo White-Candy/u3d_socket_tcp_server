@@ -216,5 +216,19 @@ public class StorageHelper
         }
         await SaveToDisk();
         return new List<T>();
-     }
+    }
+
+    /// <summary>
+    /// ËÑË÷
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="storInf"></param>
+    /// <param name="match"></param>
+    /// <returns></returns>
+    public static List<T> SearchInf<T> (List<T> storInf,  Predicate<T> match) where T : BaseInfo
+    {
+        List<T> list = new List<T>();
+        list = storInf.FindAll(match);
+        return list;
+    }
 }
