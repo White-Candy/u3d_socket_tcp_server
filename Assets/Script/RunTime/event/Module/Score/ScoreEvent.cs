@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using LitJson;
+using Unity.VisualScripting;
 using UnityEngine.Pool;
 public class ScoreEvent : BaseEvent
 {
@@ -58,9 +60,16 @@ public class ScoreEvent : BaseEvent
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
     {
         ScoreInfo info = JsonMapper.ToObject<ScoreInfo>(pkg.messPkg.ret);
-        List<ScoreInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.scoresInfo, x => x.columnsName == info.columnsName 
-                            && x.courseName == info.courseName && x.registerTime == info.registerTime && x.className == info.className);
+        bool isSearch = false;
+        List<ScoreInfo> inf = new List<ScoreInfo>();
+        foreach (var scoreInf in StorageHelper.Storage.scoresInfo) {inf.Add(scoreInf.Clone());}
 
+        if (info.className.Count() > 0) {inf = StorageHelper.SearchInf(inf, x => x.className == info.className); isSearch = true; }
+        if (info.Name.Count() > 0) {inf = StorageHelper.SearchInf(inf, x => x.Name == info.Name); isSearch = true; }
+        if (info.courseName.Count() > 0) {inf = StorageHelper.SearchInf(inf, x => x.courseName == info.courseName); isSearch = true; }
+        if (info.registerTime.Count() > 0) {inf = StorageHelper.SearchInf(inf, x => x.registerTime == info.registerTime); isSearch = true; }
+        if (isSearch == false) inf.Clear();
+        
         string s_inf = JsonMapper.ToJson(inf);
         NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.SEARCH);
         await UniTask.Yield();

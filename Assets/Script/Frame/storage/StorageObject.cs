@@ -308,4 +308,22 @@ public class ScoreInfo : BaseInfo
     public string trainingScore;
     public bool theoryFinished; //本次理论考试是否完成
     public bool trainingFinished; //本次实训考试是否完成
+
+    public ScoreInfo Clone()
+    {
+        ScoreInfo inf = new ScoreInfo()
+        {
+            className = className,
+            columnsName = columnsName,
+            courseName = courseName,
+            registerTime = registerTime,
+            userName = userName,
+            Name = Name,
+            theoryScore = theoryScore,
+            trainingScore = trainingScore,
+            theoryFinished = theoryFinished,
+            trainingFinished = trainingFinished,
+        };
+        return inf;
+    }    
 }
