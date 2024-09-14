@@ -66,7 +66,7 @@ public class UserInfo : BaseInfo
     public string Identity;
     public string idCoder;
     public string Contact;
-    public string className;
+    public string UnitName;
     public bool login = false;
     public string hint = "";
 }

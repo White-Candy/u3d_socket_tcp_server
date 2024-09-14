@@ -30,6 +30,16 @@ public class CourseEvent : BaseEvent
         NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.CourseEvent, OperateType.REVISE);
     }
 
+    public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
+    {
+        CourseInfo info = JsonMapper.ToObject<CourseInfo>(pkg.messPkg.ret);
+        List<CourseInfo> new_list = 
+            await StorageHelper.DeleteInfo(StorageHelper.Storage.courseInfo, (x) => {return x.id == info.id;});
+        
+        string body = JsonMapper.ToJson(new_list);
+        NetworkTCPServer.SendAsync(pkg.socket, body, EventType.CourseEvent, OperateType.DELETE);
+    }
+
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
     {
         CourseInfo info = JsonMapper.ToObject<CourseInfo>(pkg.messPkg.ret);

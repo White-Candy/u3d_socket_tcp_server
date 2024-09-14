@@ -33,8 +33,11 @@ public class ColumnsEvent : BaseEvent
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
     {
         ColumnsInfo info = JsonMapper.ToObject<ColumnsInfo>(pkg.messPkg.ret);
-        List<ColumnsInfo> new_list = 
-            await StorageHelper.DeleteInfo(StorageHelper.Storage.columnsInfo, (x) => {return x.id == info.id;});
+        List<ColumnsInfo> new_list = new List<ColumnsInfo>(StorageHelper.Storage.columnsInfo);
+
+        int i = -1;
+        i = StorageHelper.Storage.courseInfo.FindIndex(x => x.Columns == info.Name);
+        if (i == -1) new_list = await StorageHelper.DeleteInfo(StorageHelper.Storage.columnsInfo, (x) => {return x.id == info.id;});
         
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(pkg.socket, body, EventType.ColumnsEvent, OperateType.DELETE);

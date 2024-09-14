@@ -11,10 +11,8 @@ public class UserLoginEvent : BaseEvent
     {
         await UniTask.RunOnThreadPool(async () =>
         {
-            Debug.Log("UserLoginEvent OnEvent");
             UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
             inf = await StorageHelper.CheckUserLogin(inf);
-
             string s_inf = JsonMapper.ToJson(inf);
             NetworkTCPServer.SendAsync(asynExPkg.socket, s_inf, EventType.UserLoginEvent, OperateType.NONE);
         });

@@ -98,18 +98,18 @@ public class StorageHelper
                 usrInfo.Identity = Storage.usersInfo[pwd_idx].Identity;
                 usrInfo.idCoder = Storage.usersInfo[pwd_idx].idCoder;
                 usrInfo.Contact = Storage.usersInfo[pwd_idx].Contact;
-                usrInfo.className = Storage.usersInfo[pwd_idx].className;
+                usrInfo.UnitName = Storage.usersInfo[pwd_idx].UnitName;
                 usrInfo.login = true;
-                usrInfo.hint = "登录成功!";
+                usrInfo.hint = "登录成功";
             }
             else
             {
-                usrInfo.hint = "密码错误!";
+                usrInfo.hint = "密码错误";
             }
         }
         else
         {
-            usrInfo.hint = "用户名不存在!";
+            usrInfo.hint = "用户名不存在";
         }
         return usrInfo;
     }

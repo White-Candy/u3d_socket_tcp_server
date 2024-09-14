@@ -33,7 +33,11 @@ public class MajorEvent : BaseEvent
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
     {
         MajorInfo info = JsonMapper.ToObject<MajorInfo>(pkg.messPkg.ret);
-        List<MajorInfo> infs = await StorageHelper.DeleteInfo(StorageHelper.Storage.majorInfo, x => x.id == info.id);
+        List<MajorInfo> infs = new List<MajorInfo>(StorageHelper.Storage.majorInfo);
+
+        int i = -1;
+        i = StorageHelper.Storage.classesInfo.FindIndex(x => x.Major == info.MajorName);
+        if (i == -1) { infs = await StorageHelper.DeleteInfo(StorageHelper.Storage.majorInfo, x => x.id == info.id); }
 
         string s_inf = JsonMapper.ToJson(infs);
         NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.DELETE);

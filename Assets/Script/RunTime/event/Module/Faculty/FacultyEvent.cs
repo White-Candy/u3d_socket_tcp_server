@@ -33,8 +33,15 @@ public class FacultyEvent : BaseEvent
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
     {
         FacultyInfo info = JsonMapper.ToObject<FacultyInfo>(pkg.messPkg.ret);
-        List<FacultyInfo> new_list = 
-            await StorageHelper.DeleteInfo(StorageHelper.Storage.faculiesInfo, (x) => {return x.id == info.id;});
+        List<FacultyInfo> new_list = new List<FacultyInfo>(StorageHelper.Storage.faculiesInfo);
+        int i = -1;
+        i = StorageHelper.Storage.majorInfo.FindIndex(x => x.FacultyName == info.Name);
+        if (i == -1)
+        {
+            new_list = 
+                await StorageHelper.DeleteInfo(StorageHelper.Storage.faculiesInfo, (x) => {return x.id == info.id;});
+        }
+        
         
         string body = JsonMapper.ToJson(new_list);
         NetworkTCPServer.SendAsync(pkg.socket, body, EventType.FacultyEvent, OperateType.DELETE);
