@@ -21,7 +21,7 @@ public class StorageObject : ScriptableObject
 /// 如果客户端的版本码和服务器的不一致则需要更新
 /// </summary>
 [Serializable]
-public class ResourcesInfo
+public class ResourcesInfo : BaseInfo
 {
     public string relaPath;
     public string version_code;
