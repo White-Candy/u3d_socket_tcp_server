@@ -70,9 +70,9 @@ public class NetworkTCPServer
         {
             string mess = Encoding.Default.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
-
+            // Debug.Log($"======================= mess: {mess} | {mess.Count()}");
             //关闭这个客户端连接
-            if (mess == "Close")
+            if (mess == "Close" || mess.Count() == 0)
             {
                 cli.Close();
                 int removeIdx = cliList.FindIndex((x) => { return x == cli; });
@@ -205,7 +205,7 @@ public class NetworkTCPServer
     {
         if (mess.Count() == 0 || mess == null) return;
 
-        //Debug.Log("================ mess : " + mess + " || " + mess.Count());
+        // Debug.Log("================ mess : " + mess + " || " + mess.Count());
         string[] lengthSplit = mess.Split("|");
         string totalLength = lengthSplit[0];
         if (!pkg.messPkg.get_length && !string.IsNullOrEmpty(totalLength))

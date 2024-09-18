@@ -159,7 +159,7 @@ public class ExamineInfo : BaseInfo
         inf.MulitNum = MulitNum;
         inf.TOFNum = TOFNum;
         inf.TheoryTime = TheoryTime;
-        inf.TrainingTime = TrainingTime;        
+        inf.TrainingTime = TrainingTime;
         inf.Status = Status;
         foreach (var Option in SingleChoices) { inf.SingleChoices.Add(Option.Clone()); }
         foreach (var Option in MulitChoices) { inf.MulitChoices.Add(Option.Clone()); }
