@@ -1,9 +1,10 @@
+
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using LitJson;
-using Unity.VisualScripting;
-using UnityEngine.Pool;
+using UnityEngine;
+
 public class ScoreEvent : BaseEvent
 {
     public override async void GetInfoEvent(AsyncExpandPkg pkg)
@@ -63,7 +64,7 @@ public class ScoreEvent : BaseEvent
         bool isSearch = false;
         List<ScoreInfo> inf = new List<ScoreInfo>();
         foreach (var scoreInf in StorageHelper.Storage.scoresInfo) {inf.Add(scoreInf.Clone());}
-
+        Debug.Log($"info.className : {info.className} | info.Name: {info.Name} | info.courseName: {info.courseName} | info.registerTime: {info.registerTime}");
         if (info.className.Count() > 0) {inf = StorageHelper.SearchInf(inf, x => x.className == info.className); isSearch = true; }
         if (info.Name.Count() > 0) {inf = StorageHelper.SearchInf(inf, x => x.Name == info.Name); isSearch = true; }
         if (info.courseName.Count() > 0) {inf = StorageHelper.SearchInf(inf, x => x.courseName == info.courseName); isSearch = true; }

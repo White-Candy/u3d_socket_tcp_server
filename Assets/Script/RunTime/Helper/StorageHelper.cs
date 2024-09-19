@@ -73,7 +73,7 @@ public class StorageHelper
         await UniTask.SwitchToMainThread();
         // Debug.Log("SaveToDisk");
         string s_json = JsonMapper.ToJson(Storage);
-        File.WriteAllText(Application.persistentDataPath + "/Storage.json", s_json);
+        File.WriteAllText(Application.streamingAssetsPath + "/Storage.json", s_json);
     }
 
     /// <summary>
