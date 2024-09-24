@@ -70,7 +70,7 @@ public class NetworkTCPServer
         {
             string mess = Encoding.Default.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
-            //Debug.Log($"======================= mess: {mess} | {mess.Count()}");
+            Debug.Log($"======================= mess: {mess} | {mess.Count()}");
             //关闭这个客户端连接
             if (mess == "Close" || mess.Count() == 0)
             {
@@ -98,18 +98,16 @@ public class NetworkTCPServer
     /// <param name="mess"></param>
     public static async void SendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
     {
-        await UniTask.RunOnThreadPool(() => 
-        {
-            string front = FrontPackage(cli, mess, event_type, operateType);
-            string totalInfoPkg = "|" + front + "#" + mess + "@";
-            long totalLength = totalInfoPkg.Count();
-            string finalPkg = totalLength.ToString() + totalInfoPkg;
+        await UniTask.Yield();
+        string front = FrontPackage(cli, mess, event_type, operateType);
+        string totalInfoPkg = "|" + front + "#" + mess + "@";
+        long totalLength = totalInfoPkg.Count();
+        string finalPkg = totalLength.ToString() + totalInfoPkg;
 
-            // Debug.Log($"============={totalLength} | {front}");
-            SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
-            var outputBuffer = Encoding.Default.GetBytes(sp.content);
-            sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
-        });
+        // Debug.Log($"============={totalLength} | {front}");
+        SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
+        var outputBuffer = Encoding.Default.GetBytes(sp.content);
+        sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
     }
 
     /// <summary>
