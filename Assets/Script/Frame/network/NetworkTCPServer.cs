@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using LitJson;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -11,45 +12,62 @@ using UnityEngine;
 
 public class NetworkTCPServer
 {
-    public Socket m_Socket;
+    // public Socket m_Socket;
 
-    public static int ret_length = 1024000;
-    public static byte[] results = new byte[ret_length];
+    // public static int ret_length = 1024000;
+    // public static byte[] results = new byte[ret_length];
 
     public static Queue<AsyncExpandPkg> MessQueue = new Queue<AsyncExpandPkg>();
 
-    public static List<Socket> cliList = new List<Socket> ();
+    // public static List<Socket> cliList = new List<Socket> ();
 
-    public void LauncherServer(int port)
+    private HttpListener listener;
+
+    public void LauncherServer(string url, string port)
     {
-        IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
+        //IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
 
-        m_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        m_Socket.Bind(endPoint);
-        m_Socket.Listen(10000);
+        //m_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        //m_Socket.Bind(endPoint);
+        //m_Socket.Listen(10000);
 
-        m_Socket.BeginAccept(AcceptAsync, null);
+        //m_Socket.BeginAccept(AcceptAsync, null);
+
+
+        ////////// HTTP
+        listener = new HttpListener();
+        string localIp = $"http://{url}:{port}/";
+
+        // 定义url
+        listener.Prefixes.Add(localIp);
+        listener.Start();
+
+        // 使用异步监听Web请求，当客户端的网络请求到来时会自动执行委托
+        listener.BeginGetContext(ReciveMessageAsync, null);
+
+        // 提示信息
+        Debug.Log($"服务已启动 {DateTime.Now.ToString()}，访问地址：{localIp}");
     }
-
+    
     public void AcceptAsync(IAsyncResult ar)
     {
         // Socket listenfd = (Socket)ar.AsyncState;
-        Socket cli = m_Socket.EndAccept(ar);
+        // Socket cli = m_Socket.EndAccept(ar);
         try
         {
-            Array.Clear(results, 0, results.Length);
-            MessPackage client_pkg = new MessPackage();
-            AsyncExpandPkg exp_pkg = new AsyncExpandPkg();
+            // Array.Clear(results, 0, results.Length);
+            // MessPackage client_pkg = new MessPackage();
+            // AsyncExpandPkg exp_pkg = new AsyncExpandPkg();
 
-            cliList.Add(cli);
+            // // cliList.Add(cli);
 
-            exp_pkg.socket = cli;
-            exp_pkg.messPkg = client_pkg;
+            // exp_pkg.socket = cli;
+            // exp_pkg.messPkg = client_pkg;
 
-            Debug.Log($"新的连接~ 当前连接数: {cliList.Count}");
-            cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, exp_pkg);
-            // 递归
-            m_Socket.BeginAccept(AcceptAsync, null);
+            // // Debug.Log($"新的连接~ 当前连接数: {cliList.Count}");
+            // cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, exp_pkg);
+            // // 递归
+            // m_Socket.BeginAccept(AcceptAsync, null);
         }
         catch { }
     }
@@ -60,55 +78,119 @@ public class NetworkTCPServer
     /// <param name="socket"></param>
     /// <param name="task"></param>
     /// <returns></returns>
-    public static void ReciveMessageAsync(IAsyncResult ar)
+    public void ReciveMessageAsync(IAsyncResult ar)
     {
-        AsyncExpandPkg pkg = (AsyncExpandPkg)ar.AsyncState;
-        Socket cli = pkg.socket;
-        int length = cli.EndReceive(ar);
+        // AsyncExpandPkg pkg = (AsyncExpandPkg)ar.AsyncState;
+        // Socket cli = pkg.socket;
+        // int length = cli.EndReceive(ar);
 
         try
         {
-            string mess = Encoding.Default.GetString(results, 0, length);
-            Array.Clear(results, 0, results.Length);
-            Debug.Log($"======================= mess: {mess} | {mess.Count()}");
-            //关闭这个客户端连接
-            if (mess == "Close" || mess.Count() == 0)
-            {
-                cli.Close();
-                int removeIdx = cliList.FindIndex((x) => { return x == cli; });
-                cliList.RemoveAt(removeIdx);
-                return;
-            }
+            // string mess = Encoding.Default.GetString(results, 0, length);
+            // Array.Clear(results, 0, results.Length);
+            // Debug.Log($"======================= mess: {mess} | {mess.Count()}");
+            // HttpSendAsync(cli, "i receive this message", EventType.None, OperateType.NONE);
+            // //关闭这个客户端连接
+            // if (mess == "Close" || mess.Count() == 0)
+            // {
+            //     cli.Close();
+            //     int removeIdx = cliList.FindIndex((x) => { return x == cli; });
+            //     cliList.RemoveAt(removeIdx);
+            //     return;
+            // }
 
-            string[] messages = mess.Split("@");
-            foreach (var message in messages)
-            {
-                InforProcessing(message, pkg);
-            }
+            // string[] messages = mess.Split("@");
+            // foreach (var message in messages)
+            // {
+            //     InforProcessing(message, pkg);
+            // }
             
-            cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, pkg);
+            //cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, pkg);
+
+            /////////////////////////////////////////////////////////////////// HTTP
+            // 获取context对象
+            var context = listener.EndGetContext(ar);
+            // 获取请求体
+            var request = context.Request;
+            var response = context.Response;
+            
+            MessPackage client_pkg = new MessPackage();
+            AsyncExpandPkg pkg = new AsyncExpandPkg();
+            pkg.messPkg = client_pkg;
+            pkg.Context = context;  
+
+            response.AddHeader("Access-Control-Allow-Credentials", "true");
+            response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time, X-Requested-With");
+            response.AddHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+            response.AddHeader("Access-Control-Max-Age", "1728000000");
+            response.AppendHeader("Access-Control-Allow-Origin", "*");        
+
+            Debug.Log($"{DateTime.Now}接到新的请求, 方法为{request.HttpMethod}");
+
+            if (request.HttpMethod == "POST")
+            {
+                Stream stream = context.Request.InputStream;
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                
+                string content = reader.ReadToEnd();
+                Debug.Log("Post content: " + content);
+                HttpSendAsync(context, "i recetive mess! : " + content, EventType.None, OperateType.NONE);
+
+                // string[] messages = content.Split("@");
+                // foreach (var message in messages)
+                // {
+                //     InforProcessing(message, pkg);
+                // }
+
+                // 再次开启异步监听
+                listener.BeginGetContext(ReciveMessageAsync, null);
+            }
+            else if (request.HttpMethod == "GET")
+            {
+                var content = request.QueryString;
+            }
         }
         catch { }
+    }
+
+    public static void HttpSendAsync(HttpListenerContext context, string mess, EventType event_type, OperateType operateType)
+    {
+        Debug.Log("Send: " + mess);
+
+        string front = FrontPackage(mess, event_type, operateType);
+        string totalInfoPkg = "|" + front + "#" + mess + "@";
+        long totalLength = totalInfoPkg.Count();
+        string finalPkg = totalLength.ToString() + totalInfoPkg;
+
+        HttpListenerResponse response = context.Response;
+        if (context == null) Debug.Log("context is null");
+        if (response == null) Debug.Log("response is null");
+        response.ContentLength64 = Encoding.UTF8.GetByteCount(finalPkg);
+        response.ContentType = "text/html; charset=UTF-8";
+        Stream output = response.OutputStream;
+        StreamWriter writer = new StreamWriter(output);
+        writer.Write(finalPkg);
+        writer.Close();
     }
 
     /// <summary>
     /// 发送信息
     /// </summary>
     /// <param name="cli"></param>
-    /// <param name="mess"></param>
-    public static async void SendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
-    {
-        await UniTask.Yield();
-        string front = FrontPackage(cli, mess, event_type, operateType);
-        string totalInfoPkg = "|" + front + "#" + mess + "@";
-        long totalLength = totalInfoPkg.Count();
-        string finalPkg = totalLength.ToString() + totalInfoPkg;
+    // /// <param name="mess"></param>
+    // public static async void HttpSendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
+    // {
+    //     await UniTask.Yield();
+    //     string front = FrontPackage(cli, mess, event_type, operateType);
+    //     string totalInfoPkg = "|" + front + "#" + mess + "@";
+    //     long totalLength = totalInfoPkg.Count();
+    //     string finalPkg = totalLength.ToString() + totalInfoPkg;
 
-        // Debug.Log($"============={totalLength} | {front}");
-        SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
-        var outputBuffer = Encoding.Default.GetBytes(sp.content);
-        sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
-    }
+    //     // Debug.Log($"============={totalLength} | {front}");
+    //     SendPkg sp = new SendPkg() { socket = cli, content = finalPkg };
+    //     var outputBuffer = Encoding.Default.GetBytes(sp.content);
+    //     sp.socket.BeginSend(outputBuffer, 0, outputBuffer.Length, SocketFlags.None, SendPkgAsyncCbk, sp);
+    // }
 
     /// <summary>
     /// 异步发送回调函数
@@ -136,7 +218,7 @@ public class NetworkTCPServer
     /// </summary>
     /// <param name="cli"></param>
     /// <param name="mess"></param>
-    public static string FrontPackage(Socket cli, string mess, EventType event_type, OperateType operateType)
+    public static string FrontPackage(string mess, EventType event_type, OperateType operateType)
     {
         MessPackage data = new MessPackage()
         {
@@ -227,14 +309,14 @@ public class NetworkTCPServer
     /// </summary>
     public void Clear()
     {
-        Debug.Log(cliList.Count);
-        foreach (var cli in cliList)
-        {
-            cli.Close();
-        }
-        cliList.Clear();
+        // Debug.Log(cliList.Count);
+        // foreach (var cli in cliList)
+        // {
+        //     cli.Close();
+        // }
+        // cliList.Clear();
 
-        m_Socket.Close();
+        //m_Socket.Close();
     }
 }
 
@@ -285,14 +367,14 @@ public class MessPackage
 /// </summary>
 public class AsyncExpandPkg
 {
-    public Socket socket;
+    public HttpListenerContext Context;
     public MessPackage messPkg;
 
     public AsyncExpandPkg() { }
 
     public AsyncExpandPkg(AsyncExpandPkg pkg)
     {
-        socket = pkg.socket;
+        Context = pkg.Context;
         messPkg = new MessPackage(pkg.messPkg);
     }
 }

@@ -9,7 +9,7 @@ public class ColumnsEvent : BaseEvent
         List<ColumnsInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.columnsInfo);
         
         string inf = JsonMapper.ToJson(infs);
-        NetworkTCPServer.SendAsync(pkg.socket, inf, EventType.ColumnsEvent, OperateType.GET);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, inf, EventType.ColumnsEvent, OperateType.GET);
     }
 
     public override async void AddEvent(AsyncExpandPkg pkg)
@@ -18,7 +18,7 @@ public class ColumnsEvent : BaseEvent
         List<ColumnsInfo> new_list = await StorageHelper.AddInfo(info, StorageHelper.Storage.columnsInfo, x => x.Name == info.Name);
 
         string body = JsonMapper.ToJson(new_list);
-        NetworkTCPServer.SendAsync(pkg.socket, body, EventType.ColumnsEvent, OperateType.ADD);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, body, EventType.ColumnsEvent, OperateType.ADD);
     }
 
     public override async void ReviseInfoEvent(AsyncExpandPkg pkg)
@@ -27,7 +27,7 @@ public class ColumnsEvent : BaseEvent
         List<ColumnsInfo> inf = await StorageHelper.ReviseInfo(info, StorageHelper.Storage.columnsInfo, x => x.id == info.id);
         
         string s_inf = JsonMapper.ToJson(inf);
-        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ColumnsEvent, OperateType.REVISE);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ColumnsEvent, OperateType.REVISE);
     }
 
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
@@ -40,7 +40,7 @@ public class ColumnsEvent : BaseEvent
         if (i == -1) new_list = await StorageHelper.DeleteInfo(StorageHelper.Storage.columnsInfo, (x) => {return x.id == info.id;});
         
         string body = JsonMapper.ToJson(new_list);
-        NetworkTCPServer.SendAsync(pkg.socket, body, EventType.ColumnsEvent, OperateType.DELETE);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, body, EventType.ColumnsEvent, OperateType.DELETE);
     }
 
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
@@ -49,7 +49,7 @@ public class ColumnsEvent : BaseEvent
         List<ColumnsInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.columnsInfo, x => x.Name == info.Name);
 
         string s_inf = JsonMapper.ToJson(inf);
-        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.ColumnsEvent, OperateType.SEARCH);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ColumnsEvent, OperateType.SEARCH);
         await UniTask.Yield();
     }      
 }

@@ -10,7 +10,7 @@ public class UserEvent : BaseEvent
         List<UserInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.usersInfo);
         
         string s_inf = JsonMapper.ToJson(infs); 
-        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.UserEvent, OperateType.GET);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.UserEvent, OperateType.GET);
     }
 
     public override async void AddEvent(AsyncExpandPkg pkg)
@@ -19,7 +19,7 @@ public class UserEvent : BaseEvent
         List<UserInfo> new_list = await StorageHelper.AddInfo(usersList, StorageHelper.Storage.usersInfo);
 
         string body = JsonMapper.ToJson(new_list);
-        NetworkTCPServer.SendAsync(pkg.socket, body, EventType.UserEvent, OperateType.ADD);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, body, EventType.UserEvent, OperateType.ADD);
     }
 
     public override async void ReviseInfoEvent(AsyncExpandPkg pkg)
@@ -28,7 +28,7 @@ public class UserEvent : BaseEvent
         List<UserInfo> ls_inf = await StorageHelper.ReviseInfo(inf, StorageHelper.Storage.usersInfo, x => x.userName == inf.userName);
 
         string s_inf = JsonMapper.ToJson(ls_inf);
-        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.UserEvent, OperateType.REVISE);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.UserEvent, OperateType.REVISE);
     }
 
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
@@ -37,7 +37,7 @@ public class UserEvent : BaseEvent
         List<UserInfo> new_list = await StorageHelper.DeleteInfo(StorageHelper.Storage.usersInfo, x => x.userName == userInfo.userName);
         
         string body = JsonMapper.ToJson(new_list);
-        NetworkTCPServer.SendAsync(pkg.socket, body, EventType.UserEvent, OperateType.DELETE);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, body, EventType.UserEvent, OperateType.DELETE);
     }
 
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
@@ -46,7 +46,7 @@ public class UserEvent : BaseEvent
         List<UserInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.usersInfo, x => x.Name == info.Name);
 
         string s_inf = JsonMapper.ToJson(inf);
-        NetworkTCPServer.SendAsync(pkg.socket, s_inf, EventType.UserEvent, OperateType.SEARCH);
+        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.UserEvent, OperateType.SEARCH);
         await UniTask.Yield();
     }
 }

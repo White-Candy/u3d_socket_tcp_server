@@ -7,6 +7,11 @@ using Random = UnityEngine.Random;
 
 public class Tools
 {
+        public static bool CheckMessageSuccess(int code)
+    {
+        return code == GlobalData.SuccessCode;
+    }
+    
     /// <summary>
     /// 把字节数组 => 文件流
     /// </summary>
