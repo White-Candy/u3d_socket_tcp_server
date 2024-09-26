@@ -20,9 +20,9 @@ public class StorageHelper
                 m_storage = Resources.Load("Storage/Clump") as StorageObject;
             }
 
-            if (File.Exists(Application.persistentDataPath + "/Storage.json") && !m_Init)
+            if (File.Exists(Application.streamingAssetsPath + "/Storage.json") && !m_Init)
             {
-                string s_json = File.ReadAllText(Application.persistentDataPath + "/Storage.json");
+                string s_json = File.ReadAllText(Application.streamingAssetsPath + "/Storage.json");
                 JsonUtility.FromJsonOverwrite(s_json, m_storage);
                 m_Init = true;
             }

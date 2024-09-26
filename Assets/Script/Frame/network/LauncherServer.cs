@@ -21,7 +21,7 @@ public class LauncherServer : MonoBehaviour
 
     public void Start()
     {
-        m_server.LauncherServer("192.168.1.252", "5800"); 
+        m_server.LauncherServer("192.168.3.34", "5800"); 
     }
     
     void Update()

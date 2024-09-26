@@ -2,12 +2,14 @@ using Cysharp.Threading.Tasks;
 using LitJson;
 using System;
 using System.IO;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Tools
 {
-        public static bool CheckMessageSuccess(int code)
+    public static bool CheckMessageSuccess(int code)
     {
         return code == GlobalData.SuccessCode;
     }
@@ -54,21 +56,20 @@ public class Tools
         byte[] data = new byte[0];
         if (!File.Exists(path)) return data;
 
-        await UniTask.RunOnThreadPool(() =>
-        {
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            lock (fs)
-            {
-                try
-                {
-                    data = new byte[fs.Length];
-                    fs.Read(data, 0, (int)fs.Length);
-                }
-                catch { }
-                finally { fs.Close(); }
-            }
+        await UniTask.Yield();
 
-        });
+        FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+        lock (fs)
+        {
+            try
+            {
+                data = new byte[fs.Length];
+                fs.Read(data, 0, (int)fs.Length);
+            }
+            catch { }
+            finally { fs.Close(); }
+        }
+
         return data;
     }
 
@@ -125,4 +126,35 @@ public class Tools
     {
         return $"{Random.Range(1000, 9999)}-{Random.Range(1000, 9999)}-{Random.Range(1000, 9999)}-{Random.Range(1000, 9999)}";
     }
+
+    /// <summary>
+    /// String To Unicode
+    /// </summary>
+    /// <param name="inputText"></param>
+    /// <returns></returns>
+    public static string StringToUnicode(string inputText)
+    {
+        string newStr = "";
+        for(int i = 0; i < inputText.Count(); ++i)
+        {
+            if (inputText[i] == '\\') newStr += '\\';
+            newStr += inputText[i];
+        }
+        char[] charBuffer = newStr.ToCharArray ();
+        byte[] buffer;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < charBuffer.Length; i++)
+        {
+            if ((int)charBuffer[i] > 127)
+            {
+                buffer = System.Text.Encoding.Unicode.GetBytes (charBuffer [i].ToString ());
+                stringBuilder.Append (string.Format ("\\u{0:X2}{1:X2}", buffer [1], buffer [0]));
+            }
+            else 
+            {
+                stringBuilder.Append(charBuffer[i].ToString());
+            }
+        }
+        return stringBuilder.ToString ();
+    }    
 }

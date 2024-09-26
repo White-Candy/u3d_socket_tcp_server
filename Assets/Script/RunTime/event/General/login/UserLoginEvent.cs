@@ -9,12 +9,9 @@ public class UserLoginEvent : BaseEvent
 {
     public override async void OnEvent(AsyncExpandPkg asynExPkg)
     {
-        await UniTask.RunOnThreadPool(async () =>
-        {
-            UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
-            inf = await StorageHelper.CheckUserLogin(inf);
-            string s_inf = JsonMapper.ToJson(inf);
-            NetworkTCPServer.HttpSendAsync(asynExPkg.Context, s_inf, EventType.UserLoginEvent, OperateType.NONE);
-        });
+        UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
+        inf = await StorageHelper.CheckUserLogin(inf);
+        string s_inf = JsonMapper.ToJson(inf);
+        NetworkTCPServer.HttpSendAsync(asynExPkg.Context, s_inf, EventType.UserLoginEvent, OperateType.NONE);
     }
 }

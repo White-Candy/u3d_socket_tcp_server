@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class NetworkTCPServer
@@ -53,8 +54,8 @@ public class NetworkTCPServer
     {
         // Socket listenfd = (Socket)ar.AsyncState;
         // Socket cli = m_Socket.EndAccept(ar);
-        try
-        {
+        // try
+        // {
             // Array.Clear(results, 0, results.Length);
             // MessPackage client_pkg = new MessPackage();
             // AsyncExpandPkg exp_pkg = new AsyncExpandPkg();
@@ -68,8 +69,8 @@ public class NetworkTCPServer
             // cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, exp_pkg);
             // // 递归
             // m_Socket.BeginAccept(AcceptAsync, null);
-        }
-        catch { }
+        // }
+        // catch { }
     }
 
     /// <summary>
@@ -84,8 +85,8 @@ public class NetworkTCPServer
         // Socket cli = pkg.socket;
         // int length = cli.EndReceive(ar);
 
-        try
-        {
+        // try
+        // {
             // string mess = Encoding.Default.GetString(results, 0, length);
             // Array.Clear(results, 0, results.Length);
             // Debug.Log($"======================= mess: {mess} | {mess.Count()}");
@@ -106,51 +107,66 @@ public class NetworkTCPServer
             // }
             
             //cli.BeginReceive(results, 0, ret_length, 0, ReciveMessageAsync, pkg);
+        // }
+        // catch { }
 
-            /////////////////////////////////////////////////////////////////// HTTP
-            // 获取context对象
-            var context = listener.EndGetContext(ar);
-            // 获取请求体
-            var request = context.Request;
-            var response = context.Response;
-            
+        /////////////////////////////////////////////////////////////////// HTTP
+        // 获取context对象
+        var context = listener.EndGetContext(ar);
+
+        // 获取请求体
+        var request = context.Request;
+        var response = context.Response;
+
+        if (request.HttpMethod == "OPTIONS")
+        {
+            response.AddHeader("Access-Control-Allow-Credentials", "true");
+            response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time, X-Requested-With");
+            response.AddHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+            //response.AddHeader("Access-Control-Max-Age", "1728000000");
+        }
+        response.AppendHeader("Access-Control-Allow-Origin", "*");    
+
+        var Headers = request.Headers;
+        Debug.Log($"{DateTime.Now}接到新的请求, 方法为{request.HttpMethod}");
+        foreach (var h in Headers.AllKeys)
+        {
+            string[] values = Headers.GetValues(h);
+            foreach (var val in values)
+            {
+                Debug.Log($"Key: {h} | Val: {val}");
+            }
+        }
+        if (request.HttpMethod == "POST")
+        {
+            Stream stream = context.Request.InputStream;
+            StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+            string content = reader.ReadToEnd();
+
+            content = Tools.StringToUnicode(content);
+            Debug.Log("Post content: " + content);
+
+            //HttpSendAsync(context, "i recetive mess one ! : " + content, EventType.None, OperateType.NONE);
+            //HttpSendAsync(context, "i recetive mess two ! : " + content, EventType.None, OperateType.NONE);
+
             MessPackage client_pkg = new MessPackage();
             AsyncExpandPkg pkg = new AsyncExpandPkg();
             pkg.messPkg = client_pkg;
             pkg.Context = context;  
 
-            response.AddHeader("Access-Control-Allow-Credentials", "true");
-            response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time, X-Requested-With");
-            response.AddHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-            response.AddHeader("Access-Control-Max-Age", "1728000000");
-            response.AppendHeader("Access-Control-Allow-Origin", "*");        
-
-            Debug.Log($"{DateTime.Now}接到新的请求, 方法为{request.HttpMethod}");
-
-            if (request.HttpMethod == "POST")
-            {
-                Stream stream = context.Request.InputStream;
-                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-                
-                string content = reader.ReadToEnd();
-                Debug.Log("Post content: " + content);
-                HttpSendAsync(context, "i recetive mess! : " + content, EventType.None, OperateType.NONE);
-
-                // string[] messages = content.Split("@");
-                // foreach (var message in messages)
-                // {
-                //     InforProcessing(message, pkg);
-                // }
-
-                // 再次开启异步监听
-                listener.BeginGetContext(ReciveMessageAsync, null);
-            }
-            else if (request.HttpMethod == "GET")
-            {
-                var content = request.QueryString;
+            string[] messages = content.Split("@");
+            foreach (var message in messages)
+            {       
+                InforProcessing(message, pkg);
             }
         }
-        catch { }
+        else if (request.HttpMethod == "GET")
+        {
+            var content_ = request.QueryString;
+        }
+        
+        // 再次开启异步监听
+        listener.BeginGetContext(ReciveMessageAsync, null);
     }
 
     public static void HttpSendAsync(HttpListenerContext context, string mess, EventType event_type, OperateType operateType)
@@ -269,6 +285,8 @@ public class NetworkTCPServer
     {
         int messLength = pkg.messPkg.ret.Count() + 2;
         float percent = messLength * 1.0f / pkg.messPkg.length * 1.0f * 100.0f;
+        // Debug.Log($"messLength: {messLength}, messLength: {pkg.messPkg.ret}");
+        // Debug.Log($"pkg.messPkg.length: {pkg.messPkg.length}, percent: {percent}");
         if (percent == 100.0f)
         {
             pkg.messPkg.finish = true;
@@ -317,6 +335,7 @@ public class NetworkTCPServer
         // cliList.Clear();
 
         //m_Socket.Close();
+        listener.Close();
     }
 }
 

@@ -11,7 +11,7 @@ public class CheckEvent : BaseEvent
         UpdatePackage up = JsonMapper.ToObject<UpdatePackage>(expand_pkg.messPkg.ret);
         string relativePath = up.relativePath;
         List<ResourcesInfo> bufInfo = new List<ResourcesInfo>();
-        Debug.Log($"relative Path : {relativePath}");
+        // Debug.Log($"relative Path : {relativePath}");
         foreach (ResourcesInfo inf in StorageHelper.Storage.rsCheck)
         {
             ResourcesInfo info = new ResourcesInfo(inf);
@@ -23,7 +23,7 @@ public class CheckEvent : BaseEvent
 
         foreach (ResourcesInfo inf in bufInfo)
         {
-            Debug.Log($"Download Inf: {inf.relaPath}");
+            // Debug.Log($"Download Inf: {inf.relaPath}");
             int i = up.filesInfo.FindIndex(x => x.relaPath == inf.relaPath);
             if (i >= 0 && i < up.filesInfo.Count)
                 inf.need_updata = up.filesInfo[i].version_code != inf.version_code ? true : false;              
@@ -31,7 +31,7 @@ public class CheckEvent : BaseEvent
                 inf.need_updata = true;
         }
         up.filesInfo = bufInfo;
-        Debug.Log($"filesInfo Count: {up.filesInfo.Count}");
+        // Debug.Log($"filesInfo Count: {up.filesInfo.Count}");
         string body = await JsonHelper.AsyncToJson(up);
         NetworkTCPServer.HttpSendAsync(expand_pkg.Context, body, EventType.CheckEvent, OperateType.NONE);
         await UniTask.Yield();

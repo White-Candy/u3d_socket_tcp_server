@@ -10,15 +10,12 @@ public class UploadEvent : BaseEvent
 {
     public override async void OnEvent(AsyncExpandPkg asynExPkg) 
     {
-        await UniTask.RunOnThreadPool(async () =>
-        {
-            FilePackage data = JsonMapper.ToObject<FilePackage>(asynExPkg.messPkg.ret);
-            string savepath = Application.streamingAssetsPath + "\\Data\\" + data.relativePath;
-            Tools.Bytes2File(data.fileData, savepath);
+        FilePackage data = JsonMapper.ToObject<FilePackage>(asynExPkg.messPkg.ret);
+        string savepath = Application.streamingAssetsPath + "\\Data\\" + data.relativePath;
+        Tools.Bytes2File(data.fileData, savepath);
 
-            await UniTask.SwitchToMainThread();
-            StorageHelper.UpdateThisFileInfo(data.relativePath);
-        });
+        await UniTask.SwitchToMainThread();
+        StorageHelper.UpdateThisFileInfo(data.relativePath);
     }
 }
 
