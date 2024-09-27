@@ -10,6 +10,7 @@ using System.Text;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class NetworkTCPServer
 {
@@ -23,6 +24,7 @@ public class NetworkTCPServer
     // public static List<Socket> cliList = new List<Socket> ();
 
     private HttpListener listener;
+    private string content;
 
     public void LauncherServer(string url, string port)
     {
@@ -111,6 +113,10 @@ public class NetworkTCPServer
         // catch { }
 
         /////////////////////////////////////////////////////////////////// HTTP
+        
+        // 再次开启异步监听
+        listener.BeginGetContext(ReciveMessageAsync, null);
+
         // 获取context对象
         var context = listener.EndGetContext(ar);
 
@@ -121,33 +127,36 @@ public class NetworkTCPServer
         if (request.HttpMethod == "OPTIONS")
         {
             response.AddHeader("Access-Control-Allow-Credentials", "true");
-            response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time, X-Requested-With");
+            response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Request-Method, X-Access-Token, X-Application-Name, X-Request-Sent-Time, X-Requested-With");
             response.AddHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
             //response.AddHeader("Access-Control-Max-Age", "1728000000");
-        }
-        response.AppendHeader("Access-Control-Allow-Origin", "*");    
+            response.AppendHeader("Access-Control-Allow-Origin", "*");
+            Send(context, "");
+        } 
 
-        var Headers = request.Headers;
+        // Get Headers Content
+        // var Headers = request.Headers;
+        // foreach (var h in Headers.AllKeys)
+        // {
+        //     string[] values = Headers.GetValues(h);
+        //     foreach (var val in values)
+        //     {
+        //         Debug.Log($"Key: {h} | Val: {val}");
+        //     }
+        // }
+
         Debug.Log($"{DateTime.Now}接到新的请求, 方法为{request.HttpMethod}");
-        foreach (var h in Headers.AllKeys)
-        {
-            string[] values = Headers.GetValues(h);
-            foreach (var val in values)
-            {
-                Debug.Log($"Key: {h} | Val: {val}");
-            }
-        }
+
         if (request.HttpMethod == "POST")
         {
+            response.AppendHeader("Access-Control-Allow-Origin", "*");
+            
             Stream stream = context.Request.InputStream;
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-            string content = reader.ReadToEnd();
+            content = reader.ReadToEnd();
 
             content = Tools.StringToUnicode(content);
             Debug.Log("Post content: " + content);
-
-            //HttpSendAsync(context, "i recetive mess one ! : " + content, EventType.None, OperateType.NONE);
-            //HttpSendAsync(context, "i recetive mess two ! : " + content, EventType.None, OperateType.NONE);
 
             MessPackage client_pkg = new MessPackage();
             AsyncExpandPkg pkg = new AsyncExpandPkg();
@@ -156,17 +165,26 @@ public class NetworkTCPServer
 
             string[] messages = content.Split("@");
             foreach (var message in messages)
-            {       
+            {
                 InforProcessing(message, pkg);
-            }
+            }            
         }
         else if (request.HttpMethod == "GET")
         {
             var content_ = request.QueryString;
         }
-        
-        // 再次开启异步监听
-        listener.BeginGetContext(ReciveMessageAsync, null);
+    }
+
+    public static void Send(HttpListenerContext context, string mess)
+    {
+        Debug.Log("Send NULL");
+        HttpListenerResponse response = context.Response;
+        response.ContentLength64 = Encoding.UTF8.GetByteCount(mess);
+        response.ContentType = "text/html; charset=UTF-8";
+        Stream output = response.OutputStream;
+        StreamWriter writer = new StreamWriter(output);
+        writer.Write(mess);
+        writer.Close();
     }
 
     public static void HttpSendAsync(HttpListenerContext context, string mess, EventType event_type, OperateType operateType)
@@ -179,8 +197,6 @@ public class NetworkTCPServer
         string finalPkg = totalLength.ToString() + totalInfoPkg;
 
         HttpListenerResponse response = context.Response;
-        if (context == null) Debug.Log("context is null");
-        if (response == null) Debug.Log("response is null");
         response.ContentLength64 = Encoding.UTF8.GetByteCount(finalPkg);
         response.ContentType = "text/html; charset=UTF-8";
         Stream output = response.OutputStream;
@@ -194,7 +210,7 @@ public class NetworkTCPServer
     /// </summary>
     /// <param name="cli"></param>
     // /// <param name="mess"></param>
-    // public static async void HttpSendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
+    // public static async void SendAsync(Socket cli, string mess, EventType event_type, OperateType operateType)
     // {
     //     await UniTask.Yield();
     //     string front = FrontPackage(cli, mess, event_type, operateType);

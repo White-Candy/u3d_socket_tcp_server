@@ -34,7 +34,7 @@ public class ScoreEvent : BaseEvent
         ScoreInfo info = JsonMapper.ToObject<ScoreInfo>(pkg.messPkg.ret);
         int index = StorageHelper.Storage.scoresInfo.FindIndex(x => x.userName == info.userName 
                             && x.courseName == info.courseName && x.registerTime == info.registerTime && x.className == info.className);
-        if (index == -1) 
+        if (index < 0 || index >= StorageHelper.Storage.scoresInfo.Count) 
         {
             StorageHelper.Storage.scoresInfo.Add(info);
             int examIdx = StorageHelper.Storage.examineesInfo.FindIndex(x => x.ColumnsName == info.columnsName && x.CourseName == info.courseName

@@ -52,9 +52,6 @@ MonoBehaviour:
   - relaPath: "b\u680F\u76EE\\B1\\Picture\\\u4E3B\u754C\u9762.png"
     version_code: 6173-2480-7931-7931
     need_updata: 0
-  - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
-    version_code: 8424-2572-9833-8401
-    need_updata: 0
   - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u6DFB\u52A0\u8BFE\u7A0B.png"
     version_code: 6972-5059-3643-7154
     need_updata: 0
@@ -76,6 +73,27 @@ MonoBehaviour:
   - relaPath: "\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\GuiFan\\StarterAssets_Documentation_v1.1.pdf"
     version_code: 1207-7240-9403-7985
     need_updata: 0
+  - relaPath: "\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\Picture\\candy.png"
+    version_code: 9485-7355-9173-3370
+    need_updata: 0
+  - relaPath: "\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 6234-3945-5054-5922
+    need_updata: 0
+  - relaPath: "\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\FangAn\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 2591-8386-3879-2661
+    need_updata: 0
+  - relaPath: "\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\TuZhi\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 3477-5190-7991-5038
+    need_updata: 0
+  - relaPath: "\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\GuiFan\\StarterAssets_Documentation_v1.1.pdf"
+    version_code: 2477-5980-8261-5318
+    need_updata: 0
+  - relaPath: "\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\Video\\13.\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F.mp4"
+    version_code: 4439-9144-5413-6170
+    need_updata: 0
+  - relaPath: "\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\Animation\\13.\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F.mp4"
+    version_code: 4669-3267-3704-8155
+    need_updata: 0
   usersInfo:
   - userName: user1
     password: 123456
@@ -85,7 +103,7 @@ MonoBehaviour:
     Identity: "\u5B66\u751F"
     idCoder: 610402200107223899
     Contact: 13894056345
-    className: "\u8BA1\u79D1\u4E8C\u73ED"
+    UnitName: "\u8BA1\u79D1\u4E8C\u73ED"
     login: 0
     hint: 
   - userName: admin
@@ -96,7 +114,7 @@ MonoBehaviour:
     Identity: "\u4E3B\u4EFB"
     idCoder: 610360197504232899
     Contact: 13679189603
-    className: 
+    UnitName: "\u6587\u5B66\u9662"
     login: 0
     hint: 
   - userName: User2
@@ -107,7 +125,7 @@ MonoBehaviour:
     Identity: "\u9662\u957F"
     idCoder: 610402200106123899
     Contact: 13399100478
-    className: 
+    UnitName: 
     login: 0
     hint: 
   - userName: user4
@@ -118,7 +136,7 @@ MonoBehaviour:
     Identity: "\u8001\u5E08"
     idCoder: 1234567890
     Contact: 1234567890
-    className: 
+    UnitName: 
     login: 0
     hint: "\u6CE8\u518C\u6210\u529F!"
   - userName: user5
@@ -129,7 +147,7 @@ MonoBehaviour:
     Identity: "\u9662\u957F"
     idCoder: 1234567
     Contact: 1234567
-    className: 
+    UnitName: 
     login: 0
     hint: 
   - userName: Liu
@@ -140,7 +158,7 @@ MonoBehaviour:
     Identity: "\u8001\u5E08"
     idCoder: 1234567889
     Contact: 123456789
-    className: 
+    UnitName: 
     login: 0
     hint: 
   - userName: Sugar
@@ -151,9 +169,9 @@ MonoBehaviour:
     Identity: "\u5B66\u751F"
     idCoder: 610402200108013455
     Contact: 14469189617
-    className: "\u7535\u6C14\u4E00\u73ED"
+    UnitName: "\u8BA1\u79D1\u4E8C\u73ED"
     login: 0
-    hint: "\u6CE8\u518C\u6210\u529F!"
+    hint: 
   faculiesInfo:
   - id: 744
     Name: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
@@ -177,11 +195,6 @@ MonoBehaviour:
     RegisterTime: 2024/8/20 17:1:33
     FacultyName: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
     TeacherName: "\u5F20\u8001\u5E08"
-  - id: 4508
-    MajorName: "\u7535\u6C14\u4E13\u4E1A"
-    RegisterTime: 2024/8/26 15:14:54
-    FacultyName: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
-    TeacherName: "\u5F20\u8001\u5E08"
   classesInfo:
   - id: 5303
     Class: "\u8BA1\u79D1\u4E8C\u73ED"
@@ -189,7 +202,7 @@ MonoBehaviour:
     Faculty: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
     Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
     Teacher: user4
-    Number: 1
+    Number: 2
   - id: 1743
     Class: "\u8BA1\u79D1\u4E00\u73ED"
     RegisterTime: 2024/8/22 17:47:21
@@ -197,13 +210,13 @@ MonoBehaviour:
     Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
     Teacher: user4
     Number: 0
-  - id: 2277
+  - id: 9648
     Class: "\u7535\u6C14\u4E00\u73ED"
-    RegisterTime: 2024/8/26 15:18:34
+    RegisterTime: 2024/9/14 13:48:32
     Faculty: "\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662"
-    Major: "\u7535\u6C14\u4E13\u4E1A"
-    Teacher: "\u5C0F\u5218"
-    Number: 1
+    Major: "\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F"
+    Teacher: user4
+    Number: 0
   columnsInfo:
   - id: 6677
     Name: "b\u680F\u76EE"
@@ -214,6 +227,9 @@ MonoBehaviour:
   - id: 3006
     Name: "\u95E8\u680F\u76EE"
     RegisterTime: 2024/8/29 11:40:2
+  - id: 4704
+    Name: "\u5BA4\u5185\u5B89\u88C5"
+    RegisterTime: 2024/9/19 15:21:40
   courseInfo:
   - id: 9396
     CourseName: "A\u8BFE\u7A0B"
@@ -230,6 +246,11 @@ MonoBehaviour:
     Columns: "\u95E8\u680F\u76EE"
     Working: "\u5377\u5E18\u95E8\u4F5C\u4E1A\u6761\u4EF6"
     RegisterTime: 2024/8/29 11:39:8
+  - id: 7247
+    CourseName: "\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F"
+    Columns: "\u5BA4\u5185\u5B89\u88C5"
+    Working: "\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F"
+    RegisterTime: 2024/9/19 15:21:53
   examineesInfo:
   - id: 6152
     ColumnsName: "b\u680F\u76EE"
@@ -404,7 +425,7 @@ MonoBehaviour:
     TrainingScore: 50
     TheoryTime: 5
     TrainingTime: 5
-    PNum: 2
+    PNum: 4
     SingleNum: 2
     MulitNum: 1
     TOFNum: 1
@@ -572,7 +593,7 @@ MonoBehaviour:
     TrainingScore: 40
     TheoryTime: 60
     TrainingTime: 60
-    PNum: 1
+    PNum: 3
     SingleNum: 1
     MulitNum: 1
     TOFNum: 1
@@ -628,6 +649,26 @@ MonoBehaviour:
     userName: user1
     Name: "\u5F20\u4E09"
     theoryScore: 15
-    trainingScore: 2.173913
+    trainingScore: 3
+    theoryFinished: 1
+    trainingFinished: 1
+  - className: "\u7535\u6C14\u4E00\u73ED"
+    columnsName: "\u95E8\u680F\u76EE"
+    courseName: "\u5377\u5E18\u95E8"
+    registerTime: 2024/9/6
+    userName: Sugar
+    Name: "\u5218\u4E8C"
+    theoryScore: 50
+    trainingScore: 23
+    theoryFinished: 1
+    trainingFinished: 1
+  - className: "\u8BA1\u79D1\u4E8C\u73ED"
+    columnsName: "\u95E8\u680F\u76EE"
+    courseName: "\u5377\u5E18\u95E8"
+    registerTime: 2024/9/11
+    userName: user1
+    Name: "\u5F20\u4E09"
+    theoryScore: 30.5
+    trainingScore: 0
     theoryFinished: 1
     trainingFinished: 1
