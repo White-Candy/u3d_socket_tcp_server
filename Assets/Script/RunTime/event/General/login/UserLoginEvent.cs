@@ -12,6 +12,6 @@ public class UserLoginEvent : BaseEvent
         UserInfo inf = JsonMapper.ToObject<UserInfo>(asynExPkg.messPkg.ret);
         inf = await StorageHelper.CheckUserLogin(inf);
         string s_inf = JsonMapper.ToJson(inf);
-        NetworkTCPServer.HttpSendAsync(asynExPkg.Context, s_inf, EventType.UserLoginEvent, OperateType.NONE);
+        HttpServer.HttpSendAsync(asynExPkg.Context, s_inf, EventType.UserLoginEvent, OperateType.NONE);
     }
 }

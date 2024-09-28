@@ -10,7 +10,7 @@ public class ExamineEvent : BaseEvent
         List<ExamineInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.examineesInfo);
         
         string inf = JsonMapper.ToJson(infs);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, inf, EventType.ExamineEvent, OperateType.GET);
+        HttpServer.HttpSendAsync(pkg.Context, inf, EventType.ExamineEvent, OperateType.GET);
     }
 
     public override async void AddEvent(AsyncExpandPkg pkg)
@@ -20,7 +20,7 @@ public class ExamineEvent : BaseEvent
             x => x.CourseName == info.CourseName && x.RegisterTime == info.RegisterTime);
 
         string body = JsonMapper.ToJson(new_list);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, body, EventType.ExamineEvent, OperateType.ADD);
+        HttpServer.HttpSendAsync(pkg.Context, body, EventType.ExamineEvent, OperateType.ADD);
     }
 
     public override async void ReviseInfoEvent(AsyncExpandPkg pkg)
@@ -30,7 +30,7 @@ public class ExamineEvent : BaseEvent
         {
             List<ExamineInfo> inf = await StorageHelper.ReviseInfo(info, StorageHelper.Storage.examineesInfo, x => x.id == info.id);   
             string s_inf = JsonMapper.ToJson(inf);
-            NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ExamineEvent, OperateType.REVISE);
+            HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ExamineEvent, OperateType.REVISE);
         }
     }
 
@@ -41,7 +41,7 @@ public class ExamineEvent : BaseEvent
             await StorageHelper.DeleteInfo(StorageHelper.Storage.examineesInfo, (x) => {return x.id == info.id;});
         
         string body = JsonMapper.ToJson(new_list);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, body, EventType.ExamineEvent, OperateType.DELETE);
+        HttpServer.HttpSendAsync(pkg.Context, body, EventType.ExamineEvent, OperateType.DELETE);
     }
 
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
@@ -50,7 +50,7 @@ public class ExamineEvent : BaseEvent
         List<ExamineInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.examineesInfo, x => x.CourseName == info.CourseName);
 
         string s_inf = JsonMapper.ToJson(inf);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ExamineEvent, OperateType.SEARCH);
+        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ExamineEvent, OperateType.SEARCH);
         await UniTask.Yield();
     }      
 }

@@ -1,10 +1,12 @@
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using LitJson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -17,18 +19,30 @@ public class LauncherServer : MonoBehaviour
 
     private EventDispatcher m_dispatcher = new EventDispatcher();
 
-    private NetworkTCPServer m_server = new NetworkTCPServer();
+    // private NetworkTCPServer m_server = new NetworkTCPServer();
 
-    public void Start()
+    private HttpServer m_HttpServer = new HttpServer();
+
+    public async void Awake()
     {
-        m_server.LauncherServer("192.168.3.34", "5800"); 
+        await FileHelper.ReadFileContent(Application.streamingAssetsPath + "\\Net\\IP.txt", (ip) => 
+        {
+            string[] ipSplit = ip.Split(":");
+            string url = ipSplit[0], port = ipSplit[1];
+            m_HttpServer.LauncherServer(url, port); 
+        });
+    }
+
+    public async void Start()
+    {
+        await UniTask.Yield();
     }
     
-    void Update()
+    public void Update()
     {
-        if (NetworkTCPServer.MessQueue.Count > 0)
+        if (HttpServer.MessQueue.Count > 0)
         {
-            var pkg = NetworkTCPServer.MessQueue.Dequeue();
+            var pkg = HttpServer.MessQueue.Dequeue();
             m_dispatcher.Dispatcher(pkg);
         }
     }
@@ -36,6 +50,7 @@ public class LauncherServer : MonoBehaviour
     private async void OnDestroy()
     {
         await StorageHelper.SaveToDisk();
-        m_server.Clear();
+        m_HttpServer.Clear();
+        //m_server.Clear();
     }
 }

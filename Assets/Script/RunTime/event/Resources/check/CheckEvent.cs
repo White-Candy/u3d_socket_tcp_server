@@ -33,7 +33,7 @@ public class CheckEvent : BaseEvent
         up.filesInfo = bufInfo;
         // Debug.Log($"filesInfo Count: {up.filesInfo.Count}");
         string body = await JsonHelper.AsyncToJson(up);
-        NetworkTCPServer.HttpSendAsync(expand_pkg.Context, body, EventType.CheckEvent, OperateType.NONE);
+        HttpServer.HttpSendAsync(expand_pkg.Context, body, EventType.CheckEvent, OperateType.NONE);
         await UniTask.Yield();
     }
 }

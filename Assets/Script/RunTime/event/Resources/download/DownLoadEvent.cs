@@ -23,7 +23,7 @@ public class DownLoadEvent : BaseEvent
             };
 
             string str_data = await JsonHelper.AsyncToJson(data);
-            NetworkTCPServer.HttpSendAsync(expand_pkg.Context, str_data, EventType.DownLoadEvent, OperateType.NONE);
+            HttpServer.HttpSendAsync(expand_pkg.Context, str_data, EventType.DownLoadEvent, OperateType.NONE);
         }
     }
 }

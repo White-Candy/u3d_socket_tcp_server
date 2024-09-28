@@ -12,7 +12,7 @@ public class ScoreEvent : BaseEvent
         List<ScoreInfo> inf = await StorageHelper.GetInfo(StorageHelper.Storage.scoresInfo);
         
         string s_inf = JsonMapper.ToJson(inf);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.GET);
+        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.GET);
     }
 
     public override async void AddEvent(AsyncExpandPkg pkg)
@@ -26,7 +26,7 @@ public class ScoreEvent : BaseEvent
         StorageHelper.Storage.examineesInfo[examIdx].PNum += 1;
         
         string s_inf = JsonMapper.ToJson(new_list);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.ADD);
+        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.ADD);
     }
 
     public override async void ReviseInfoEvent(AsyncExpandPkg pkg)
@@ -44,7 +44,7 @@ public class ScoreEvent : BaseEvent
         else StorageHelper.Storage.scoresInfo[index] = info;
         
         string s_inf = JsonMapper.ToJson(StorageHelper.Storage.scoresInfo);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.REVISE);
+        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.REVISE);
         await UniTask.Yield();
     }
 
@@ -55,7 +55,7 @@ public class ScoreEvent : BaseEvent
                                 && x.courseName == info.courseName && x.registerTime == info.registerTime && x.className == info.className);
 
         string s_inf = JsonMapper.ToJson(infs);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.DELETE);
+        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.DELETE);
     }
 
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
@@ -72,7 +72,7 @@ public class ScoreEvent : BaseEvent
         if (isSearch == false) inf.Clear();
         
         string s_inf = JsonMapper.ToJson(inf);
-        NetworkTCPServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.SEARCH);
+        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.SEARCH);
         await UniTask.Yield();
     }
 }

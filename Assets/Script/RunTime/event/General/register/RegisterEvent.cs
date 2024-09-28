@@ -15,7 +15,7 @@ public class RegisterEvent : BaseEvent
             
             string s_inf = JsonMapper.ToJson(inf);
             Debug.Log($"RegisterEvent: {s_inf}");
-            NetworkTCPServer.HttpSendAsync(asynExPkg.Context, s_inf, EventType.RegisterEvent, OperateType.NONE);
+            HttpServer.HttpSendAsync(asynExPkg.Context, s_inf, EventType.RegisterEvent, OperateType.NONE);
         });
     }
 }
