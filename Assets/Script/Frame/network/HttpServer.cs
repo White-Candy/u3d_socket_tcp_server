@@ -32,7 +32,7 @@ public class HttpServer
         Debug.Log($"服务已启动 {DateTime.Now.ToString()}，访问地址：{localIp}");
     }
 
-/// <summary>
+    /// <summary>
     /// 客户端请求信息接收
     /// </summary>
     /// <param name="socket"></param>
@@ -58,7 +58,7 @@ public class HttpServer
             //response.AddHeader("Access-Control-Max-Age", "1728000000");
             response.AppendHeader("Access-Control-Allow-Origin", "*");
             Send(context, "");
-        } 
+        }
 
         // Get Headers Content
         // var Headers = request.Headers;
@@ -76,29 +76,57 @@ public class HttpServer
         if (request.HttpMethod == "POST")
         {
             response.AppendHeader("Access-Control-Allow-Origin", "*");
-            
             Stream stream = context.Request.InputStream;
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             content = reader.ReadToEnd();
 
-            content = Tools.StringToUnicode(content);
-            Debug.Log("Post content: " + content);
-
-            MessPackage client_pkg = new MessPackage();
-            AsyncExpandPkg pkg = new AsyncExpandPkg();
-            pkg.messPkg = client_pkg;
-            pkg.Context = context;  
-
-            string[] messages = content.Split("@");
-            foreach (var message in messages)
+            //WriteFileByLine(Application.streamingAssetsPath, "Log.txt", content);
+            //Debug.Log(content);
+            JsonData json = JsonMapper.ToObject(content);
+            foreach (var p in json)
             {
-                InforProcessing(message, pkg);
-            }            
+                Debug.Log(p);
+            }
+            // content = Tools.StringToUnicode(content);
+
+            // Debug.Log("Post content: " + content);
+            // MessPackage client_pkg = new MessPackage();
+            // AsyncExpandPkg pkg = new AsyncExpandPkg();
+            // pkg.messPkg = client_pkg;
+            // pkg.Context = context;  
+
+            // string[] messages = content.Split("@");
+            // foreach (var message in messages)
+            // {
+            //     InforProcessing(message, pkg);
+            // }
         }
         else if (request.HttpMethod == "GET")
         {
             var content_ = request.QueryString;
         }
+    }
+
+    /// <summary>
+    /// Log打印到本地
+    /// </summary>
+    /// <param name="file_path"></param>
+    /// <param name="file_name"></param>
+    /// <param name="str_info"></param>
+    public static void WriteFileByLine(string file_path, string file_name, string str_info)  
+    {  
+        StreamWriter sw;  
+        if(!File.Exists(file_path+"//"+file_name))  
+        { 
+            sw=File.CreateText(file_path+"//"+file_name);//创建一个用于写入 UTF-8 编码的文本  
+        }  
+        else  
+        { 
+            sw=File.AppendText(file_path+"//"+file_name);//打开现有 UTF-8 编码文本文件以进行读取  
+        }  
+        sw.WriteLine(str_info);//以行为单位写入字符串  
+        sw.Close ();  
+        sw.Dispose ();//文件流释放  
     }
 
     public static void Send(HttpListenerContext context, string mess)

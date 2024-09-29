@@ -19,6 +19,8 @@ public class EventDispatcher
     public void Dispatcher(params object[] objs)
     {
         AsyncExpandPkg pkg = objs[0] as AsyncExpandPkg;
+        if (pkg == null) return;
+        
         string operateType = pkg.messPkg.operate_type;
         string eventType = pkg.messPkg.event_type;
         BaseEvent @event = Tools.CreateObject<BaseEvent>(eventType);
