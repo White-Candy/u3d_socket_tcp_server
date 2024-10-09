@@ -21,7 +21,7 @@ public class HttpServer
         listener = new HttpListener();
         string localIp = $"http://{url}:{port}/";
 
-        // 定义url
+        // Init
         listener.Prefixes.Add(localIp);
         listener.Start();
 
@@ -29,7 +29,11 @@ public class HttpServer
         listener.BeginGetContext(Respones, null);
 
         // 提示信息
-        Debug.Log($"服务已启动 {DateTime.Now.ToString()}，访问地址：{localIp}");
+        string log = $"Server is Running! {DateTime.Now.ToString()}, Address url: {localIp}";
+        ShowLog.InputLog2Screen(log);
+        ShowLog.InputLog2Screen(log);
+        ShowLog.InputLog2Screen(log);
+        Debug.Log(log);
     }
 
     /// <summary>
@@ -70,7 +74,8 @@ public class HttpServer
         //         Debug.Log($"Key: {h} | Val: {val}");
         //     }
         // }
-
+        string log = $"{DateTime.Now} new Request , Method is : {request.HttpMethod}";
+        ShowLog.InputLog2Screen(log);
         Debug.Log($"{DateTime.Now}接到新的请求, 方法为{request.HttpMethod}");
 
         if (request.HttpMethod == "POST")
@@ -82,24 +87,26 @@ public class HttpServer
 
             //WriteFileByLine(Application.streamingAssetsPath, "Log.txt", content);
             //Debug.Log(content);
-            JsonData json = JsonMapper.ToObject(content);
-            foreach (var p in json)
-            {
-                Debug.Log(p);
-            }
-            // content = Tools.StringToUnicode(content);
-
-            // Debug.Log("Post content: " + content);
-            // MessPackage client_pkg = new MessPackage();
-            // AsyncExpandPkg pkg = new AsyncExpandPkg();
-            // pkg.messPkg = client_pkg;
-            // pkg.Context = context;  
-
-            // string[] messages = content.Split("@");
-            // foreach (var message in messages)
+            // JsonData json = JsonMapper.ToObject(content);
+            // foreach (var p in json)
             // {
-            //     InforProcessing(message, pkg);
+            //     Debug.Log(p);
             // }
+            content = Tools.StringToUnicode(content);
+
+            log = "Post content: " + content;
+            ShowLog.InputLog2Screen(log);
+            Debug.Log("Post content: " + content);
+            MessPackage client_pkg = new MessPackage();
+            AsyncExpandPkg pkg = new AsyncExpandPkg();
+            pkg.messPkg = client_pkg;
+            pkg.Context = context;  
+
+            string[] messages = content.Split("@");
+            foreach (var message in messages)
+            {
+                InforProcessing(message, pkg);
+            }
         }
         else if (request.HttpMethod == "GET")
         {
