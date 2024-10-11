@@ -30,9 +30,6 @@ public class HttpServer
 
         // 提示信息
         string log = $"Server is Running! {DateTime.Now.ToString()}, Address url: {localIp}";
-        ShowLog.InputLog2Screen(log);
-        ShowLog.InputLog2Screen(log);
-        ShowLog.InputLog2Screen(log);
         Debug.Log(log);
     }
 
@@ -75,7 +72,7 @@ public class HttpServer
         //     }
         // }
         string log = $"{DateTime.Now} new Request , Method is : {request.HttpMethod}";
-        ShowLog.InputLog2Screen(log);
+        // ShowLog.InputLog2Screen(log);
         Debug.Log($"{DateTime.Now}接到新的请求, 方法为{request.HttpMethod}");
 
         if (request.HttpMethod == "POST")
@@ -85,17 +82,10 @@ public class HttpServer
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             content = reader.ReadToEnd();
 
-            //WriteFileByLine(Application.streamingAssetsPath, "Log.txt", content);
-            //Debug.Log(content);
-            // JsonData json = JsonMapper.ToObject(content);
-            // foreach (var p in json)
-            // {
-            //     Debug.Log(p);
-            // }
             content = Tools.StringToUnicode(content);
 
             log = "Post content: " + content;
-            ShowLog.InputLog2Screen(log);
+            // ShowLog.InputLog2Screen(log);
             Debug.Log("Post content: " + content);
             MessPackage client_pkg = new MessPackage();
             AsyncExpandPkg pkg = new AsyncExpandPkg();
