@@ -14,7 +14,7 @@ public class ResEvent : BaseEvent
         List<ResourcesInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.rsCheck);
         
         string inf = JsonMapper.ToJson(infs);
-        HttpServer.HttpSendAsync(pkg.Context, inf, EventType.ResEvent, OperateType.GET);
+        SocketServer.SendAsync(pkg.socket, inf, EventType.ResEvent, OperateType.GET);
     }
 
     public override async void AddEvent(AsyncExpandPkg pkg)
@@ -42,7 +42,7 @@ public class ResEvent : BaseEvent
         }
         
         string body = JsonMapper.ToJson(new_list);
-        HttpServer.HttpSendAsync(pkg.Context, body, EventType.ResEvent, OperateType.DELETE);
+        SocketServer.SendAsync(pkg.socket, body, EventType.ResEvent, OperateType.DELETE);
     }
 
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)

@@ -11,7 +11,7 @@ public class GetEvent : BaseEvent
         JsonData jd = AllInfoToJsData();
 
         string inf = JsonMapper.ToJson(jd);
-        HttpServer.HttpSendAsync(pkg.Context, inf, EventType.GetEvent, OperateType.NONE);
+        SocketServer.SendAsync(pkg.socket, inf, EventType.GetEvent, OperateType.NONE);
 
         await UniTask.Yield();
     }

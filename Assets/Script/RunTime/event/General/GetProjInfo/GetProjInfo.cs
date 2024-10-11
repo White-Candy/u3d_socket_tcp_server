@@ -32,7 +32,7 @@ public class GetProjInfo : BaseEvent
         }
 
         string inf = JsonMapper.ToJson(projs);
-        HttpServer.HttpSendAsync(asynExPkg.Context, inf, EventType.GetProjInfo, OperateType.NONE);
+        SocketServer.SendAsync(asynExPkg.socket, inf, EventType.GetProjInfo, OperateType.NONE);
     }
 }
 

@@ -19,9 +19,9 @@ public class LauncherServer : MonoBehaviour
 
     private EventDispatcher m_dispatcher = new EventDispatcher();
 
-    // private NetworkTCPServer m_server = new NetworkTCPServer();
+    private SocketServer m_server = new SocketServer();
 
-    private HttpServer m_HttpServer = new HttpServer();
+    // private HttpServer m_HttpServer = new HttpServer();
 
     public async void Awake()
     {
@@ -29,7 +29,8 @@ public class LauncherServer : MonoBehaviour
         {
             string[] ipSplit = ip.Split(":");
             string url = ipSplit[0], port = ipSplit[1];
-            m_HttpServer.LauncherServer(url, port); 
+
+            m_server.LauncherServer(int.Parse(port)); 
         });
     }
 
@@ -40,9 +41,9 @@ public class LauncherServer : MonoBehaviour
     
     public void Update()
     {
-        if (HttpServer.MessQueue.Count > 0)
+        if (SocketServer.MessQueue.Count > 0)
         {
-            var pkg = HttpServer.MessQueue.Dequeue();
+            var pkg = SocketServer.MessQueue.Dequeue();
             m_dispatcher.Dispatcher(pkg);
         }
     }
@@ -50,7 +51,7 @@ public class LauncherServer : MonoBehaviour
     private async void OnDestroy()
     {
         await StorageHelper.SaveToDisk();
-        m_HttpServer.Clear();
-        //m_server.Clear();
+        //m_HttpServer.Clear();
+        m_server.Clear();
     }
 }

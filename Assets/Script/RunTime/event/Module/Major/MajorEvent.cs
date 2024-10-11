@@ -9,7 +9,7 @@ public class MajorEvent : BaseEvent
         List<MajorInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.majorInfo);
         
         string s_inf = JsonMapper.ToJson(infs);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.MajorEvent, OperateType.GET);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.GET);
     }
 
     public override async void AddEvent(AsyncExpandPkg pkg)
@@ -18,7 +18,7 @@ public class MajorEvent : BaseEvent
         List<MajorInfo> new_list = await StorageHelper.AddInfo(info, StorageHelper.Storage.majorInfo, x => x.MajorName == info.MajorName);
 
         string s_inf = JsonMapper.ToJson(new_list);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.MajorEvent, OperateType.ADD);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.ADD);
     }
 
     public override async void ReviseInfoEvent(AsyncExpandPkg pkg)
@@ -27,7 +27,7 @@ public class MajorEvent : BaseEvent
         List<MajorInfo> infs = await StorageHelper.ReviseInfo(info, StorageHelper.Storage.majorInfo, x => x.id == info.id);
         
         string s_inf = JsonMapper.ToJson(infs);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.MajorEvent, OperateType.REVISE);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.REVISE);
     }
 
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
@@ -40,7 +40,7 @@ public class MajorEvent : BaseEvent
         if (i == -1) { infs = await StorageHelper.DeleteInfo(StorageHelper.Storage.majorInfo, x => x.id == info.id); }
 
         string s_inf = JsonMapper.ToJson(infs);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.MajorEvent, OperateType.DELETE);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.DELETE);
     }
 
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
@@ -49,7 +49,7 @@ public class MajorEvent : BaseEvent
         List<MajorInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.majorInfo, x => x.MajorName == info.MajorName);
 
         string s_inf = JsonMapper.ToJson(inf);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.MajorEvent, OperateType.SEARCH);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.MajorEvent, OperateType.SEARCH);
         await UniTask.Yield();
     }
 }

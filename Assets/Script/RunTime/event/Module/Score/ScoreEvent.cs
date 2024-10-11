@@ -12,7 +12,7 @@ public class ScoreEvent : BaseEvent
         List<ScoreInfo> inf = await StorageHelper.GetInfo(StorageHelper.Storage.scoresInfo);
         
         string s_inf = JsonMapper.ToJson(inf);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.GET);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.GET);
     }
 
     public override async void AddEvent(AsyncExpandPkg pkg)
@@ -26,7 +26,7 @@ public class ScoreEvent : BaseEvent
         StorageHelper.Storage.examineesInfo[examIdx].PNum += 1;
         
         string s_inf = JsonMapper.ToJson(new_list);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.ADD);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.ADD);
     }
 
     public override async void ReviseInfoEvent(AsyncExpandPkg pkg)
@@ -44,7 +44,7 @@ public class ScoreEvent : BaseEvent
         else StorageHelper.Storage.scoresInfo[index] = info;
         
         string s_inf = JsonMapper.ToJson(StorageHelper.Storage.scoresInfo);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.REVISE);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.REVISE);
         await UniTask.Yield();
     }
 
@@ -55,7 +55,7 @@ public class ScoreEvent : BaseEvent
                                 && x.courseName == info.courseName && x.registerTime == info.registerTime && x.className == info.className);
 
         string s_inf = JsonMapper.ToJson(infs);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.DELETE);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.DELETE);
     }
 
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
@@ -72,7 +72,7 @@ public class ScoreEvent : BaseEvent
         if (isSearch == false) inf.Clear();
         
         string s_inf = JsonMapper.ToJson(inf);
-        HttpServer.HttpSendAsync(pkg.Context, s_inf, EventType.ScoreEvent, OperateType.SEARCH);
+        SocketServer.SendAsync(pkg.socket, s_inf, EventType.ScoreEvent, OperateType.SEARCH);
         await UniTask.Yield();
     }
 }
