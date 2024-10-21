@@ -18,19 +18,33 @@ public class HttpServer
 
     public void LauncherServer(string url, string port)
     {
+        string log_ = "test log..";
+        ShowLog.InputLog2Screen(log_);
+
         listener = new HttpListener();
         string localIp = $"http://{url}:{port}/";
 
-        // Init
-        listener.Prefixes.Add(localIp);
-        listener.Start();
+        string log = $"Server is Running! {DateTime.Now.ToString()}, Address url: {localIp}";
+
+        try 
+        {
+            // Init
+            listener.Prefixes.Add(localIp);
+            listener.Start();
+        }
+        catch(Exception ex)
+        {
+            Debug.Log("Server Error.");
+            ShowLog.InputLog2Screen(ex.ToString());
+        }
+        ShowLog.InputLog2Screen(log + "11");
 
         // 使用异步监听Web请求，当客户端的网络请求到来时会自动执行委托
         listener.BeginGetContext(Respones, null);
 
         // 提示信息
-        string log = $"Server is Running! {DateTime.Now.ToString()}, Address url: {localIp}";
-        Debug.Log(log);
+         ShowLog.InputLog2Screen(log + "22");
+         Debug.Log(log);
     }
 
     /// <summary>
@@ -72,7 +86,7 @@ public class HttpServer
         //     }
         // }
         string log = $"{DateTime.Now} new Request , Method is : {request.HttpMethod}";
-        // ShowLog.InputLog2Screen(log);
+        ShowLog.InputLog2Screen(log);
         Debug.Log($"{DateTime.Now}接到新的请求, 方法为{request.HttpMethod}");
 
         if (request.HttpMethod == "POST")
@@ -85,7 +99,7 @@ public class HttpServer
             content = Tools.StringToUnicode(content);
 
             log = "Post content: " + content;
-            // ShowLog.InputLog2Screen(log);
+            ShowLog.InputLog2Screen(log);
             Debug.Log("Post content: " + content);
             MessPackage client_pkg = new MessPackage();
             AsyncExpandPkg pkg = new AsyncExpandPkg();

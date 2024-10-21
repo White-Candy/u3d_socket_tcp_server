@@ -23,21 +23,21 @@ public class LauncherServer : MonoBehaviour
 
     private HttpServer m_HttpServer = new HttpServer();
 
-    public async void Awake()
+    public void Awake()
+    {
+
+    }
+
+    public async void Start()
     {
         await FileHelper.ReadFileContent(Application.streamingAssetsPath + "\\Net\\IP.txt", (ip) => 
         {
             string[] ipSplit = ip.Split(":");
             string url = ipSplit[0], port = ipSplit[1];
-            m_HttpServer.LauncherServer(url, port); 
+            m_HttpServer.LauncherServer(url, port);
         });
     }
 
-    public async void Start()
-    {
-        await UniTask.Yield();
-    }
-    
     public void Update()
     {
         if (HttpServer.MessQueue.Count > 0)
