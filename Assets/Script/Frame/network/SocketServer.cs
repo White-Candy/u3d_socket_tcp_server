@@ -70,7 +70,7 @@ public class SocketServer
         {
             string mess = Encoding.Default.GetString(results, 0, length);
             Array.Clear(results, 0, results.Length);
-            // Debug.Log($"======================= mess: {mess} | {mess.Count()}");
+            Debug.Log($"======================= mess: {mess} | {mess.Count()}");
             //关闭这个客户端连接
             if (mess == "Close" || mess.Count() == 0)
             {

@@ -1,1 +1,1059 @@
-{"name":"Clump","hideFlags":0,"rsCheck":[{"relaPath":"10001\\Animation\\\u5377\u5E18\u95E8.mp4","version_code":"1317-6474-9372-6147","need_updata":true},{"relaPath":"10001\\Picture\\4.png","version_code":"2922-6748-4955-6533","need_updata":true},{"relaPath":"10001\\Picture\\3.png","version_code":"6120-3411-7315-6867","need_updata":true},{"relaPath":"10001\\Picture\\2.png","version_code":"2272-2708-7966-9880","need_updata":true},{"relaPath":"10001\\Picture\\1.png","version_code":"9789-6495-7700-8789","need_updata":true},{"relaPath":"A1\u680F\u76EE\\A\u8BFE\u7A0B\\candy.png","version_code":"9554-6465-4764-1093","need_updata":false},{"relaPath":"b\u680F\u76EE\\B1\\StarterAssets_Documentation_v1.1.pdf","version_code":"6776-6485-6326-6117","need_updata":false},{"relaPath":"A1\u680F\u76EE\\A\u8BFE\u7A0B\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf","version_code":"3294-7154-9728-6175","need_updata":false},{"relaPath":"A1\u680F\u76EE\\A\u8BFE\u7A0B\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png","version_code":"5721-4385-4148-3738","need_updata":false},{"relaPath":"b\u680F\u76EE\\B1\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf","version_code":"2979-7427-8252-6311","need_updata":false},{"relaPath":"b\u680F\u76EE\\B1\\Picture\\\u6DFB\u52A0\u8BFE\u7A0B.png","version_code":"5924-6314-6802-4174","need_updata":false},{"relaPath":"b\u680F\u76EE\\B1\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png","version_code":"4165-2783-9629-9837","need_updata":false},{"relaPath":"b\u680F\u76EE\\B1\\Picture\\\u4E3B\u754C\u9762.png","version_code":"6173-2480-7931-7931","need_updata":false},{"relaPath":"\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u6DFB\u52A0\u8BFE\u7A0B.png","version_code":"6972-5059-3643-7154","need_updata":false},{"relaPath":"\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u4FEE\u6539\u8BFE\u7A0B.png","version_code":"8042-7294-4817-1617","need_updata":false},{"relaPath":"\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Picture\\\u4E3B\u754C\u9762.png","version_code":"5565-9133-8980-7663","need_updata":false},{"relaPath":"\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\Video\\\u5377\u5E18\u95E8.mp4","version_code":"7110-9103-6790-2269","need_updata":false},{"relaPath":"\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\TuZhi\\StarterAssets_Documentation_v1.1.pdf","version_code":"1734-9277-2905-8960","need_updata":false},{"relaPath":"\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\FangAn\\StarterAssets_Documentation_v1.1.pdf","version_code":"5536-5987-4884-1247","need_updata":false},{"relaPath":"\u95E8\u680F\u76EE\\\u5377\u5E18\u95E8\\GuiFan\\StarterAssets_Documentation_v1.1.pdf","version_code":"1207-7240-9403-7985","need_updata":false},{"relaPath":"\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\Picture\\candy.png","version_code":"9485-7355-9173-3370","need_updata":false},{"relaPath":"\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf","version_code":"6234-3945-5054-5922","need_updata":false},{"relaPath":"\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\FangAn\\StarterAssets_Documentation_v1.1.pdf","version_code":"2591-8386-3879-2661","need_updata":false},{"relaPath":"\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\TuZhi\\StarterAssets_Documentation_v1.1.pdf","version_code":"3477-5190-7991-5038","need_updata":false},{"relaPath":"\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\GuiFan\\StarterAssets_Documentation_v1.1.pdf","version_code":"2477-5980-8261-5318","need_updata":false},{"relaPath":"\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\Video\\13.\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F.mp4","version_code":"4439-9144-5413-6170","need_updata":false},{"relaPath":"\u5BA4\u5185\u5B89\u88C5\\\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F\\Animation\\13.\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F.mp4","version_code":"4669-3267-3704-8155","need_updata":false}],"usersInfo":[{"userName":"user1","password":"123456","Name":"\u5F20\u4E09","Gender":"\u7537","Age":"23","Identity":"\u5B66\u751F","idCoder":"610402200107223899","Contact":"13894056345","UnitName":"\u8BA1\u79D1\u4E8C\u73ED","login":false,"hint":""},{"userName":"admin","password":"admin","Name":"\u5F20\u8001\u5E08","Gender":"\u7537","Age":"40","Identity":"\u4E3B\u4EFB","idCoder":"610360197504232899","Contact":"13679189603","UnitName":"\u6587\u5B66\u9662","login":false,"hint":""},{"userName":"User2","password":"123456","Name":"\u5C0F\u660E","Gender":"\u7537","Age":"23","Identity":"\u9662\u957F","idCoder":"610402200106123899","Contact":"13399100478","UnitName":"","login":false,"hint":""},{"userName":"user4","password":"user4","Name":"user4","Gender":"\u7537","Age":"20","Identity":"\u8001\u5E08","idCoder":"1234567890","Contact":"1234567890","UnitName":"","login":false,"hint":"\u6CE8\u518C\u6210\u529F!"},{"userName":"user5","password":"user5","Name":"user5","Gender":"\u7537","Age":"34","Identity":"\u9662\u957F","idCoder":"1234567","Contact":"1234567","UnitName":"","login":false,"hint":""},{"userName":"Liu","password":"123456","Name":"\u5C0F\u5218","Gender":"\u7537","Age":"123","Identity":"\u8001\u5E08","idCoder":"1234567889","Contact":"123456789","UnitName":"","login":false,"hint":""},{"userName":"Sugar","password":"123","Name":"\u5218\u4E8C","Gender":"\u7537","Age":"23","Identity":"\u5B66\u751F","idCoder":"610402200108013455","Contact":"14469189617","UnitName":"\u8BA1\u79D1\u4E8C\u73ED","login":false,"hint":""}],"faculiesInfo":[{"id":"744","Name":"\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662","RegisterTime":"2024/8/22 8:51:44","TeacherName":"\u5C0F\u660E"},{"id":"798","Name":"\u519C\u5B66\u9662","RegisterTime":"2024/8/22 9:1:49","TeacherName":"user5"},{"id":"3569","Name":"\u6587\u5B66\u9662","RegisterTime":"2024/8/22 9:4:10","TeacherName":"user5"},{"id":"3818","Name":"\u82F1\u6587\u5B66\u9662","RegisterTime":"2024/8/26 15:14:25","TeacherName":"user5"}],"majorInfo":[{"id":"8907","MajorName":"\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F","RegisterTime":"2024/8/20 17:1:33","FacultyName":"\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662","TeacherName":"\u5F20\u8001\u5E08"}],"classesInfo":[{"id":"5303","Class":"\u8BA1\u79D1\u4E8C\u73ED","RegisterTime":"2024/8/22 14:13:36","Faculty":"\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662","Major":"\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F","Teacher":"user4","Number":2},{"id":"1743","Class":"\u8BA1\u79D1\u4E00\u73ED","RegisterTime":"2024/8/22 17:47:21","Faculty":"\u519C\u5B66\u9662","Major":"\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F","Teacher":"user4","Number":0},{"id":"9648","Class":"\u7535\u6C14\u4E00\u73ED","RegisterTime":"2024/9/14 13:48:32","Faculty":"\u4FE1\u606F\u4E0E\u5DE5\u7A0B\u5B66\u9662","Major":"\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F","Teacher":"user4","Number":0}],"columnsInfo":[{"id":"6677","Name":"b\u680F\u76EE","RegisterTime":"2024/8/23 16:39:24"},{"id":"550","Name":"A1\u680F\u76EE","RegisterTime":"2024/8/26 13:51:37"},{"id":"3006","Name":"\u95E8\u680F\u76EE","RegisterTime":"2024/8/29 11:40:2"},{"id":"4704","Name":"\u5BA4\u5185\u5B89\u88C5","RegisterTime":"2024/9/19 15:21:40"}],"courseInfo":[{"id":"9396","CourseName":"A\u8BFE\u7A0B","Columns":"A1\u680F\u76EE","Working":"A\u8BFE\u7A0B\u7684\u4F5C\u4E1A\u6761\u4EF6\uFF0C\nA\u8BFE\u7A0B\u4F5C\u4E1A\u6761\u4EF61\n","RegisterTime":"2024/8/26 14:23:33"},{"id":"9724","CourseName":"B1","Columns":"\u95E8\u680F\u76EE","Working":"B1\u4F5C\u4E1A\u6761\u4EF6","RegisterTime":"2024/8/28 14:23:21"},{"id":"8633","CourseName":"\u5377\u5E18\u95E8","Columns":"\u95E8\u680F\u76EE","Working":"\u5377\u5E18\u95E8\u4F5C\u4E1A\u6761\u4EF6","RegisterTime":"2024/8/29 11:39:8"},{"id":"7247","CourseName":"\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F","Columns":"\u5BA4\u5185\u5B89\u88C5","Working":"\u4E0D\u9508\u94A2\u6276\u624B\u73BB\u7483\u680F\u677F","RegisterTime":"2024/9/19 15:21:53"}],"examineesInfo":[{"id":"6152","ColumnsName":"b\u680F\u76EE","CourseName":"B1","RegisterTime":"2024/9/5","TrainingScore":"50","TheoryTime":"5","TrainingTime":"5","PNum":0,"SingleNum":1,"MulitNum":2,"TOFNum":1,"Status":true,"SingleChoices":[{"Topic":"2","toA":{"m_content":"2","m_isOn":false},"toB":{"m_content":"2","m_isOn":false},"toC":{"m_content":"2","m_isOn":true},"toD":{"m_content":"2","m_isOn":false},"Answer":"C","Score":"12"}],"MulitChoices":[{"Topic":"3","Options":[{"Serial":"A.","Content":"3","isOn":false},{"Serial":"B.","Content":"3","isOn":false},{"Serial":"C.","Content":"3","isOn":false}],"Answer":"","Score":"33"},{"Topic":"3","Options":[{"Serial":"A.","Content":"3","isOn":true},{"Serial":"B.","Content":"3","isOn":true},{"Serial":"C.","Content":"3","isOn":false}],"Answer":"A.B.","Score":"32"}],"TOFChoices":[{"Topic":"123","toA":{"m_content":"qwe","m_isOn":true},"toB":{"m_content":"qwee","m_isOn":false},"Answer":"A","Score":"11"}]},{"id":"8326","ColumnsName":"\u95E8\u680F\u76EE","CourseName":"\u5377\u5E18\u95E8","RegisterTime":"2024/9/4","TrainingScore":"50","TheoryTime":"5","TrainingTime":"5","PNum":0,"SingleNum":2,"MulitNum":2,"TOFNum":2,"Status":false,"SingleChoices":[{"Topic":"1111","toA":{"m_content":"11","m_isOn":false},"toB":{"m_content":"111","m_isOn":false},"toC":{"m_content":"11","m_isOn":true},"toD":{"m_content":"11","m_isOn":false},"Answer":"C","Score":"11"},{"Topic":"3","toA":{"m_content":"3","m_isOn":false},"toB":{"m_content":"3","m_isOn":false},"toC":{"m_content":"3","m_isOn":true},"toD":{"m_content":"3","m_isOn":false},"Answer":"C","Score":"13"}],"MulitChoices":[{"Topic":"12","Options":[{"Serial":"A.","Content":"12","isOn":false},{"Serial":"B.","Content":"12","isOn":true},{"Serial":"C.","Content":"12","isOn":true},{"Serial":"D.","Content":"12","isOn":false}],"Answer":"B.C.","Score":"12"},{"Topic":"23","Options":[{"Serial":"A.","Content":"23","isOn":false},{"Serial":"B.","Content":"23","isOn":true},{"Serial":"C.","Content":"23","isOn":false},{"Serial":"D.","Content":"23","isOn":true},{"Serial":"E.","Content":"23","isOn":true},{"Serial":"F.","Content":"23","isOn":false}],"Answer":"B.D.E.","Score":"23"}],"TOFChoices":[{"Topic":"44","toA":{"m_content":"44","m_isOn":true},"toB":{"m_content":"44","m_isOn":false},"Answer":"A","Score":"15"},{"Topic":"55","toA":{"m_content":"55","m_isOn":true},"toB":{"m_content":"55","m_isOn":false},"Answer":"A","Score":"15"}]},{"id":"4128","ColumnsName":"\u95E8\u680F\u76EE","CourseName":"\u5377\u5E18\u95E8","RegisterTime":"2024/9/6","TrainingScore":"50","TheoryTime":"5","TrainingTime":"5","PNum":4,"SingleNum":2,"MulitNum":1,"TOFNum":1,"Status":true,"SingleChoices":[{"Topic":"(\u5355\u9009\u9898)\u4E8B\u52A1\u662F\u6570\u636E\u5E93\u6267\u884C\u903B\u8F91\u7684\u57FA\u672C\u5DE5\u4F5C\u5355\u4F4D\u3002\u5982\u679C\u4E00\u4E2A\u4E8B\u52A1\u6267\u884C\u6210\u529F\uFF0C\u5219\u5168\u90E8\u66F4\u65B0\u63D0\u4EA4\uFF1B\r\n\u5982\u679C\u4E00\u4E2A\u4E8B\u52A1\u6267\u884C\u5931\u8D25\uFF0C\u5219\u5DF2\u505A\u8FC7\u7684\u66F4\u65B0\u88AB\u6062\u590D\u539F\u72B6\uFF0C\u597D\u50CF\u6574\u4E2A\u4E8B\u52A1\u4ECE\u672A\u6709\u8FC7\u8FD9\u4E9B\u66F4\u65B0\uFF0C\u8FD9\u6837\u4FDD\u6301\u4E86\u6570\u636E\u5E93\u5904\u4E8E_____\u72B6\u6001\u3002","toA":{"m_content":"\u5B8C\u6574\u6027","m_isOn":false},"toB":{"m_content":"\u6301\u4E45\u6027","m_isOn":false},"toC":{"m_content":"\u5B89\u5168\u6027","m_isOn":true},"toD":{"m_content":"\u4E00\u81F4\u6027","m_isOn":false},"Answer":"C","Score":"5"},{"Topic":"(\u5355\u9009\u9898)\u5BF9\u4E8E\u5206\u9875\u67E5\u8BE2\uFF0C \u4EE5\u4E0B\u8BF4\u6CD5\u4E0D\u6B63\u786E\u7684\u662F( )","toA":{"m_content":"\u53EF\u4EE5\u51CF\u8F7B\u670D\u52A1\u5668\u538B\u529B","m_isOn":true},"toB":{"m_content":"\u5BF9\u4E8E\u7A0B\u5E8F\u5F00\u9500\u6781\u5927","m_isOn":false},"toC":{"m_content":"\u4EE5\u63D0\u9AD8\u7528\u6237\u4F53\u9A8C","m_isOn":false},"toD":{"m_content":"\u5BF9\u4E8E\u4E0D\u540C\u6570\u636E\u5E93\u6709\u4E0D\u540C\u7684SQL\u6307\u4EE4","m_isOn":false},"Answer":"A","Score":"5"}],"MulitChoices":[{"Topic":"\u201C\u84E6\u7136\u56DE\u9996\uFF0C\u90A3\u4EBA\u5374\u5728\uFF0C\u706F\u706B\u9611\u73CA\u5904\u201D\u4E2D\u201C\u90A3\u4EBA\u201D\u7684\u542B\u4E49\u6709( )\u3002","Options":[{"Serial":"A.","Content":"\u8BCD\u4EBA\u7231\u6155\u7684\u610F\u4E2D\u4EBA","isOn":false},{"Serial":"B.","Content":"\u8BCD\u4EBA\u5076\u9047\u7684\u53CB\u4EBA","isOn":true},{"Serial":"C.","Content":"\u8BCD\u4EBA\u8FFD\u5BFB\u7684\u9AD8\u6D01\u7406\u60F3","isOn":true},{"Serial":"D.","Content":"\u8BCD\u4EBA\u81EA\u5DF1\u7684\u5199\u7167","isOn":false}],"Answer":"BC","Score":"10"}],"TOFChoices":[{"Topic":"\u300A\u767D\u9E6D\u300B\u662F\u4E00\u7BC7\u4F18\u7F8E\u7684\u6563\u6587\uFF0C\u4F5C\u8005\u662F\u90ED\u6CAB\u82E5\u3002 (\u672C\u9898\u5206\u6570\uFF1A1\u5206)","toA":{"m_content":"\u221A","m_isOn":true},"toB":{"m_content":"\u00D7","m_isOn":false},"Answer":"A","Score":"3"}]},{"id":"1708","ColumnsName":"A1\u680F\u76EE","CourseName":"A\u8BFE\u7A0B","RegisterTime":"2024/9/10","TrainingScore":"50","TheoryTime":"5","TrainingTime":"5","PNum":0,"SingleNum":2,"MulitNum":2,"TOFNum":2,"Status":true,"SingleChoices":[{"Topic":"A","toA":{"m_content":"A","m_isOn":true},"toB":{"m_content":"A","m_isOn":false},"toC":{"m_content":"A","m_isOn":false},"toD":{"m_content":"A","m_isOn":false},"Answer":"A","Score":"15.5"},{"Topic":"BA","toA":{"m_content":"BA","m_isOn":true},"toB":{"m_content":"BA","m_isOn":false},"toC":{"m_content":"BA","m_isOn":false},"toD":{"m_content":"BA","m_isOn":false},"Answer":"A","Score":"15"}],"MulitChoices":[{"Topic":"AA","Options":[{"Serial":"A.","Content":"AA","isOn":true},{"Serial":"B.","Content":"AA","isOn":true},{"Serial":"C.","Content":"AA","isOn":false},{"Serial":"D.","Content":"AA","isOn":false},{"Serial":"E.","Content":"AA","isOn":false}],"Answer":"AB","Score":"1.5"},{"Topic":"BA","Options":[{"Serial":"A.","Content":"BA","isOn":true},{"Serial":"B.","Content":"BA","isOn":true},{"Serial":"C.","Content":"BA","isOn":false}],"Answer":"AB","Score":"3.5"}],"TOFChoices":[{"Topic":"A?","toA":{"m_content":"AB","m_isOn":true},"toB":{"m_content":"AB","m_isOn":false},"Answer":"A","Score":"3"},{"Topic":"AB?","toA":{"m_content":"B","m_isOn":true},"toB":{"m_content":"B","m_isOn":false},"Answer":"A","Score":"3"}]},{"id":"86","ColumnsName":"\u95E8\u680F\u76EE","CourseName":"\u5377\u5E18\u95E8","RegisterTime":"2024/9/11","TrainingScore":"40","TheoryTime":"60","TrainingTime":"60","PNum":1,"SingleNum":1,"MulitNum":1,"TOFNum":1,"Status":true,"SingleChoices":[{"Topic":"111\u5355\u9009\u9898","toA":{"m_content":"111","m_isOn":true},"toB":{"m_content":"111","m_isOn":false},"toC":{"m_content":"111","m_isOn":false},"toD":{"m_content":"111","m_isOn":false},"Answer":"A","Score":"15"}],"MulitChoices":[{"Topic":"222\u591A\u9009\u9898","Options":[{"Serial":"A.","Content":"aaa","isOn":false},{"Serial":"B.","Content":"bbb","isOn":true},{"Serial":"C.","Content":"ccc","isOn":true},{"Serial":"D.","Content":"ddd","isOn":false}],"Answer":"BC","Score":"15"}],"TOFChoices":[{"Topic":"333\u5224\u65AD\u9898","toA":{"m_content":"123","m_isOn":false},"toB":{"m_content":"123","m_isOn":true},"Answer":"B","Score":"15.5"}]}],"scoresInfo":[{"className":"\u8BA1\u79D1\u4E8C\u73ED","columnsName":"\u95E8\u680F\u76EE","courseName":"\u5377\u5E18\u95E8","registerTime":"2024/9/6","userName":"user1","Name":"\u5F20\u4E09","theoryScore":"15","trainingScore":"3","theoryFinished":true,"trainingFinished":true},{"className":"\u7535\u6C14\u4E00\u73ED","columnsName":"\u95E8\u680F\u76EE","courseName":"\u5377\u5E18\u95E8","registerTime":"2024/9/6","userName":"Sugar","Name":"\u5218\u4E8C","theoryScore":"50","trainingScore":"23","theoryFinished":true,"trainingFinished":true}]}
+{
+    "name": "Clump",
+    "hideFlags": 0,
+    "rsCheck": [
+        {
+            "relaPath": "10001\\Animation\\卷帘门.mp4",
+            "version_code": "1317-6474-9372-6147",
+            "need_updata": true
+        },
+        {
+            "relaPath": "10001\\Picture\\4.png",
+            "version_code": "2922-6748-4955-6533",
+            "need_updata": true
+        },
+        {
+            "relaPath": "10001\\Picture\\3.png",
+            "version_code": "6120-3411-7315-6867",
+            "need_updata": true
+        },
+        {
+            "relaPath": "10001\\Picture\\2.png",
+            "version_code": "2272-2708-7966-9880",
+            "need_updata": true
+        },
+        {
+            "relaPath": "10001\\Picture\\1.png",
+            "version_code": "9789-6495-7700-8789",
+            "need_updata": true
+        },
+        {
+            "relaPath": "A1栏目\\A课程\\candy.png",
+            "version_code": "9554-6465-4764-1093",
+            "need_updata": false
+        },
+        {
+            "relaPath": "b栏目\\B1\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "6776-6485-6326-6117",
+            "need_updata": false
+        },
+        {
+            "relaPath": "A1栏目\\A课程\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "3294-7154-9728-6175",
+            "need_updata": false
+        },
+        {
+            "relaPath": "A1栏目\\A课程\\Picture\\修改课程.png",
+            "version_code": "5721-4385-4148-3738",
+            "need_updata": false
+        },
+        {
+            "relaPath": "b栏目\\B1\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "2979-7427-8252-6311",
+            "need_updata": false
+        },
+        {
+            "relaPath": "b栏目\\B1\\Picture\\添加课程.png",
+            "version_code": "5924-6314-6802-4174",
+            "need_updata": false
+        },
+        {
+            "relaPath": "b栏目\\B1\\Picture\\修改课程.png",
+            "version_code": "4165-2783-9629-9837",
+            "need_updata": false
+        },
+        {
+            "relaPath": "b栏目\\B1\\Picture\\主界面.png",
+            "version_code": "6173-2480-7931-7931",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\Picture\\添加课程.png",
+            "version_code": "6972-5059-3643-7154",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\Picture\\修改课程.png",
+            "version_code": "8042-7294-4817-1617",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\Picture\\主界面.png",
+            "version_code": "5565-9133-8980-7663",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\Video\\卷帘门.mp4",
+            "version_code": "7110-9103-6790-2269",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\TuZhi\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "1734-9277-2905-8960",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\FangAn\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "5536-5987-4884-1247",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\GuiFan\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "1207-7240-9403-7985",
+            "need_updata": false
+        },
+        {
+            "relaPath": "室内安装\\不锈钢扶手玻璃栏板\\Picture\\candy.png",
+            "version_code": "9485-7355-9173-3370",
+            "need_updata": false
+        },
+        {
+            "relaPath": "室内安装\\不锈钢扶手玻璃栏板\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "6234-3945-5054-5922",
+            "need_updata": false
+        },
+        {
+            "relaPath": "室内安装\\不锈钢扶手玻璃栏板\\FangAn\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "2591-8386-3879-2661",
+            "need_updata": false
+        },
+        {
+            "relaPath": "室内安装\\不锈钢扶手玻璃栏板\\TuZhi\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "3477-5190-7991-5038",
+            "need_updata": false
+        },
+        {
+            "relaPath": "室内安装\\不锈钢扶手玻璃栏板\\GuiFan\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "2477-5980-8261-5318",
+            "need_updata": false
+        },
+        {
+            "relaPath": "室内安装\\不锈钢扶手玻璃栏板\\Video\\13.不锈钢扶手玻璃栏板.mp4",
+            "version_code": "4439-9144-5413-6170",
+            "need_updata": false
+        },
+        {
+            "relaPath": "室内安装\\不锈钢扶手玻璃栏板\\Animation\\13.不锈钢扶手玻璃栏板.mp4",
+            "version_code": "4669-3267-3704-8155",
+            "need_updata": false
+        },
+        {
+            "relaPath": "门栏目\\卷帘门\\JiaoAn\\StarterAssets_Documentation_v1.1.pdf",
+            "version_code": "1853-2191-8454-8590",
+            "need_updata": false
+        }
+    ],
+    "usersInfo": [
+        {
+            "userName": "user1",
+            "password": "123456",
+            "Name": "张三",
+            "Gender": "男",
+            "Age": "23",
+            "Identity": "学生",
+            "idCoder": "610402200107223899",
+            "Contact": "13894056345",
+            "UnitName": "计科二班",
+            "login": false,
+            "hint": ""
+        },
+        {
+            "userName": "admin",
+            "password": "admin",
+            "Name": "张老师",
+            "Gender": "男",
+            "Age": "40",
+            "Identity": "主任",
+            "idCoder": "610360197504232899",
+            "Contact": "13679189603",
+            "UnitName": "文学院",
+            "login": false,
+            "hint": ""
+        },
+        {
+            "userName": "User2",
+            "password": "123456",
+            "Name": "小明",
+            "Gender": "男",
+            "Age": "23",
+            "Identity": "院长",
+            "idCoder": "610402200106123899",
+            "Contact": "13399100478",
+            "UnitName": "",
+            "login": false,
+            "hint": ""
+        },
+        {
+            "userName": "user4",
+            "password": "user4",
+            "Name": "user4",
+            "Gender": "男",
+            "Age": "20",
+            "Identity": "老师",
+            "idCoder": "1234567890",
+            "Contact": "1234567890",
+            "UnitName": "",
+            "login": false,
+            "hint": "注册成功!"
+        },
+        {
+            "userName": "user5",
+            "password": "user5",
+            "Name": "user5",
+            "Gender": "男",
+            "Age": "34",
+            "Identity": "院长",
+            "idCoder": "1234567",
+            "Contact": "1234567",
+            "UnitName": "",
+            "login": false,
+            "hint": ""
+        },
+        {
+            "userName": "Liu",
+            "password": "123456",
+            "Name": "小刘",
+            "Gender": "男",
+            "Age": "123",
+            "Identity": "老师",
+            "idCoder": "1234567889",
+            "Contact": "123456789",
+            "UnitName": "",
+            "login": false,
+            "hint": ""
+        },
+        {
+            "userName": "Sugar",
+            "password": "123",
+            "Name": "刘二",
+            "Gender": "男",
+            "Age": "23",
+            "Identity": "学生",
+            "idCoder": "610402200108013455",
+            "Contact": "14469189617",
+            "UnitName": "计科二班",
+            "login": false,
+            "hint": ""
+        }
+    ],
+    "faculiesInfo": [
+        {
+            "id": "744",
+            "Name": "信息与工程学院",
+            "RegisterTime": "2024/8/22 8:51:44",
+            "TeacherName": "小明"
+        },
+        {
+            "id": "798",
+            "Name": "农学院",
+            "RegisterTime": "2024/8/22 9:1:49",
+            "TeacherName": "user5"
+        },
+        {
+            "id": "3569",
+            "Name": "文学院",
+            "RegisterTime": "2024/8/22 9:4:10",
+            "TeacherName": "user5"
+        },
+        {
+            "id": "3818",
+            "Name": "英文学院",
+            "RegisterTime": "2024/8/26 15:14:25",
+            "TeacherName": "user5"
+        }
+    ],
+    "majorInfo": [
+        {
+            "id": "8907",
+            "MajorName": "计算机科学与技术",
+            "RegisterTime": "2024/8/20 17:1:33",
+            "FacultyName": "信息与工程学院",
+            "TeacherName": "张老师"
+        }
+    ],
+    "classesInfo": [
+        {
+            "id": "5303",
+            "Class": "计科二班",
+            "RegisterTime": "2024/8/22 14:13:36",
+            "Faculty": "信息与工程学院",
+            "Major": "计算机科学与技术",
+            "Teacher": "user4",
+            "Number": 2
+        },
+        {
+            "id": "1743",
+            "Class": "计科一班",
+            "RegisterTime": "2024/8/22 17:47:21",
+            "Faculty": "农学院",
+            "Major": "计算机科学与技术",
+            "Teacher": "user4",
+            "Number": 0
+        },
+        {
+            "id": "9648",
+            "Class": "电气一班",
+            "RegisterTime": "2024/9/14 13:48:32",
+            "Faculty": "信息与工程学院",
+            "Major": "计算机科学与技术",
+            "Teacher": "user4",
+            "Number": 0
+        }
+    ],
+    "columnsInfo": [
+        {
+            "id": "6645",
+            "Name": "建筑栏目",
+            "RegisterTime": "2024/10/29 15:10:22"
+        }
+    ],
+    "courseInfo": [
+        {
+            "id": "6524",
+            "CourseName": "叠合梁",
+            "Columns": "建筑栏目",
+            "Working": "123",
+            "RegisterTime": "2024/10/29 15:10:33"
+        },
+        {
+            "id": "8840",
+            "CourseName": "预制外墙",
+            "Columns": "建筑栏目",
+            "Working": "预制外墙缝隙",
+            "RegisterTime": "2024/10/31 14:15:52"
+        }
+    ],
+    "examineesInfo": [
+        {
+            "id": "2936",
+            "ColumnsName": "建筑栏目",
+            "CourseName": "叠合梁",
+            "RegisterTime": "2024/10/29",
+            "TrainingScore": "50",
+            "TheoryTime": "60",
+            "TrainingTime": "60",
+            "PNum": 0,
+            "SingleNum": 20,
+            "MulitNum": 5,
+            "TOFNum": 10,
+            "Status": true,
+            "SingleChoices": [
+                {
+                    "Topic": "国务院办公厅《关于大力发展装配式建筑的指导意见》的工作目标中提出,要推动形成一批设计、施工、部品部件规模化生产企业，具有现代装配建造水平的（ ）以及与之相适应的专业化技能队伍。",
+                    "toA": {
+                        "m_content": "设计总承包企业 ",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "工程总承包企业",
+                        "m_isOn": true
+                    },
+                    "toC": {
+                        "m_content": "施工总承包企业 ",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "设计-施工总承包企业",
+                        "m_isOn": false
+                    },
+                    "Answer": "B",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "国务院办公厅《关于大力发展装配式建筑的指导意见》的重点任务中提出,统筹建筑结构、机电设备、部品部件、装配施工、装饰装修，推行装配式建筑（ ）。",
+                    "toA": {
+                        "m_content": "深化设计",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "正向设计",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "协同设计",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "一体化集成设计",
+                        "m_isOn": true
+                    },
+                    "Answer": "D",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "在《“十三五”装配式建筑行动方案》第三节保障措施创新工程管理中指建立装配式建筑全过程信息追溯机制，把生产、施工、装修、运行维护等全过程纳入（ ），实现数据即时上传、汇总、监测及电子归档管理等，增强行业监管能力。",
+                    "toA": {
+                        "m_content": "商务平台",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "信息化平台",
+                        "m_isOn": true
+                    },
+                    "toC": {
+                        "m_content": "金融性平台",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "考勤机",
+                        "m_isOn": false
+                    },
+                    "Answer": "B",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "在《“十三五”装配式建筑行动方案》第三节保障措施中建立统计上报制度指出,按照《装配式建筑评价标准》规定，用（ ）作为装配式建筑认定指标。",
+                    "toA": {
+                        "m_content": "市场占有率",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "材料使用率",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "绿色分配率",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "装配率",
+                        "m_isOn": true
+                    },
+                    "Answer": "D",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "预制构件安装施工前，应编制专项施工方案，并按设计要求对各工况进行施工验算和（ ）。",
+                    "toA": {
+                        "m_content": "塔吊布置",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "施工技术交底",
+                        "m_isOn": true
+                    },
+                    "toC": {
+                        "m_content": "生产技术交底",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "施工场地勘察",
+                        "m_isOn": false
+                    },
+                    "Answer": "B",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "预制构件和部品经检查合格后，宜设置（ ）。预制构件和部品出厂时，应出具质量证明文件。",
+                    "toA": {
+                        "m_content": "合格证",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "工序标识",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "表面标识",
+                        "m_isOn": true
+                    },
+                    "toD": {
+                        "m_content": "存放标识",
+                        "m_isOn": false
+                    },
+                    "Answer": "C",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "当预制构件粗糙面采用涂刷缓凝剂工艺时，预制构件脱模后应及时进行（ ），露出骨料。",
+                    "toA": {
+                        "m_content": "凿毛",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "喷砂",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "拉毛处理",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "高压水冲洗",
+                        "m_isOn": true
+                    },
+                    "Answer": "D",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "编号为NQ-2128的内墙板，其含义为（ ）。",
+                    "toA": {
+                        "m_content": "预制内墙板类型为无洞口内墙，标志宽度2100mm，层高2800mm。",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "预制内墙板类型为无洞口内墙，层高2100mm，标志宽度2800mm。",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "预制内墙板类型为固定门垛内墙，标志宽度2100mm，层高2800mm。",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "预制内墙板类型为中间门洞内墙，标志宽度2100mm，层高2800mm.",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "根据夹心墙板的右视图，可以得出结构板的准确（ ）。",
+                    "toA": {
+                        "m_content": "宽度",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "高度",
+                        "m_isOn": true
+                    },
+                    "toC": {
+                        "m_content": "外漏钢筋长度",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "预埋件位置",
+                        "m_isOn": false
+                    },
+                    "Answer": "B",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "外墙板一般采用三明治结构，即结构层+保温层+（ ）。",
+                    "toA": {
+                        "m_content": "加厚层 ",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "隔离层",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "防潮层",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "保护层",
+                        "m_isOn": true
+                    },
+                    "Answer": "D",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "钢筋连接灌浆套筒是通过（ ）的传力作用将钢筋对接连接所用的金属套筒。",
+                    "toA": {
+                        "m_content": "水泥基灌浆料 ",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "石灰灌浆料",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "石膏灌浆料",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "混凝土灌浆料 ",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "施工前，应由（  ）组织设计、施工、监理等单位对设计文件进行交底和会审。由施工单位完成的深化设计文件应经原设计单位确认。\t",
+                    "toA": {
+                        "m_content": "勘察单位",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "施工单位",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "监理单位",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "建设单位",
+                        "m_isOn": true
+                    },
+                    "Answer": "D",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "框架柱吊装时，上节柱的安装应在下节柱的梁和柱间支撑安装焊接完毕，下节柱接头混凝土达到设计强度的（）及以上后，方可进行。",
+                    "toA": {
+                        "m_content": "50%",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "65%",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "75%",
+                        "m_isOn": true
+                    },
+                    "toD": {
+                        "m_content": "90%",
+                        "m_isOn": false
+                    },
+                    "Answer": "C",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "《钢筋套筒灌浆连接应用技术规程》JGJ 355-2015中规定灌浆料拌合物应采用电动设备搅拌充分、均匀、并宜静止（ ）min后使用；",
+                    "toA": {
+                        "m_content": "1",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "2",
+                        "m_isOn": true
+                    },
+                    "toC": {
+                        "m_content": "3",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "5",
+                        "m_isOn": false
+                    },
+                    "Answer": "B",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "装配式混凝土结构现场安装时灌浆作业应采用（ ）从下口灌注，当浆料从上口流出后应及时封堵，必要时可设分仓进行灌浆。",
+                    "toA": {
+                        "m_content": "灌浆法",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "注浆法",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "压浆法",
+                        "m_isOn": true
+                    },
+                    "toD": {
+                        "m_content": "压力法",
+                        "m_isOn": false
+                    },
+                    "Answer": "C",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "预制构件堆放储存对场地要求要平整、（ ）、有排水措施。",
+                    "toA": {
+                        "m_content": "清洁 ",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "坚实",
+                        "m_isOn": true
+                    },
+                    "toC": {
+                        "m_content": "牢固",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "宽敞",
+                        "m_isOn": false
+                    },
+                    "Answer": "B",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "预制构件运输大多数采用（ ），不得竖直运输。",
+                    "toA": {
+                        "m_content": "吊运法    ",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "立运法    ",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "平运法",
+                        "m_isOn": true
+                    },
+                    "toD": {
+                        "m_content": "特殊法",
+                        "m_isOn": false
+                    },
+                    "Answer": "C",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "一段长为8m的叠合楼板的后浇混凝土强度达到（ ）时，方可拆除龙骨及下一层支撑。",
+                    "toA": {
+                        "m_content": "30%",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "50%",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "75%",
+                        "m_isOn": true
+                    },
+                    "toD": {
+                        "m_content": "100%",
+                        "m_isOn": false
+                    },
+                    "Answer": "C",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "浇筑叠合层混凝土时，预制底板上部应避免（  ）。",
+                    "toA": {
+                        "m_content": "均匀准载",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "集中堆载",
+                        "m_isOn": true
+                    },
+                    "toC": {
+                        "m_content": "两端堆载",
+                        "m_isOn": false
+                    },
+                    "toD": {
+                        "m_content": "中间堆载",
+                        "m_isOn": false
+                    },
+                    "Answer": "B",
+                    "Score": "1.5"
+                },
+                {
+                    "Topic": "灌浆连接施工时，应确保灌浆料流动扩展直径在（ ）mm范围内。",
+                    "toA": {
+                        "m_content": "160~220  ",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "220~300",
+                        "m_isOn": false
+                    },
+                    "toC": {
+                        "m_content": "300~380",
+                        "m_isOn": true
+                    },
+                    "toD": {
+                        "m_content": "380~460",
+                        "m_isOn": false
+                    },
+                    "Answer": "C",
+                    "Score": "1.5"
+                }
+            ],
+            "MulitChoices": [
+                {
+                    "Topic": "装配整体式混凝土建筑的前期技术策划应在项目规划审批立项前进行，并对项目定位、技术路线、成本控制、效率目标等作出明确要求；对项目所在区域的（ ）进行技术评估。",
+                    "Options": [
+                        {
+                            "Serial": "A.",
+                            "Content": "构件生产能力",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "B.",
+                            "Content": "施工装配能力",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "C.",
+                            "Content": "现场运输条件",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "D.",
+                            "Content": "吊装条件",
+                            "isOn": true
+                        }
+                    ],
+                    "Answer": "ABCD",
+                    "Score": "2"
+                },
+                {
+                    "Topic": "对于预制构件存放下列说法正确的是（ ）。",
+                    "Options": [
+                        {
+                            "Serial": "A.",
+                            "Content": "存放场地应平整、坚实，并应有排水措施。",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "B.",
+                            "Content": "存放库区域宜分区管理和信息化台账管理。",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "C.",
+                            "Content": "构件码放应按照品种、规格型号、检验状态分类存放。",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "D.",
+                            "Content": "构件码放应合理设置垫块支点位置。",
+                            "isOn": true
+                        }
+                    ],
+                    "Answer": "ABCD",
+                    "Score": "2"
+                },
+                {
+                    "Topic": "带保温材料的预制构件宜采用水平浇筑方式成型。夹芯保温墙板成型尚应满足下列那些要求（ ）。",
+                    "Options": [
+                        {
+                            "Serial": "A.",
+                            "Content": "拉结件的数量和位置应满足设计要求",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "B.",
+                            "Content": "采取可靠的措施保证拉结件位置、保护层厚度、保证拉结件在混凝土张可靠锚固",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "C.",
+                            "Content": "上层混凝土浇筑完成之前。下层混凝土不得初凝",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "D.",
+                            "Content": "保温材料间拼缝严密或者使用粘接材料密封处理",
+                            "isOn": true
+                        }
+                    ],
+                    "Answer": "ABCD",
+                    "Score": "2"
+                },
+                {
+                    "Topic": "混凝土预制构件运输道路应平整，有足够的（ ）。",
+                    "Options": [
+                        {
+                            "Serial": "A.",
+                            "Content": "承载力",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "B.",
+                            "Content": "宽度",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "C.",
+                            "Content": "绿化面积",
+                            "isOn": false
+                        },
+                        {
+                            "Serial": "D.",
+                            "Content": "转弯半径",
+                            "isOn": true
+                        }
+                    ],
+                    "Answer": "ABD",
+                    "Score": "2"
+                },
+                {
+                    "Topic": "预制构件安装后，临时固定措施的拆除应在装配式结构能达到后续施工要求的（ ）要求后进行。 ",
+                    "Options": [
+                        {
+                            "Serial": "A.",
+                            "Content": "承载力",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "B.",
+                            "Content": "刚度",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "C.",
+                            "Content": "稳定性",
+                            "isOn": true
+                        },
+                        {
+                            "Serial": "D.",
+                            "Content": "强度",
+                            "isOn": false
+                        }
+                    ],
+                    "Answer": "ABC",
+                    "Score": "2"
+                }
+            ],
+            "TOFChoices": [
+                {
+                    "Topic": "装配式建筑产业基地是指具有明确的发展目标、较好的产业基础、技术先进成熟、研发创新能力强、产业关联度大、注重装配式建筑相关人才培养培训、能够发挥示范引领和带动作用的装配式建筑相关企业。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "“十三五”装配式建筑行动方案中指出，到 2020 年，全国装配式建筑占新建建筑的比例达到 15%以上，其中重点推进地区达到 30%以上，积极推进地区达到 15%以上，鼓励推进地区达到 10%以上。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": true
+                    },
+                    "Answer": "B",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "装配式建筑项目可采用“设计-采购-施工”（EPC）总承包或“设计-施工”（D-B）总承包等工程项目管理模式。政府投资工程应带头采用工程总承包模式。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "在混凝土浇筑前应进行预制构件的隐蔽工程检查，其中纵向受力钢筋的连接方式、接头位置、接头质量、搭接长度为应检查项目，接头面积百分率不是纵向受力钢筋的隐蔽工程检查项目。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": true
+                    },
+                    "Answer": "B",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "装配式混凝土建筑施工前，宜选择有代表性的单元进行预制构件试安装，并应根据试安装结果及时调整施工工艺、完善施工方案。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "构件堆放场地应压实平整，可不必考虑排水措施。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": true
+                    },
+                    "Answer": "B",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "装配式混凝土结构中装配整体式结构承载能力极限状态及正常使用极限状态的作用效应分析可采用弹性方法。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "根据《房屋建筑制图统一标准》GB/T 50001-2017 中规定，英文字母作为轴线号时，应全部采用大写字母，不应用同一个字母的大小写来区分轴线号。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "预制构件的外观质量不应有严重缺陷，且不宜有一般缺陷，对已经出现的一般缺陷，直接修理就好，不用在进行重新检验。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": false
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": true
+                    },
+                    "Answer": "B",
+                    "Score": "1"
+                },
+                {
+                    "Topic": "构件安装就位后，可通过临时支撑对构件的位置和垂直度进行微调。",
+                    "toA": {
+                        "m_content": "对",
+                        "m_isOn": true
+                    },
+                    "toB": {
+                        "m_content": "错",
+                        "m_isOn": false
+                    },
+                    "Answer": "A",
+                    "Score": "1"
+                }
+            ]
+        }
+    ],
+    "scoresInfo": [
+        {
+            "className": "计科二班",
+            "columnsName": "门栏目",
+            "courseName": "卷帘门",
+            "registerTime": "2024/9/6",
+            "userName": "user1",
+            "Name": "张三",
+            "theoryScore": "15",
+            "trainingScore": "3",
+            "theoryFinished": true,
+            "trainingFinished": true
+        },
+        {
+            "className": "电气一班",
+            "columnsName": "门栏目",
+            "courseName": "卷帘门",
+            "registerTime": "2024/9/6",
+            "userName": "Sugar",
+            "Name": "刘二",
+            "theoryScore": "50",
+            "trainingScore": "23",
+            "theoryFinished": true,
+            "trainingFinished": true
+        }
+    ]
+}
