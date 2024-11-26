@@ -28,16 +28,16 @@ public class GetEvent : BaseEvent
         List<string> teachersList = new List<string>(); // 老师
         List<string> columnsList = new List<string>(); // 栏目
 
-        foreach (var faculty in StorageHelper.Storage.faculiesInfo)
+        foreach (var faculty in StorageHelper.storage.faculiesInfo)
             facultiesList.Add(faculty.Name);
 
-        foreach (var major in StorageHelper.Storage.majorInfo)
+        foreach (var major in StorageHelper.storage.majorInfo)
             majorList.Add(major.MajorName);
 
-        foreach (var _class in StorageHelper.Storage.classesInfo)
+        foreach (var _class in StorageHelper.storage.classesInfo)
             classesList.Add(_class.Class);
 
-        foreach (var user in StorageHelper.Storage.usersInfo)
+        foreach (var user in StorageHelper.storage.usersInfo)
         {
             switch (user.Identity)
             {
@@ -55,7 +55,7 @@ public class GetEvent : BaseEvent
             }
         }
 
-        foreach (var col in StorageHelper.Storage.columnsInfo)
+        foreach (var col in StorageHelper.storage.columnsInfo)
             columnsList.Add(col.Name);
 
 
@@ -66,7 +66,7 @@ public class GetEvent : BaseEvent
         jd["directorsList"] = JsonMapper.ToJson(directorsList);
         jd["deanList"] = JsonMapper.ToJson(deanList);
         jd["columnsList"] = JsonMapper.ToJson(columnsList);
-        jd["coursesList"] = JsonMapper.ToJson(StorageHelper.Storage.courseInfo);
+        jd["coursesList"] = JsonMapper.ToJson(StorageHelper.storage.courseInfo);
         return jd;
     }
 }

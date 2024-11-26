@@ -11,7 +11,7 @@ public class ResEvent : BaseEvent
 {
     public override async void GetInfoEvent(AsyncExpandPkg pkg)
     {
-        List<ResourcesInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.rsCheck);
+        List<ResourcesInfo> infs = await StorageHelper.GetInfo(StorageHelper.storage.rsCheck);
         
         string inf = JsonMapper.ToJson(infs);
         SocketServer.SendAsync(pkg.socket, inf, EventType.ResEvent, OperateType.GET);
@@ -30,15 +30,15 @@ public class ResEvent : BaseEvent
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
     {
         ResourcesInfo info = JsonMapper.ToObject<ResourcesInfo>(pkg.messPkg.ret);
-        List<ResourcesInfo> new_list = new List<ResourcesInfo>(StorageHelper.Storage.rsCheck);
+        List<ResourcesInfo> new_list = new List<ResourcesInfo>(StorageHelper.storage.rsCheck);
 
         int i = -1;
-        i = StorageHelper.Storage.rsCheck.FindIndex(x => x.relaPath == info.relaPath);
+        i = StorageHelper.storage.rsCheck.FindIndex(x => x.relaPath == info.relaPath);
         if (i != -1) 
         {
             string deletePath = Application.streamingAssetsPath + "\\Data\\" + info.relaPath;
             File.Delete(deletePath);
-            new_list = await StorageHelper.DeleteInfo(StorageHelper.Storage.rsCheck, (x) => {return x.relaPath == info.relaPath;});
+            new_list = await StorageHelper.DeleteInfo(StorageHelper.storage.rsCheck, (x) => {return x.relaPath == info.relaPath;});
         }
         
         string body = JsonMapper.ToJson(new_list);

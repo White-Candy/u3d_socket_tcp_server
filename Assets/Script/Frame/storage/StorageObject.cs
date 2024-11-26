@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Storage", menuName = "Storage/Storage_clump")]
-public class StorageObject : ScriptableObject
+[CreateAssetMenu(fileName = "storage", menuName = "storage/Storage_clump")]
+public class StorageObject
 {
     public List<ResourcesInfo> rsCheck = new List<ResourcesInfo>();
     public List<UserInfo> usersInfo = new List<UserInfo>();
@@ -188,8 +188,8 @@ public class SingleChoice
         single.Topic = Topic;
         single.toA = toA.Clone();
         single.toB = toB.Clone();
-        single.toC = toB.Clone();
-        single.toD = toB.Clone();
+        single.toC = toC.Clone();
+        single.toD = toD.Clone();
         single.Answer = Answer;
         single.Score = Score;
         return single;

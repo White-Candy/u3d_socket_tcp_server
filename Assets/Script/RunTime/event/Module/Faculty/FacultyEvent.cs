@@ -6,7 +6,7 @@ public class FacultyEvent : BaseEvent
 {
     public override async void GetInfoEvent(AsyncExpandPkg pkg)
     {
-        List<FacultyInfo> infs = await StorageHelper.GetInfo(StorageHelper.Storage.faculiesInfo);
+        List<FacultyInfo> infs = await StorageHelper.GetInfo(StorageHelper.storage.faculiesInfo);
         
         string inf = JsonMapper.ToJson(infs);
         SocketServer.SendAsync(pkg.socket, inf, EventType.FacultyEvent, OperateType.GET);
@@ -15,7 +15,7 @@ public class FacultyEvent : BaseEvent
     public override async void AddEvent(AsyncExpandPkg pkg)
     {
         FacultyInfo info = JsonMapper.ToObject<FacultyInfo>(pkg.messPkg.ret);
-        List<FacultyInfo> new_list = await StorageHelper.AddInfo(info, StorageHelper.Storage.faculiesInfo, x => x.Name == info.Name);
+        List<FacultyInfo> new_list = await StorageHelper.AddInfo(info, StorageHelper.storage.faculiesInfo, x => x.Name == info.Name);
 
         string body = JsonMapper.ToJson(new_list);
         SocketServer.SendAsync(pkg.socket, body, EventType.FacultyEvent, OperateType.ADD);
@@ -24,7 +24,7 @@ public class FacultyEvent : BaseEvent
     public override async void ReviseInfoEvent(AsyncExpandPkg pkg)
     {
         FacultyInfo info = JsonMapper.ToObject<FacultyInfo>(pkg.messPkg.ret);
-        List<FacultyInfo> inf = await StorageHelper.ReviseInfo(info, StorageHelper.Storage.faculiesInfo, x => x.id == info.id);
+        List<FacultyInfo> inf = await StorageHelper.ReviseInfo(info, StorageHelper.storage.faculiesInfo, x => x.id == info.id);
         
         string s_inf = JsonMapper.ToJson(inf);
         SocketServer.SendAsync(pkg.socket, s_inf, EventType.FacultyEvent, OperateType.REVISE);
@@ -33,13 +33,13 @@ public class FacultyEvent : BaseEvent
     public override async void DeleteInfoEvent(AsyncExpandPkg pkg)
     {
         FacultyInfo info = JsonMapper.ToObject<FacultyInfo>(pkg.messPkg.ret);
-        List<FacultyInfo> new_list = new List<FacultyInfo>(StorageHelper.Storage.faculiesInfo);
+        List<FacultyInfo> new_list = new List<FacultyInfo>(StorageHelper.storage.faculiesInfo);
         int i = -1;
-        i = StorageHelper.Storage.majorInfo.FindIndex(x => x.FacultyName == info.Name);
+        i = StorageHelper.storage.majorInfo.FindIndex(x => x.FacultyName == info.Name);
         if (i == -1)
         {
             new_list = 
-                await StorageHelper.DeleteInfo(StorageHelper.Storage.faculiesInfo, (x) => {return x.id == info.id;});
+                await StorageHelper.DeleteInfo(StorageHelper.storage.faculiesInfo, (x) => {return x.id == info.id;});
         }
         
         
@@ -50,7 +50,7 @@ public class FacultyEvent : BaseEvent
     public override async void SearchInfoEvent(AsyncExpandPkg pkg)
     {
         FacultyInfo info = JsonMapper.ToObject<FacultyInfo>(pkg.messPkg.ret);
-        List<FacultyInfo> inf = StorageHelper.SearchInf(StorageHelper.Storage.faculiesInfo, x => x.Name == info.Name);
+        List<FacultyInfo> inf = StorageHelper.SearchInf(StorageHelper.storage.faculiesInfo, x => x.Name == info.Name);
 
         string s_inf = JsonMapper.ToJson(inf);
         SocketServer.SendAsync(pkg.socket, s_inf, EventType.FacultyEvent, OperateType.SEARCH);

@@ -3,6 +3,7 @@ using LitJson;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -10,24 +11,63 @@ public class StorageHelper
 {
     private static bool m_Init = false;
 
-    private static StorageObject m_storage;
-    public static StorageObject Storage
+    private static StorageObject m_Storage;
+    public static StorageObject storage
     {
         get
         {
-            if (m_storage == null)
-            {
-                m_storage = Resources.Load("Storage/Clump") as StorageObject;
-            }
-
-            if (File.Exists(Application.streamingAssetsPath + "/Storage.json") && !m_Init)
-            {
-                string s_json = File.ReadAllText(Application.streamingAssetsPath + "/Storage.json");
-                JsonUtility.FromJsonOverwrite(s_json, m_storage);
-                m_Init = true;
-            }
-            return m_storage;
+            if (m_Storage == null)
+                m_Storage = new StorageObject();
+            return m_Storage;
         }
+    }
+
+    public static void Init()
+    {
+        HardDisk2Memory(FPath.STORAGE_USER, out storage.usersInfo);
+        HardDisk2Memory(FPath.STORAGE_RESOURCE, out storage.rsCheck);
+        HardDisk2Memory(FPath.STORAGE_FACULTY, out storage.faculiesInfo);
+        HardDisk2Memory(FPath.STORAGE_MAJOR, out storage.majorInfo);
+        HardDisk2Memory(FPath.STORAGE_CLASS, out storage.classesInfo);
+        HardDisk2Memory(FPath.STORAGE_COLUMNS, out storage.columnsInfo);
+        HardDisk2Memory(FPath.STORAGE_COURSE, out storage.courseInfo);
+        HardDisk2Memory(FPath.STORAGE_EXAMINE, out storage.examineesInfo);
+        HardDisk2Memory(FPath.STORAGE_SCORE, out storage.scoresInfo);
+        // HardDisk2Memory(FPath.STORAGE_SOFTWARE, out storage.softwareInfo);
+    }
+
+    public static void Save()
+    {
+        Memory2HardDisk(FPath.STORAGE_USER, storage.usersInfo);
+        Memory2HardDisk(FPath.STORAGE_RESOURCE, storage.rsCheck);
+        Memory2HardDisk(FPath.STORAGE_FACULTY, storage.faculiesInfo);
+        Memory2HardDisk(FPath.STORAGE_MAJOR, storage.majorInfo);
+        Memory2HardDisk(FPath.STORAGE_CLASS, storage.classesInfo);
+        Memory2HardDisk(FPath.STORAGE_COLUMNS, storage.columnsInfo);
+        Memory2HardDisk(FPath.STORAGE_COURSE, storage.courseInfo);
+        Memory2HardDisk(FPath.STORAGE_EXAMINE, storage.examineesInfo);
+        Memory2HardDisk(FPath.STORAGE_SCORE, storage.scoresInfo);
+        // Memory2HardDisk(FPath.STORAGE_SOFTWARE, storage.softwareInfo);
+    }
+
+    private static void HardDisk2Memory<T>(string filePath, out List<T> targetList)
+    {
+        string jsonString = FileHelper.ReadTextFile(filePath);
+        if (jsonString.Count() == 0)
+        {
+            targetList = new List<T>();
+            return;
+        }
+
+        targetList = JsonMapper.ToObject<List<T>>(jsonString);
+    }
+
+    private static void Memory2HardDisk<T>(string savePath, List<T> saveList)
+    {
+        if (saveList == null) return;
+        string json = JsonMapper.ToJson(saveList);
+        //Console.WriteLine($"{savePath}: {json}");
+        FileHelper.WriteTextFile(savePath, json);
     }
 
     /// <summary>
@@ -36,7 +76,7 @@ public class StorageHelper
     /// <param name="cli_info"></param>
     public static ResourcesInfo GetThisInfoPkg(ResourcesInfo cli_info)
     {
-        return Storage.rsCheck.Find((x) => 
+        return storage.rsCheck.Find((x) => 
         {
             return (x.relaPath == cli_info.relaPath); 
         });
@@ -52,16 +92,16 @@ public class StorageHelper
         string id = st[0];
         string moudleName = st[1];
 
-        int idx = Storage.rsCheck.FindIndex((x) => { return x.relaPath == relative; });
+        int idx = storage.rsCheck.FindIndex((x) => { return x.relaPath == relative; });
         if (idx != -1)
         {
-            Storage.rsCheck.RemoveAt(idx);
+            storage.rsCheck.RemoveAt(idx);
         }
 
         ResourcesInfo ri = new ResourcesInfo();
         ri.relaPath = relative;
         ri.version_code = Tools.SpawnRandomCode();
-        Storage.rsCheck.Add(ri);
+        storage.rsCheck.Add(ri);
         await SaveToDisk();
     }
 
@@ -72,8 +112,8 @@ public class StorageHelper
     {
         await UniTask.SwitchToMainThread();
         // Debug.Log("SaveToDisk");
-        string s_json = JsonMapper.ToJson(Storage);
-        File.WriteAllText(Application.streamingAssetsPath + "/Storage.json", s_json);
+        string s_json = JsonMapper.ToJson(storage);
+        File.WriteAllText(Application.streamingAssetsPath + "/storage.json", s_json);
     }
 
     /// <summary>
@@ -86,19 +126,19 @@ public class StorageHelper
     {
         await UniTask.SwitchToMainThread();
         UserInfo usrInfo = info;
-        int account_idx = Storage.usersInfo.FindIndex(x => x.userName == info.userName);
+        int account_idx = storage.usersInfo.FindIndex(x => x.userName == info.userName);
         if (account_idx != -1)
         {
-            int pwd_idx = Storage.usersInfo.FindIndex(x => x.userName == info.userName && x.password == info.password);
+            int pwd_idx = storage.usersInfo.FindIndex(x => x.userName == info.userName && x.password == info.password);
             if (pwd_idx != -1)
             {
-                usrInfo.Name = Storage.usersInfo[pwd_idx].Name;
-                usrInfo.Gender = Storage.usersInfo[pwd_idx].Gender;
-                usrInfo.Age = Storage.usersInfo[pwd_idx].Age;
-                usrInfo.Identity = Storage.usersInfo[pwd_idx].Identity;
-                usrInfo.idCoder = Storage.usersInfo[pwd_idx].idCoder;
-                usrInfo.Contact = Storage.usersInfo[pwd_idx].Contact;
-                usrInfo.UnitName = Storage.usersInfo[pwd_idx].UnitName;
+                usrInfo.Name = storage.usersInfo[pwd_idx].Name;
+                usrInfo.Gender = storage.usersInfo[pwd_idx].Gender;
+                usrInfo.Age = storage.usersInfo[pwd_idx].Age;
+                usrInfo.Identity = storage.usersInfo[pwd_idx].Identity;
+                usrInfo.idCoder = storage.usersInfo[pwd_idx].idCoder;
+                usrInfo.Contact = storage.usersInfo[pwd_idx].Contact;
+                usrInfo.UnitName = storage.usersInfo[pwd_idx].UnitName;
                 usrInfo.login = true;
                 usrInfo.hint = "登录成功";
             }
@@ -122,10 +162,10 @@ public class StorageHelper
     public async static UniTask<UserInfo> Register(UserInfo inf)
     {
         await UniTask.SwitchToMainThread();
-        if (Storage.usersInfo.Find(x => x.userName == inf.userName) == null)
+        if (storage.usersInfo.Find(x => x.userName == inf.userName) == null)
         {
             inf.hint = "注册成功!";
-            Storage.usersInfo.Add(inf);
+            storage.usersInfo.Add(inf);
             await SaveToDisk();
         }
         else

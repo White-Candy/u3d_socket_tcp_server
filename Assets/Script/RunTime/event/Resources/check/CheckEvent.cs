@@ -12,7 +12,7 @@ public class CheckEvent : BaseEvent
         string relativePath = up.relativePath;
         List<ResourcesInfo> bufInfo = new List<ResourcesInfo>();
         // Debug.Log($"relative Path : {relativePath}");
-        foreach (ResourcesInfo inf in StorageHelper.Storage.rsCheck)
+        foreach (ResourcesInfo inf in StorageHelper.storage.rsCheck)
         {
             ResourcesInfo info = new ResourcesInfo(inf);
             if (inf.relaPath.Contains(relativePath))

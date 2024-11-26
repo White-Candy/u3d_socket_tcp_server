@@ -12,7 +12,7 @@ public class GetProjInfo : BaseEvent
         await UniTask.Yield();
 
         List<Proj> projs = new List<Proj>();
-        foreach (var item in StorageHelper.Storage.columnsInfo)
+        foreach (var item in StorageHelper.storage.columnsInfo)
         {
             Proj proj = new Proj
             {
@@ -20,7 +20,7 @@ public class GetProjInfo : BaseEvent
             };
 
             List<string> courses = new List<string>();
-            foreach (var course in StorageHelper.Storage.courseInfo)
+            foreach (var course in StorageHelper.storage.courseInfo)
             {
                 if (course.Columns == item.Name)
                 {

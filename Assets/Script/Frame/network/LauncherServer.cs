@@ -32,6 +32,8 @@ public class LauncherServer : MonoBehaviour
 
             m_server.LauncherServer(int.Parse(port)); 
         });
+
+        StorageHelper.Init();
     }
 
     public async void Start()
