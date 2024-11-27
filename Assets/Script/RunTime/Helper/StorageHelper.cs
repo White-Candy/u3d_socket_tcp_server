@@ -139,6 +139,7 @@ public class StorageHelper
                 usrInfo.idCoder = storage.usersInfo[pwdIdx].idCoder;
                 usrInfo.Contact = storage.usersInfo[pwdIdx].Contact;
                 usrInfo.UnitName = storage.usersInfo[pwdIdx].UnitName;
+                usrInfo.login = true;
                 usrInfo.hint = "µÇÂ¼³É¹¦";
             }
             else if (pwdIdx != -1 && storage.usersInfo[pwdIdx].login == false)
