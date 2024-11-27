@@ -129,18 +129,21 @@ public class StorageHelper
         int account_idx = storage.usersInfo.FindIndex(x => x.userName == info.userName);
         if (account_idx != -1)
         {
-            int pwd_idx = storage.usersInfo.FindIndex(x => x.userName == info.userName && x.password == info.password);
-            if (pwd_idx != -1)
+            int pwdIdx = storage.usersInfo.FindIndex(x => x.userName == info.userName && x.password == info.password);
+            if (pwdIdx != -1 && storage.usersInfo[pwdIdx].login == true)
             {
-                usrInfo.Name = storage.usersInfo[pwd_idx].Name;
-                usrInfo.Gender = storage.usersInfo[pwd_idx].Gender;
-                usrInfo.Age = storage.usersInfo[pwd_idx].Age;
-                usrInfo.Identity = storage.usersInfo[pwd_idx].Identity;
-                usrInfo.idCoder = storage.usersInfo[pwd_idx].idCoder;
-                usrInfo.Contact = storage.usersInfo[pwd_idx].Contact;
-                usrInfo.UnitName = storage.usersInfo[pwd_idx].UnitName;
-                usrInfo.login = true;
+                usrInfo.Name = storage.usersInfo[pwdIdx].Name;
+                usrInfo.Gender = storage.usersInfo[pwdIdx].Gender;
+                usrInfo.Age = storage.usersInfo[pwdIdx].Age;
+                usrInfo.Identity = storage.usersInfo[pwdIdx].Identity;
+                usrInfo.idCoder = storage.usersInfo[pwdIdx].idCoder;
+                usrInfo.Contact = storage.usersInfo[pwdIdx].Contact;
+                usrInfo.UnitName = storage.usersInfo[pwdIdx].UnitName;
                 usrInfo.hint = "µÇÂ¼³É¹¦";
+            }
+            else if (pwdIdx != -1 && storage.usersInfo[pwdIdx].login == false)
+            {
+                usrInfo.hint = "ÕËºÅÎ´¼¤»î";
             }
             else
             {
