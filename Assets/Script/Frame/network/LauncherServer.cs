@@ -52,6 +52,7 @@ public class LauncherServer : MonoBehaviour
 
     private async void OnDestroy()
     {
+        StorageHelper.Save();
         await StorageHelper.SaveToDisk();
         //m_HttpServer.Clear();
         m_server.Clear();
