@@ -33,6 +33,8 @@ public class StorageHelper
         HardDisk2Memory(FPath.STORAGE_COURSE, out storage.courseInfo);
         HardDisk2Memory(FPath.STORAGE_EXAMINE, out storage.examineesInfo);
         HardDisk2Memory(FPath.STORAGE_SCORE, out storage.scoresInfo);
+        HardDisk2Memory(FPath.STORAGE_MCNT, out storage.numOfPeoInfo);
+        HardDisk2Memory(FPath.STORAGE_USTIME, out storage.usrTimeInfo);
         // HardDisk2Memory(FPath.STORAGE_SOFTWARE, out storage.softwareInfo);
     }
 
@@ -47,6 +49,8 @@ public class StorageHelper
         Memory2HardDisk(FPath.STORAGE_COURSE, storage.courseInfo);
         Memory2HardDisk(FPath.STORAGE_EXAMINE, storage.examineesInfo);
         Memory2HardDisk(FPath.STORAGE_SCORE, storage.scoresInfo);
+        Memory2HardDisk(FPath.STORAGE_MCNT, storage.numOfPeoInfo);
+        Memory2HardDisk(FPath.STORAGE_USTIME, storage.usrTimeInfo);
         // Memory2HardDisk(FPath.STORAGE_SOFTWARE, storage.softwareInfo);
     }
 
@@ -66,7 +70,7 @@ public class StorageHelper
     {
         if (saveList == null) return;
         string json = JsonMapper.ToJson(saveList);
-        //Console.WriteLine($"{savePath}: {json}");
+        Console.WriteLine($"Memory2HardDisk: {savePath}: {json}");
         FileHelper.WriteTextFile(savePath, json);
     }
 

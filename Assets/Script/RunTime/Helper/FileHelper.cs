@@ -30,7 +30,7 @@ public class FileHelper
     public static string ReadTextFile(string filepath)
     {
         string content = string.Empty;
-        using (FileStream fs = new FileStream(filepath, FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite, FileShare.ReadWrite))
+        using (FileStream fs = new FileStream(filepath, FileMode.Open, System.IO.FileAccess.ReadWrite, FileShare.ReadWrite))
         {
             using (StreamReader sr = new StreamReader(fs, Encoding.UTF8))
             {
@@ -49,11 +49,9 @@ public class FileHelper
     /// <param name="contents">ÄÚÈÝ</param>
     public static void WriteTextFile(string path, string contents)
     {
-        FileMode fileMode;
-        if (!File.Exists(path)) fileMode = FileMode.OpenOrCreate;
-        else fileMode = FileMode.Open;
+        if (!File.Exists(path)) return;
 
-        using (FileStream fs = new FileStream(path, fileMode, System.IO.FileAccess.ReadWrite, FileShare.ReadWrite))
+        using (FileStream fs = new FileStream(path, FileMode.Open, System.IO.FileAccess.ReadWrite, FileShare.ReadWrite))
         {
             fs.Seek(0, SeekOrigin.Begin);
             fs.SetLength(0);

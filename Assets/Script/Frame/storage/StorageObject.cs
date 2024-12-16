@@ -14,6 +14,8 @@ public class StorageObject
     public List<CourseInfo> courseInfo = new List<CourseInfo>();
     public List<ExamineInfo> examineesInfo = new List<ExamineInfo>();
     public List<ScoreInfo> scoresInfo = new List<ScoreInfo>();
+    public List<NumOfPeopleInfo> numOfPeoInfo = new List<NumOfPeopleInfo>();
+    public List<UsrTimeInfo> usrTimeInfo = new List<UsrTimeInfo>();
 }
 
 /// <summary>
@@ -326,4 +328,25 @@ public class ScoreInfo : BaseInfo
         };
         return inf;
     }    
+}
+
+/// <summary>
+/// 人次统计
+/// </summary>
+[Serializable]
+public class NumOfPeopleInfo : BaseInfo
+{
+    public string moduleName = ""; // 模块名称
+    public int count = 0; // 该模块使用人次
+}
+
+/// <summary>
+/// 时长统计
+/// </summary>
+[Serializable]
+public class UsrTimeInfo : BaseInfo
+{
+    public string usrName = ""; // 用户名
+    public string moduleName = ""; // 模块名称
+    public int min = 0; // 使用时间(分钟)
 }

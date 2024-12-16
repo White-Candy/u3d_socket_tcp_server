@@ -13,11 +13,12 @@ public class ClassEvent : BaseEvent
         {
             if (usr.Identity != "学生") continue;
             
-            if (!classesNumber.ContainsKey(usr.UnitName))
+            if (usr.UnitName != null && !classesNumber.ContainsKey(usr.UnitName))
             {
                 classesNumber.Add(usr.UnitName, 0);
             }         
-            classesNumber[usr.UnitName]++; 
+
+            if (usr.UnitName != null) classesNumber[usr.UnitName]++; 
         }
 
         foreach (var _class in infs)

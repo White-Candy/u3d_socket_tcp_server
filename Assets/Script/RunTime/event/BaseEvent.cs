@@ -27,6 +27,7 @@ public enum EventType
     ExamineEvent,
     ScoreEvent,
     ResEvent,
+    StatisticsEvent
 }
 
 public abstract class BaseEvent
